@@ -2,8 +2,14 @@ import { defineConfig } from "umi";
 
 export default defineConfig({
   routes: [
-    { path: "/", component: "index" },
-    { path: "/docs", component: "docs" },
+    { path: "/", component: "@/pages/edit-resume" },
   ],
   npmClient: 'pnpm',
+  mfsu: {
+    shared: {
+      react: {
+        singleton: true,
+      },
+    },
+  },
 });
