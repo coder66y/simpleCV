@@ -32,10 +32,6 @@ export const rightTabConfig: IRightTabConfig[] = [
   {
     title: '信息模块',
     key: 'infoModule'
-  },
-  {
-    title: '排序设置',
-    key: 'sortSetting'
   }
 ]
 

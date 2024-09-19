@@ -5,7 +5,7 @@ import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import { CSS } from '@dnd-kit/utilities';
-import { Tabs, Switch, Button } from 'antd'
+import { Tabs, Switch, Button, Space } from 'antd'
 import { DragOutlined } from '@ant-design/icons'
 
 import { IInfoIconConfig, rightTabConfig } from '@/pages/edit-resume/config'
@@ -116,12 +116,12 @@ export default function EditRight(props: IEditRightProps) {
                   {
                     moduleList.map(item => {
                       return <Row key={item.key} className='info-module-item' data-row-key={item.key}>
-                        <div className='module-left'>
-                         {item.title}
-                        </div>
-                        <div className='module-right'>
+                        <Space className='module-right' size={18}>
+                        {item.title}
                         {
-                          it.key === 'infoModule' && item.key !== 'basicInfo' && <Switch value={item.hidden} onChange={() => {
+                          item.key !== 'basicInfo' && <Switch
+                            value={!item.hidden}
+                            onChange={() => {
                             dispatch({
                               type: 'changeHidden',
                               payload: {
@@ -132,9 +132,9 @@ export default function EditRight(props: IEditRightProps) {
                           }}/>
                         }
                         {
-                          it.key === 'sortSetting' && item.key !== 'basicInfo' && <DragHandle />
+                          item.key !== 'basicInfo' && <DragHandle />
                         }
-                        </div>
+                        </Space>
                       </Row>
                     })
                   }

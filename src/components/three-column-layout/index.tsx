@@ -10,7 +10,7 @@ export interface IThreeColumnLayoutProps {
    */
   children?: React.ReactElement[];
   className?: string;
-  gap: number;
+  gap?: number;
 }
 export default function ThreeColumnLayout(props: IThreeColumnLayoutProps) {
   const { children, gap = 0, className } = props;

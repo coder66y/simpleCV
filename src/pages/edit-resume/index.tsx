@@ -1,12 +1,13 @@
-import EditContent from "@/components/edit-content";
-import EditLeft from "@/components/edit-left";
-import EditRight from "@/components/edit-right";
-import ThreeColumnLayout from "@/layouts/three-column-layout";
+import EditContent from "./components/edit-content";
+import EditLeft from "./components/edit-left";
+import EditRight from "./components/edit-right";
+import ThreeColumnLayout from "@/components/three-column-layout";
 import 'normalize.css'
 import './index.less'
 import { useReducer } from "react";
 import { IInfoIconConfig, infoModuleList } from "./config";
 import { arrayMove } from "@dnd-kit/sortable";
+import Header from "./components/header";
 
 function reducer(state: IInfoIconConfig[], action: {type: string, payload: Record<string, any>}) {
   const { type, payload } = action;
@@ -31,11 +32,10 @@ function reducer(state: IInfoIconConfig[], action: {type: string, payload: Recor
 
 export default function EditResume() {
   const [moduleList, dispatch] = useReducer<(state: IInfoIconConfig[], action: Record<string, any>) => void, IInfoIconConfig[]>(reducer, infoModuleList)
-  console.info(`%c info 123: %o`, 'color: green; font-size: 20px; font-weight: 700', 123)
   return (
     <>
       <div className="edit-cv-header">
-        <div className="edit-title">编辑简历</div>
+        <Header />
       </div>
       <ThreeColumnLayout gap={20} className="edit-cv-container">
         <EditLeft data-width={"auto"}></EditLeft>
