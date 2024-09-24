@@ -7,6 +7,7 @@ export interface IInfoIconConfig {
   hidden?: boolean;
   sort?: number;
 }
+
 export const leftIconConfig: IInfoIconConfig[] = [
   {
     title: '间距设置',
@@ -24,10 +25,12 @@ export const leftIconConfig: IInfoIconConfig[] = [
     icon: <TranslationOutlined />
   },
 ]
+
 export interface IRightTabConfig {
   title: string;
   key: string;
 }
+
 export const rightTabConfig: IRightTabConfig[] = [
   {
     title: '信息模块',

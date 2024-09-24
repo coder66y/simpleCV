@@ -1,8 +1,10 @@
 import { Button, Space } from "antd";
 import './index.less';
 import ThreeColumnLayout from "@/components/three-column-layout";
+import { useTheme } from "../../store/theme-context";
 
 export default function Header() {
+  const theme = useTheme()
   return (
       <ThreeColumnLayout gap={20} className="edit-cv-title">
         <div data-width="auto" className="logo">

@@ -2,12 +2,12 @@ import EditContent from "./components/edit-content";
 import EditLeft from "./components/edit-left";
 import EditRight from "./components/edit-right";
 import ThreeColumnLayout from "@/components/three-column-layout";
-import 'normalize.css'
 import './index.less'
 import { useReducer } from "react";
 import { IInfoIconConfig, infoModuleList } from "./config";
 import { arrayMove } from "@dnd-kit/sortable";
 import Header from "./components/header";
+import { ThemeProvider } from './store/theme-context'
 
 function reducer(state: IInfoIconConfig[], action: {type: string, payload: Record<string, any>}) {
   const { type, payload } = action;
@@ -31,9 +31,10 @@ function reducer(state: IInfoIconConfig[], action: {type: string, payload: Recor
 }
 
 export default function EditResume() {
+
   const [moduleList, dispatch] = useReducer<(state: IInfoIconConfig[], action: Record<string, any>) => void, IInfoIconConfig[]>(reducer, infoModuleList)
   return (
-    <>
+    <ThemeProvider>
       <div className="edit-cv-header">
         <Header />
       </div>
@@ -42,6 +43,6 @@ export default function EditResume() {
         <EditContent moduleList={moduleList} dispatch={dispatch} data-width="auto"></EditContent>
         <EditRight moduleList={moduleList} dispatch={dispatch} data-width={200}></EditRight>
       </ThreeColumnLayout>
-    </>
+    </ThemeProvider>
   )
 }
