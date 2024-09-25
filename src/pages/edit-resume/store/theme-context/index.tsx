@@ -2,9 +2,9 @@ import React, { createContext, Dispatch, Reducer, useContext, useReducer } from 
 /** 主题类型 */
 export type  IThemeStoreTypes = {
   color: string;
-  moduleMargin: string;
+  moduleMargin: number;
   lineHight: number;
-  pageMargin: string;
+  pageMargin: number;
   fontSize: number;
   fontFamily: string;
   language: string;
@@ -20,11 +20,11 @@ export type IThemeDispatchArgType = {
 export type ThemeDispatchActionType = Dispatch<IThemeDispatchArgType>;
 
 /** 主题初始值 */
-const initialTheme: IThemeStoreTypes = {
+export const initialTheme: IThemeStoreTypes = {
   color: 'red',
-  moduleMargin: "10px",
+  moduleMargin: 10,
   lineHight: 1,
-  pageMargin: "40px",
+  pageMargin: 40,
   fontSize: 14,
   fontFamily: 'Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, SimSun, sans-serif',
   language: 'zh-CN'

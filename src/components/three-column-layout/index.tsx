@@ -1,5 +1,5 @@
 
-import React, { ReactComponentElement, ReactElement, ReactNode } from 'react';
+import React from 'react';
 const rootCls = 'three-column-layout';
 import './index.less'
 
@@ -22,7 +22,7 @@ export default function ThreeColumnLayout(props: IThreeColumnLayoutProps) {
         {child}
       </div>
     )
-  }) 
+  })
 
   return (
     <div className={`${rootCls} ${className}`} style={{gap: gap}}>

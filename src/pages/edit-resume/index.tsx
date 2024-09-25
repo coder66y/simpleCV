@@ -3,20 +3,21 @@ import EditLeft from "./components/edit-left";
 import EditRight from "./components/edit-right";
 import ThreeColumnLayout from "@/components/three-column-layout";
 import './index.less'
-import { useReducer } from "react";
-import { IInfoIconConfig, infoModuleList } from "./config";
+import { Reducer, useReducer } from "react";
+import { infoModuleList } from "./config";
 import { arrayMove } from "@dnd-kit/sortable";
 import Header from "./components/header";
 import { ThemeProvider } from './store/theme-context'
+import { IInfoIconConfig, IModuleDataDispatchArgType } from "./types";
 
-function reducer(state: IInfoIconConfig[], action: {type: string, payload: Record<string, any>}) {
+const infoModuleReducer: Reducer<IInfoIconConfig[], IModuleDataDispatchArgType> = (state, action) => {
   const { type, payload } = action;
   if(type === 'reset') {
     return infoModuleList
   }
   if(type === 'changeHidden') {
     return state.map(item => {
-      if(item.key === payload.key) {
+      if(item.key === payload?.key) {
         return {
           ...item,
           hidden: !item.hidden
@@ -26,13 +27,13 @@ function reducer(state: IInfoIconConfig[], action: {type: string, payload: Recor
     })
   }
   if(type === 'sort') {
-    return arrayMove(state, payload.oldIndex, payload.newIndex)
+   return arrayMove(state, payload?.oldIndex, payload?.newIndex)
   }
+  return state;
 }
 
 export default function EditResume() {
-
-  const [moduleList, dispatch] = useReducer<(state: IInfoIconConfig[], action: Record<string, any>) => void, IInfoIconConfig[]>(reducer, infoModuleList)
+  const [moduleList, dispatch] = useReducer(infoModuleReducer, infoModuleList, () => infoModuleList)
   return (
     <ThemeProvider>
       <div className="edit-cv-header">

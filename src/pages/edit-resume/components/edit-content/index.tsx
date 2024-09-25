@@ -1,19 +1,25 @@
-import { IInfoIconConfig } from '@/pages/edit-resume/config';
+/*
+ * @Description: 简历内容主体
+ * @Author: luyi.lss
+ * @Date: 2024-08-23 14:51:41
+ * @LastEditors: luyi.lss
+ * @LastEditTime: 2024-09-25 09:51:19
+ */
 import './index.less';
-import { DispatchWithoutAction } from 'react';
 import Editor from '@/components/quill-editor';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
 import { useTheme } from '../../store/theme-context';
+import { IInfoIconConfig, IModuleDataDispatchArgType } from '../../types';
 const rootCls = 'edit-resume';
 export interface IEditContentProps {
   moduleList: IInfoIconConfig[];
-  dispatch: DispatchWithoutAction;
+  dispatch: React.Dispatch<IModuleDataDispatchArgType>;
 }
 export default function EditContent(props: IEditContentProps) {
   const { moduleList, dispatch  } = props;
-  const { color, pageMargin } = useTheme()
+  const { color, pageMargin, moduleMargin } = useTheme()
   return (
-    <div className={`${rootCls}`} style={{'--primaryColor': color, '--pageMargin': pageMargin}}>
+    <div className={`${rootCls}`} style={{'--primaryColor': color, '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`}}>
       <div className={`${rootCls}-header`} style={{color}}>
         <dl className="left-box" >
           <dt className="resume-title" style={{borderRightColor: color}}>
@@ -52,7 +58,7 @@ export default function EditContent(props: IEditContentProps) {
             </div>
             <div className='module-line'>
             </div>
-            <div>
+            <div className='module-content-main'>
               <Editor readOnly={true} />
             </div>
           </div>

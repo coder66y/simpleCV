@@ -1,3 +1,10 @@
+/*
+ * @Description: 简历编辑页面头部
+ * @Author: luyi.lss
+ * @Date: 2024-09-13 00:07:08
+ * @LastEditors: luyi.lss
+ * @LastEditTime: 2024-09-24 22:19:51
+ */
 import { Button, Space } from "antd";
 import './index.less';
 import ThreeColumnLayout from "@/components/three-column-layout";

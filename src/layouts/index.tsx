@@ -10,6 +10,12 @@ export default function Layout() {
       token: {
         colorPrimary: '#44a6d7',
       },
+      components: {
+        Slider: {
+          trackBg: '#44a6d7',
+          trackHoverBg: '#44a6d7',
+        },
+      },
     }}>
       <Outlet />
     </ConfigProvider>

@@ -1,12 +1,6 @@
 import { ColumnHeightOutlined, SkinOutlined, TranslationOutlined } from '@ant-design/icons'
-
-export interface IInfoIconConfig {
-  title: string;
-  key: string;
-  icon: React.ReactNode;
-  hidden?: boolean;
-  sort?: number;
-}
+import { ReactNode } from 'react';
+import { IInfoIconConfig, IRightTabConfig } from './types';
 
 export const leftIconConfig: IInfoIconConfig[] = [
   {
@@ -26,9 +20,10 @@ export const leftIconConfig: IInfoIconConfig[] = [
   },
 ]
 
-export interface IRightTabConfig {
-  title: string;
-  key: string;
+export enum ThemeConfigKeyEnum {
+  SPACEING = "spacing",
+  SKIN = "skin",
+  LANGUAGE = "language"
 }
 
 export const rightTabConfig: IRightTabConfig[] = [
@@ -38,6 +33,7 @@ export const rightTabConfig: IRightTabConfig[] = [
   }
 ]
 
+/** 模块信息列表 */
 export const infoModuleList: IInfoIconConfig[] = [
   {
     title: '基本信息',
@@ -81,4 +77,15 @@ export const infoModuleList: IInfoIconConfig[] = [
     key: 'intention',
   }
 ]
+
+export const infoModuleIconMap = new Map<string, ReactNode>([
+  ['basicInfo', <ColumnHeightOutlined />],
+  ['education', <ColumnHeightOutlined />],
+  ['workExperience', <ColumnHeightOutlined />],
+  ['projectExperience', <ColumnHeightOutlined />],
+  ['skills', <ColumnHeightOutlined />],
+  ['honor', <ColumnHeightOutlined />],
+  ['evaluation', <ColumnHeightOutlined />],
+  ['intention', <ColumnHeightOutlined />],
+])
 
