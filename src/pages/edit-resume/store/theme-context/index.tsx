@@ -1,7 +1,10 @@
 import React, { createContext, Dispatch, Reducer, useContext, useReducer } from 'react';
+import { colorPrimary } from '@/layouts';
+
 /** 主题类型 */
 export type  IThemeStoreTypes = {
   color: string;
+  secondaryColor: string;
   moduleMargin: number;
   lineHight: number;
   pageMargin: number;
@@ -21,12 +24,13 @@ export type ThemeDispatchActionType = Dispatch<IThemeDispatchArgType>;
 
 /** 主题初始值 */
 export const initialTheme: IThemeStoreTypes = {
-  color: 'red',
+  color: colorPrimary,
   moduleMargin: 10,
+  secondaryColor: "#999",
   lineHight: 1,
   pageMargin: 40,
   fontSize: 14,
-  fontFamily: 'Helvetica Neue, Arial, PingFang SC, Microsoft YaHei, SimSun, sans-serif',
+  fontFamily: 'Microsoft YaHei',
   language: 'zh-CN'
 }
 

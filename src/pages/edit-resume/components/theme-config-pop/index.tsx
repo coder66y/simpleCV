@@ -3,6 +3,8 @@ import { ThemeConfigKeyEnum } from "../../config";
 import { useState } from "react";
 import './index.less'
 import { SpaceSetForm } from "./space-set-form";
+import { SkinSetForm } from "./skin-set-form";
+import { LanguageSetForm } from "./language-set-form";
 
 export interface IThemeConfigPopProps extends PopoverProps {
   configKey: ThemeConfigKeyEnum;
@@ -12,10 +14,16 @@ export default function ThemeConfigPop(props: IThemeConfigPopProps) {
   const { configKey, className, children, ...other } = props;
   const [open, setOpen] = useState<boolean>(false);
 
+  const formMap = new Map([
+   ['spacing', <SpaceSetForm />],
+   ['skin', <SkinSetForm />],
+   ['language', <LanguageSetForm />]
+  ])
+
   return (
     <Popover
       {...other}
-      content={<SpaceSetForm />}
+      content={formMap.get(configKey)}
       open={open}
       className={`${className} ${open ? 'active-pop' : ''}`}
       onOpenChange={() => {

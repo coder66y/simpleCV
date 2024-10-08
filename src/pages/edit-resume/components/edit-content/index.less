@@ -35,7 +35,7 @@
       align-items: center;
 
       & > span {
-        background-color: #c19f67;
+        background-color: var(--secondaryColor);
         border-radius: 50%;
         color: #fff;
         display: inline-flex;
@@ -52,7 +52,7 @@
     }
 
     .resume-title {
-      border-right: 2px solid #c19f67;
+      border-right: 2px solid var(--secondaryColor);
       box-sizing: border-box;
       float: left;
       font-size: 38px;
@@ -74,7 +74,7 @@
       width: 496px;
 
       i {
-        border-color: transparent transparent transparent #c19f67;
+        border-color: transparent transparent transparent var(--secondaryColor);
         border-style: solid;
         border-width: 18px 0 0 18px;
         display: block;
@@ -88,14 +88,14 @@
     }
 
     .line-right {
-      background-color: #c19f67;
+      background-color: var(--secondaryColor);
       height: 12px;
       margin: 6px 0 0 23px;
       position: relative;
       width: 300px;
 
       i {
-        border-color: #c19f67 transparent transparent;
+        border-color: var(--secondaryColor) transparent transparent;
         border-style: solid;
         border-width: 12px 0 0 12px;
         display: block;
@@ -190,11 +190,16 @@
   }
 
   &-info-module {
-    border-color: #c19f67;
+    border-color: var(--secondaryColor);
     display: block;
     position: relative;
     .module-content-main {
       margin: var(--moduleMargin) 0;
+      font-size: var(--fontSize);
+
+      .ql-container {
+        font-size: var(--fontSize);
+      }
     }
     
     .module-line {

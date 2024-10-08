@@ -3,13 +3,12 @@
  * @Author: luyi.lss
  * @Date: 2024-09-12 15:27:51
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-09-24 23:20:59
+ * @LastEditTime: 2024-10-07 22:54:55
  */
 import { leftIconConfig, ThemeConfigKeyEnum } from '@/pages/edit-resume/config'
 import './index.less';
 import { useThemeDispatch } from '../../store/theme-context';
 import ThemeConfigPop from '../theme-config-pop';
-import { useState } from 'react';
 
 const rootCls = 'edit-left'
 export interface IEditLeftProps {}

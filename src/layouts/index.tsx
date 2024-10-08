@@ -3,17 +3,18 @@ import React from 'react';
 import 'normalize.css'
 import { Outlet } from 'umi';
 import './index.less'
+export const colorPrimary = '#44a6d7';
 
 export default function Layout() {
   return (
     <ConfigProvider theme={{
       token: {
-        colorPrimary: '#44a6d7',
+        colorPrimary: colorPrimary,
       },
       components: {
         Slider: {
-          trackBg: '#44a6d7',
-          trackHoverBg: '#44a6d7',
+          trackBg: colorPrimary,
+          trackHoverBg: colorPrimary,
         },
       },
     }}>

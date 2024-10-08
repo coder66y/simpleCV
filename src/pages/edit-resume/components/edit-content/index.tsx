@@ -3,13 +3,16 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-09-25 09:51:19
+ * @LastEditTime: 2024-10-08 00:10:50
  */
 import './index.less';
 import Editor from '@/components/quill-editor';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
 import { useTheme } from '../../store/theme-context';
+import { ConfigProvider, ConfigProviderProps } from 'antd';
 import { IInfoIconConfig, IModuleDataDispatchArgType } from '../../types';
+import enUS from 'antd/locale/en_US';
+import zhCN from 'antd/locale/zh_CN';
 const rootCls = 'edit-resume';
 export interface IEditContentProps {
   moduleList: IInfoIconConfig[];
@@ -17,9 +20,14 @@ export interface IEditContentProps {
 }
 export default function EditContent(props: IEditContentProps) {
   const { moduleList, dispatch  } = props;
-  const { color, pageMargin, moduleMargin } = useTheme()
+  const { color, pageMargin, moduleMargin, secondaryColor, fontFamily, fontSize, language = "zh-CN" } = useTheme()
+  const languageMap = new Map([
+    ['zh-CN', zhCN],
+    ['en-US', enUS]
+  ])
   return (
-    <div className={`${rootCls}`} style={{'--primaryColor': color, '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`}}>
+    <ConfigProvider locale={languageMap.get(language)}>
+    <div className={`${rootCls}`} style={{'--primaryColor': color, '--secondaryColor': secondaryColor,  '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`, fontFamily: fontFamily, '--fontSize': `${fontSize}px`}}>
       <div className={`${rootCls}-header`} style={{color}}>
         <dl className="left-box" >
           <dt className="resume-title" style={{borderRightColor: color}}>
@@ -59,12 +67,13 @@ export default function EditContent(props: IEditContentProps) {
             <div className='module-line'>
             </div>
             <div className='module-content-main'>
-              <Editor readOnly={true} />
+              <Editor readOnly={true} value={"123"}/>
             </div>
           </div>
         })
       }
       </div>
     </div>
+    </ConfigProvider>
   )
 }

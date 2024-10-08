@@ -4,6 +4,11 @@ export default defineConfig({
   routes: [
     { path: "/", component: "@/pages/edit-resume" },
   ],
+  locale: {
+    // 默认使用 src/locales/zh-CN.ts 作为多语言文件
+    default: 'zh-CN',
+    baseSeparator: '-',
+  },
   theme: { 
     '@primary-color': '#44a6d7',
     "@grey-2": '#616161',
