@@ -18,6 +18,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "antd": "^5.20.4",
     "normalize.css": "^8.0.1",
+    "react-intl": "^6.7.1",
     "react-quill": "^2.0.0",
     "umi": "^4.3.15"
   },

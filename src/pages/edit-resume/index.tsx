@@ -7,7 +7,7 @@ import { Reducer, useReducer } from "react";
 import { infoModuleList } from "./config";
 import { arrayMove } from "@dnd-kit/sortable";
 import Header from "./components/header";
-import { ThemeProvider } from './store/theme-context'
+import { ThemeProvider } from './store/theme-context';
 import { IInfoIconConfig, IModuleDataDispatchArgType } from "./types";
 
 const infoModuleReducer: Reducer<IInfoIconConfig[], IModuleDataDispatchArgType> = (state, action) => {

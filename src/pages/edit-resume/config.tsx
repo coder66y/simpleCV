@@ -1,29 +1,39 @@
 import { ColumnHeightOutlined, SkinOutlined, TranslationOutlined } from '@ant-design/icons'
 import { ReactNode } from 'react';
 import { IInfoIconConfig, IRightTabConfig } from './types';
-
-export const leftIconConfig: IInfoIconConfig[] = [
-  {
-    title: '间距设置',
-    key: 'spacing',
-    icon: <ColumnHeightOutlined />
-  },
-  {
-    title: '皮肤设置',
-    key: 'skin',
-    icon: <SkinOutlined />
-  },
-  {
-    title: '语言/字体',
-    key: 'language',
-    icon: <TranslationOutlined />
-  },
-]
-
 export enum ThemeConfigKeyEnum {
   SPACEING = "spacing",
   SKIN = "skin",
   LANGUAGE = "language"
+}
+export const leftIconConfig: IInfoIconConfig[] = [
+  {
+    title: '间距设置',
+    key: ThemeConfigKeyEnum.SPACEING,
+    icon: <ColumnHeightOutlined />
+  },
+  {
+    title: '皮肤设置',
+    key: ThemeConfigKeyEnum.SKIN,
+    icon: <SkinOutlined />
+  },
+  {
+    title: '语言/字体',
+    key: ThemeConfigKeyEnum.LANGUAGE,
+    icon: <TranslationOutlined />
+  },
+]
+
+export enum ContentConfigKeyEnum {
+  CV_HEADER = "cvHeader",
+  BASIC_INFO = "basicInfo",
+  WORK_EXPERIENCE = "workExperience",
+  EDUCATION = "education",
+  PROJECT_EXPERIENCE = "projectExperience",
+  SKILLS = "skills",
+  HONOR = "honor",
+  EVALUATION = "evaluation",
+  INTENTION = "intention"
 }
 
 export const rightTabConfig: IRightTabConfig[] = [
@@ -37,44 +47,44 @@ export const rightTabConfig: IRightTabConfig[] = [
 export const infoModuleList: IInfoIconConfig[] = [
   {
     title: '基本信息',
-    key: 'basicInfo',
+    key: ContentConfigKeyEnum.BASIC_INFO,
     icon: <ColumnHeightOutlined />,
     hidden: false,
   },
   {
     title: '教育经历',
-    key: 'education',
+    key: ContentConfigKeyEnum.EDUCATION,
     icon: <ColumnHeightOutlined />
   },
   {
     title: '工作经历',
-    key: 'workExperience',
+    key: ContentConfigKeyEnum.WORK_EXPERIENCE,
     icon: <ColumnHeightOutlined />
   },
   {
     title: '项目经历',
     icon: <ColumnHeightOutlined />,
-    key: 'projectExperience',
+    key: ContentConfigKeyEnum.PROJECT_EXPERIENCE,
   },
   {
     title: '个人技能',
     icon: <ColumnHeightOutlined />,
-    key: 'skills',
+    key: ContentConfigKeyEnum.SKILLS,
   },
   {
     title: '荣誉奖项',
     icon: <ColumnHeightOutlined />,
-    key: 'honor',
+    key: ContentConfigKeyEnum.HONOR,
   },
   {
     title: '自我评价',
     icon: <ColumnHeightOutlined />,
-    key: 'evaluation',
+    key: ContentConfigKeyEnum.EDUCATION,
   },
   {
     title: '求职意向',
     icon: <ColumnHeightOutlined />,
-    key: 'intention',
+    key: ContentConfigKeyEnum.INTENTION,
   }
 ]
 

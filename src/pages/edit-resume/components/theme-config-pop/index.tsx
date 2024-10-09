@@ -15,9 +15,9 @@ export default function ThemeConfigPop(props: IThemeConfigPopProps) {
   const [open, setOpen] = useState<boolean>(false);
 
   const formMap = new Map([
-   ['spacing', <SpaceSetForm />],
-   ['skin', <SkinSetForm />],
-   ['language', <LanguageSetForm />]
+   [ThemeConfigKeyEnum.SPACEING, <SpaceSetForm />],
+   [ThemeConfigKeyEnum.SKIN, <SkinSetForm />],
+   [ThemeConfigKeyEnum.LANGUAGE, <LanguageSetForm />]
   ])
 
   return (

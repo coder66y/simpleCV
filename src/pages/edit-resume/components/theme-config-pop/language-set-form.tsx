@@ -26,7 +26,6 @@ const fontSizeOptions = [
   { label: '16', value: 16 },
 ]
 
-
 export function LanguageSetForm() {
   const theme = useTheme();
   const dispatch = useThemeDispatch();
