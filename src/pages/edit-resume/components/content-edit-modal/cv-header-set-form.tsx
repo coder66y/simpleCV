@@ -1,15 +1,30 @@
-import { Form } from "antd"
+import { Form, Input } from "antd"
 
 export interface ICVHeaderSetFormValues {
 
 }
 function CVHeaderSetForm() {
   const [form] = Form.useForm<ICVHeaderSetFormValues>();
-  const initValues = {};
+  const initValues = {
+
+  };
   return (
-    <Form form={form} layout="horizontal" labelCol={{span: 6}} initialValues={initValues} className="language-set-form" onValuesChange={(changeValues: ICVHeaderSetFormValues) => {}}>
-      <Form.Item name="fontFamily" label="字体">
-        
+    <Form
+      form={form}
+      className="cv-header-set-form"
+      layout="horizontal"
+      labelAlign="left"
+      labelCol={{span: 6}}
+      initialValues={initValues}
+      onValuesChange={(changeValues: ICVHeaderSetFormValues) => {
+
+      }}
+    >
+      <Form.Item name="CVtitle" label="简历标题">
+        <Input />
+      </Form.Item>
+      <Form.Item name="slogan" label="简历SLOGAN">
+        <Input />
       </Form.Item>
     </Form>
   )

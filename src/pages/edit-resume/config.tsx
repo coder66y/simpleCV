@@ -25,17 +25,27 @@ export const leftIconConfig: IInfoIconConfig[] = [
 ]
 
 export enum ContentConfigKeyEnum {
+  /** 头部 */
   CV_HEADER = "cvHeader",
+  /** 基础信息 */
   BASIC_INFO = "basicInfo",
+  /** 工作经历 */
   WORK_EXPERIENCE = "workExperience",
+  /** 教育经历 */
   EDUCATION = "education",
+  /** 项目经历 */
   PROJECT_EXPERIENCE = "projectExperience",
+  /** 个人技能 */
   SKILLS = "skills",
+  /** 荣誉奖项 */
   HONOR = "honor",
-  EVALUATION = "evaluation",
-  INTENTION = "intention"
+  /** 求职意向 */
+  INTENTION = "intention",
+  /** 自我评价 */
+  SELF_EVALUATION = "selfEvaluation"
 }
 
+/** 右侧tab配置 */
 export const rightTabConfig: IRightTabConfig[] = [
   {
     title: '信息模块',
@@ -79,7 +89,7 @@ export const infoModuleList: IInfoIconConfig[] = [
   {
     title: '自我评价',
     icon: <ColumnHeightOutlined />,
-    key: ContentConfigKeyEnum.EDUCATION,
+    key: ContentConfigKeyEnum.SELF_EVALUATION,
   },
   {
     title: '求职意向',
@@ -88,14 +98,16 @@ export const infoModuleList: IInfoIconConfig[] = [
   }
 ]
 
+/** 模块图标映射 */
 export const infoModuleIconMap = new Map<string, ReactNode>([
-  ['basicInfo', <ColumnHeightOutlined />],
-  ['education', <ColumnHeightOutlined />],
-  ['workExperience', <ColumnHeightOutlined />],
-  ['projectExperience', <ColumnHeightOutlined />],
-  ['skills', <ColumnHeightOutlined />],
-  ['honor', <ColumnHeightOutlined />],
-  ['evaluation', <ColumnHeightOutlined />],
-  ['intention', <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.BASIC_INFO, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.WORK_EXPERIENCE, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.SKILLS, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.SELF_EVALUATION, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.HONOR, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.INTENTION, <ColumnHeightOutlined />],
 ])
 

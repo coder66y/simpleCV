@@ -18,16 +18,21 @@ export function SkinSetForm() {
   const { token } = antdTheme.useToken();
   const presets = genPresets({ primary: generate(token.colorPrimary), grey, red, green });
   return (
-    <Form form={form} initialValues={initValues} className="skin-set-form" onValuesChange={(changeValues: ISkinSetFormValues) => {
-      const key = Object.keys(changeValues) as (keyof ISkinSetFormValues)[]
-      dispatch?.({
-        type: 'changeThemeKey',
-        payload: {
-          key: key[0],
-          value: changeValues?.[key[0]]?.toHexString(),
-        }
-      })
-    }}>
+    <Form
+      form={form}
+      initialValues={initValues}
+      className="skin-set-form"
+      labelAlign="left"
+      onValuesChange={(changeValues: ISkinSetFormValues) => {
+        const key = Object.keys(changeValues) as (keyof ISkinSetFormValues)[]
+        dispatch?.({
+          type: 'changeThemeKey',
+          payload: {
+            key: key[0],
+            value: changeValues?.[key[0]]?.toHexString(),
+          }
+        })
+      }}>
       <Form.Item name="color" label="主要颜色">
         <ColorPicker presets={presets}/>
       </Form.Item>

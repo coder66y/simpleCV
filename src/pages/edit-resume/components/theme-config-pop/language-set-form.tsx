@@ -36,16 +36,23 @@ export function LanguageSetForm() {
     fontSize: theme.fontSize
   }
   return (
-    <Form form={form} layout="horizontal" labelCol={{span: 6}} initialValues={initValues} className="language-set-form" onValuesChange={(changeValues: ILanguageSetFormValues) => {
-      const key = Object.keys(changeValues) as (keyof ILanguageSetFormValues)[]
-      dispatch?.({
-        type: 'changeThemeKey',
-        payload: {
-          key: key[0],
-          value: changeValues?.[key[0]],
-        }
-      })
-    }}>
+    <Form 
+      form={form}
+      layout="horizontal"
+      labelAlign="left"
+      labelCol={{span: 6}}
+      initialValues={initValues}
+      className="language-set-form"
+      onValuesChange={(changeValues: ILanguageSetFormValues) => {
+        const key = Object.keys(changeValues) as (keyof ILanguageSetFormValues)[]
+        dispatch?.({
+          type: 'changeThemeKey',
+          payload: {
+            key: key[0],
+            value: changeValues?.[key[0]],
+          }
+        })
+      }}>
       <Form.Item name="fontFamily" label="字体">
         <Select options={fontOptions} style={{width: "180px"}} />
       </Form.Item>

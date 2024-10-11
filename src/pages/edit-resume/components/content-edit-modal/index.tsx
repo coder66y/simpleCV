@@ -2,6 +2,7 @@ import { Modal } from "antd";
 import { ModalProps } from "antd/lib";
 import CVHeaderSetForm from "./cv-header-set-form";
 import { ContentConfigKeyEnum } from "../../config";
+import './index.less'
 
 export interface IContentEditModalProps extends ModalProps{
   configKey?: ContentConfigKeyEnum;
@@ -19,7 +20,7 @@ export default function ContentEditModal(props: IContentEditModalProps) {
   ])
   return (
     <Modal
-      className={className}
+      className={`${className} content-edit-modal`}
       open={visible}
       onCancel={onClose}
     >

@@ -13,16 +13,22 @@ export function SpaceSetForm() {
     moduleMargin: theme.moduleMargin
   }
   return (
-    <Form form={form} labelCol={{span: 6}} initialValues={initValues} className="space-set-form" onValuesChange={(changeValues: ISpaceSetFormValues) => {
-      const key = Object.keys(changeValues) as (keyof ISpaceSetFormValues)[]
-      dispatch?.({
-        type: 'changeThemeKey',
-        payload: {
-          key: key[0],
-          value: changeValues?.[key[0]],
-        }
-      })
-    }}>
+    <Form
+      form={form}
+      labelCol={{span: 6}}
+      initialValues={initValues}
+      className="space-set-form"
+      labelAlign="left"
+      onValuesChange={(changeValues: ISpaceSetFormValues) => {
+        const key = Object.keys(changeValues) as (keyof ISpaceSetFormValues)[]
+        dispatch?.({
+          type: 'changeThemeKey',
+          payload: {
+            key: key[0],
+            value: changeValues?.[key[0]],
+          }
+        })
+      }}>
       <Form.Item label="页面边距" name="pageMargin" >
         <SliderWithValue min={20} max={50} step={1}/>
       </Form.Item>
