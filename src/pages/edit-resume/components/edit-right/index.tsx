@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-09-24 22:44:42
+ * @LastEditTime: 2024-10-14 00:11:50
  */
 import React from 'react'
 import { useContext, useMemo } from 'react'
@@ -18,6 +18,8 @@ import { DragOutlined } from '@ant-design/icons'
 import { infoModuleIconMap, rightTabConfig } from '@/pages/edit-resume/config'
 import './index.less'
 import { IInfoIconConfig, IModuleDataDispatchArgType } from '../../types';
+import { connect } from 'dva';
+import { IEditResumeModel } from '@/models/edit-resume';
 
 const rootCls = 'edit-right'
 export interface IEditRightProps {
@@ -84,7 +86,7 @@ const Row = (props: RowProps) => {
   );
 };
 
-export default function EditRight(props: IEditRightProps) {
+function EditRight(props: IEditRightProps) {
   const { moduleList = [], dispatch } = props;
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -100,7 +102,7 @@ export default function EditRight(props: IEditRightProps) {
       const newIndex = moduleList.findIndex((i) => i.key === over?.id);
       if(newIndex === 0) return;
       dispatch({
-        type: 'sort',
+        type: 'editResume/sortModule',
         payload: {
           oldIndex,
           newIndex,
@@ -134,7 +136,7 @@ export default function EditRight(props: IEditRightProps) {
                               value={!item.hidden}
                               onChange={() => {
                               dispatch({
-                                type: 'changeHidden',
+                                type: 'editResume/changeModuleHidden',
                                 payload: {
                                   key: item.key,
                                   hidden: !item.hidden
@@ -159,3 +161,9 @@ export default function EditRight(props: IEditRightProps) {
     </div>
   )
 }
+
+export default connect(({ editResume }:{editResume: IEditResumeModel}) => {
+  return ({
+    moduleList: editResume.moduleList ?? [],
+  })
+})(EditRight)

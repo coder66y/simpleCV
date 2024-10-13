@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-08 23:27:44
+ * @LastEditTime: 2024-10-14 00:14:25
  */
 import './index.less';
 import Editor from '@/components/quill-editor';
@@ -16,13 +16,15 @@ import zhCN from '@/locales/zh-CN.json';
 import { useState } from 'react';
 import { ContentConfigKeyEnum } from '../../config';
 import ContentEditModal from '../content-edit-modal';
+import { connect } from 'dva';
+import { IEditResumeModel } from '@/models/edit-resume';
 
 const rootCls = 'edit-resume';
 export interface IEditContentProps {
   moduleList: IInfoIconConfig[];
   dispatch: React.Dispatch<IModuleDataDispatchArgType>;
 }
-export default function EditContent(props: IEditContentProps) {
+function EditContent(props: IEditContentProps) {
   const { moduleList, dispatch  } = props;
   const { color, pageMargin, moduleMargin, secondaryColor, fontFamily, fontSize, language = "zh-CN" } = useTheme();
   const messageMap = new Map([
@@ -99,3 +101,9 @@ export default function EditContent(props: IEditContentProps) {
       </div>
   )
 }
+
+export default connect(({editResume}: {editResume: IEditResumeModel}) => {
+  return {
+    moduleList: editResume.moduleList
+  }
+})(EditContent)

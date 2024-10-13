@@ -10,6 +10,13 @@ export default defineConfig({
     "@grey-1": "#f5f7f9",
     "@grey-3": "#0003"
   },
+  plugins: ['@umijs/plugins/dist/dva'],
+  dva: {
+    immer: {
+      enableES5: true,
+      enableAllPlugins: true,
+    },
+  },
   npmClient: 'pnpm',
   mfsu: {
     shared: {
