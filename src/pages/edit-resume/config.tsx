@@ -26,7 +26,7 @@ export const leftIconConfig: IInfoIconConfig[] = [
 
 export enum ContentConfigKeyEnum {
   /** 头部 */
-  CV_HEADER = "cvHeader",
+  CV_INFO = "cvInfo",
   /** 基础信息 */
   BASIC_INFO = "basicInfo",
   /** 工作经历 */

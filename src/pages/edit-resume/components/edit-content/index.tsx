@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-14 00:14:25
+ * @LastEditTime: 2024-10-15 00:03:49
  */
 import './index.less';
 import Editor from '@/components/quill-editor';
@@ -21,17 +21,18 @@ import { IEditResumeModel } from '@/models/edit-resume';
 
 const rootCls = 'edit-resume';
 export interface IEditContentProps {
-  moduleList: IInfoIconConfig[];
+  moduleList: IEditResumeModel['moduleList'];
+  resumeInfo: IEditResumeModel['resumeInfo'];
   dispatch: React.Dispatch<IModuleDataDispatchArgType>;
 }
 function EditContent(props: IEditContentProps) {
-  const { moduleList, dispatch  } = props;
+  const { moduleList, resumeInfo  } = props;
   const { color, pageMargin, moduleMargin, secondaryColor, fontFamily, fontSize, language = "zh-CN" } = useTheme();
   const messageMap = new Map([
     ['zh-CN', zhCN],
     ['en-US', enUS]
   ])
-  const [editKey, setEditKey] = useState<ContentConfigKeyEnum>()
+  const [editKey, setEditKey] = useState<ContentConfigKeyEnum>(ContentConfigKeyEnum.CV_INFO)
   const [visible, setVisible] = useState<boolean>(false)
   const onContentClick = (key: ContentConfigKeyEnum) => {
     setEditKey(key);
@@ -46,16 +47,17 @@ function EditContent(props: IEditContentProps) {
       <div className={`${rootCls}`} style={{'--primaryColor': color, '--secondaryColor': secondaryColor,  '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`, fontFamily: fontFamily, '--fontSize': `${fontSize}px`}}>
         <IntlProvider messages={messageMap.get(language)} locale={language} defaultLocale="zh_CN">
           <div className={`${rootCls}-header`} style={{color}} onClick={() => {
-            onContentClick(ContentConfigKeyEnum.CV_HEADER)
+            onContentClick(ContentConfigKeyEnum.CV_INFO)
           }}>
-            <dl className="left-box" onClick="">
-              <dt className="resume-title" style={{borderRightColor: color, display: language === 'en-US' ? 'none' : 'initial'}} >
-                <FormattedMessage id='personalResume' />
+            <dl className="left-box" >
+              {
+                resumeInfo?.title && <dt className="resume-title">
+                {resumeInfo?.title}
               </dt>
+              }
               <dd>
                 <p>
-                  <FormattedMessage id='intention' />: 
-                  前端工程师
+                  {resumeInfo?.slogan}
                 </p> Personal resume
               </dd>
             </dl>
@@ -76,7 +78,7 @@ function EditContent(props: IEditContentProps) {
           <div className={`${rootCls}-content`}>
           {
             moduleList?.map(item => {
-              return item.hidden ? null : <div className={`${rootCls}-info-module`}>
+              return item.hidden ? null : <div className={`${rootCls}-info-module`} key={item.key}>
                 <div className='module-title' style={{backgroundColor: color}}>
                   <span className='title-text'>
                     <FormattedMessage id={item.key}/>
@@ -104,6 +106,7 @@ function EditContent(props: IEditContentProps) {
 
 export default connect(({editResume}: {editResume: IEditResumeModel}) => {
   return {
-    moduleList: editResume.moduleList
+    moduleList: editResume.moduleList,
+    resumeInfo: editResume.resumeInfo
   }
 })(EditContent)

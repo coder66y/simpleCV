@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-14 00:11:50
+ * @LastEditTime: 2024-10-15 00:04:56
  */
 import React from 'react'
 import { useContext, useMemo } from 'react'
@@ -130,7 +130,7 @@ function EditRight(props: IEditRightProps) {
                           {
                             infoModuleIconMap.get(item.key)
                           }
-                          <div>{item.title}</div>
+                          <span>{item.title}</span>
                           {
                             item.key !== 'basicInfo' && <Switch
                               value={!item.hidden}

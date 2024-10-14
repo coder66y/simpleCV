@@ -3,29 +3,30 @@ import { ModalProps } from "antd/lib";
 import CVHeaderSetForm from "./cv-header-set-form";
 import { ContentConfigKeyEnum } from "../../config";
 import './index.less'
+import BaseInfoSetForm from "./base-info-set-form";
 
 export interface IContentEditModalProps extends ModalProps{
-  configKey?: ContentConfigKeyEnum;
-  className?: string;
+  configKey: ContentConfigKeyEnum;
   visible: boolean;
   onClose?: () => void;
-  onOk?: () => void;
 }
 
 export default function ContentEditModal(props: IContentEditModalProps) {
-  const { configKey, className, visible, onClose } = props;
+  const { configKey, visible, onClose } = props;
 
-  const formMap = new Map([
-   ['cvHeader', <CVHeaderSetForm />],
+  const formMap = new Map<ContentConfigKeyEnum, React.ReactNode>([
+   [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
+   [ContentConfigKeyEnum.BASIC_INFO, <BaseInfoSetForm />]
   ])
   return (
     <Modal
-      className={`${className} content-edit-modal`}
+      className='content-edit-modal'
       open={visible}
+      footer={null}
       onCancel={onClose}
     >
       {
-        formMap.get(configKey || 'cvHeader')
+        formMap.get(configKey)
       }
     </Modal>
   )
