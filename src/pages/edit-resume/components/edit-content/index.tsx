@@ -3,13 +3,13 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-15 00:03:49
+ * @LastEditTime: 2024-10-16 09:45:05
  */
 import './index.less';
 import Editor from '@/components/quill-editor';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
 import { useTheme } from '../../store/theme-context';
-import { IInfoIconConfig, IModuleDataDispatchArgType } from '../../types';
+import { IModuleDataDispatchArgType, ModuleInfoConfig } from '../../types';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import enUS from '@/locales/en-US.json';
 import zhCN from '@/locales/zh-CN.json';
@@ -32,10 +32,15 @@ function EditContent(props: IEditContentProps) {
     ['zh-CN', zhCN],
     ['en-US', enUS]
   ])
-  const [editKey, setEditKey] = useState<ContentConfigKeyEnum>(ContentConfigKeyEnum.CV_INFO)
+  const [editContent, setEditContent] = useState<ModuleInfoConfig>({
+    key: ContentConfigKeyEnum.CV_INFO,
+  })
   const [visible, setVisible] = useState<boolean>(false)
-  const onContentClick = (key: ContentConfigKeyEnum) => {
-    setEditKey(key);
+  const onContentClick = (key: ContentConfigKeyEnum, title?: string) => {
+    setEditContent({
+      key,
+      title
+    });
     setVisible(true);
   }
 
@@ -78,7 +83,13 @@ function EditContent(props: IEditContentProps) {
           <div className={`${rootCls}-content`}>
           {
             moduleList?.map(item => {
-              return item.hidden ? null : <div className={`${rootCls}-info-module`} key={item.key}>
+              return item.hidden ? null : <div
+                onClick={() => {
+                  onContentClick(item.key, item.title)
+                }}
+                className={`${rootCls}-info-module`}
+                key={item.key}
+              >
                 <div className='module-title' style={{backgroundColor: color}}>
                   <span className='title-text'>
                     <FormattedMessage id={item.key}/>
@@ -99,7 +110,12 @@ function EditContent(props: IEditContentProps) {
           }
           </div>
         </IntlProvider>
-        <ContentEditModal configKey={editKey} visible={visible} onClose={onModalClose}/>
+        <ContentEditModal
+          configKey={editContent.key}
+          title={editContent.title}
+          visible={visible}
+          onClose={onModalClose}
+        />
       </div>
   )
 }

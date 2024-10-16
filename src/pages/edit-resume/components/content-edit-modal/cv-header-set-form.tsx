@@ -27,10 +27,9 @@ function CVHeaderSetForm(props: ICVHeaderSetFormProps) {
   return (
     <Form
       form={form}
+      size="small"
       className="cv-header-set-form"
       layout="horizontal"
-      labelAlign="left"
-      labelCol={{span: 6}}
       initialValues={initValues}
       onValuesChange={() => {
         run()

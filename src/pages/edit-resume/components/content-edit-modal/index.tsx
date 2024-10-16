@@ -9,10 +9,11 @@ export interface IContentEditModalProps extends ModalProps{
   configKey: ContentConfigKeyEnum;
   visible: boolean;
   onClose?: () => void;
+  title?: string;
 }
 
 export default function ContentEditModal(props: IContentEditModalProps) {
-  const { configKey, visible, onClose } = props;
+  const { configKey, visible, onClose, title } = props;
 
   const formMap = new Map<ContentConfigKeyEnum, React.ReactNode>([
    [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
@@ -22,6 +23,7 @@ export default function ContentEditModal(props: IContentEditModalProps) {
     <Modal
       className='content-edit-modal'
       open={visible}
+      title={title || '标题编辑'}
       footer={null}
       onCancel={onClose}
     >

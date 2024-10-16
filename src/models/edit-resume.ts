@@ -1,5 +1,6 @@
+import { photo } from "@/assets";
 import { infoModuleList } from "@/pages/edit-resume/config";
-import { IInfoIconConfig } from "@/pages/edit-resume/types";
+import { ModuleInfoConfig } from "@/pages/edit-resume/types";
 import { arrayMove } from "@dnd-kit/sortable";
 
 export const EDIT_RESUME_NAME_SPACE = "editResume"
@@ -8,18 +9,54 @@ const initState = () => ({
   resumeInfo: {
     title: '个人简历',
     slogan: '求职意向：前端工程师',
+  },
+  baseInfo: {
+    "name": "陆一",
+    "birthday": "1999-02",
+    "age": 1,
+    "gender": "女",
+    "phone": "13800000000",
+    "email": "2190389887@qq.com",
+    "photo": photo,
+    "photoShow": 1,
+    "workAge": "3年经验",
+    "height": "155",
+    "weight": "45",
+    "nationality": "布依族",
+    "nativePlace": "成都",
+    "maritalStatus": "未婚",
+    "political": "普通公民"
   }
 })
 export interface IEditResumeModel {
-  moduleList: IInfoIconConfig[];
+  moduleList: ModuleInfoConfig[];
   resumeInfo?: {
     title?: string;
     slogan?: string;
   },
+  /** 个人信息 */
   baseInfo?: {
+    age?: string;
+    birthday?: string;
+    gender?: string;
+    height?: string;
     name: string;
     phone: string;
-    height: string;
+    email: string; 
+    /** 婚姻状态 */ 
+    maritalStatus?: string;
+    /** 民族 */
+    nationality?: string;
+    /** 籍贯 */
+    nativePlace?: string;
+    photo?: string;
+    /** 是否展示图片 */
+    photoShow?: boolean;
+    /** 政治身份 */
+    political?: string;
+    weight?: string;
+    /** 工作经验 */
+    workAge?: string;
   }
 }
 export default {
