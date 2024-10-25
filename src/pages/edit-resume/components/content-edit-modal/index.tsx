@@ -27,13 +27,13 @@ export default function ContentEditModal(props: IContentEditModalProps) {
 
   useClickAway(() => {
     setIsEditing(false)
-  }, document.getElementById('module-title-input'))
+  }, document.getElementById('module-title-edit-input'))
 
   const renderTitle = () => {
     return (
       <div className="module-edit-modal-title">
         {
-          isEditing ? <Input id="module-title-input" value={title} onChange={(e) => {
+          isEditing ? <Input id="module-title-edit-input" value={title} onChange={(e) => {
             changeModuleTitle?.(e.target.value)
           }} /> : title
         }
