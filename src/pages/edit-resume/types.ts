@@ -1,14 +1,16 @@
 import { ContentConfigKeyEnum, ThemeConfigKeyEnum } from "./config";
 
-/** 信息模块类型 */
-export interface IInfoIconConfig {
+/** 右侧主题信息类型 */
+export interface ILeftInfoIconConfig {
   title: string;
   key: ThemeConfigKeyEnum;
   icon: React.ReactNode;
   hidden?: boolean;
   sort?: number;
 }
-export interface ModuleInfoConfig {
+
+/** 内容模块类型配置类型 */
+export interface IModuleInfoConfig {
   title?: string;
   key: ContentConfigKeyEnum;
   icon?: React.ReactNode;

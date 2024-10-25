@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-15 00:04:56
+ * @LastEditTime: 2024-10-24 19:57:51
  */
 import React from 'react'
 import { useContext, useMemo } from 'react'
@@ -15,15 +15,15 @@ import { CSS } from '@dnd-kit/utilities';
 import { Tabs, Switch, Button, Space } from 'antd'
 import { DragOutlined } from '@ant-design/icons'
 
-import { infoModuleIconMap, rightTabConfig } from '@/pages/edit-resume/config'
+import { ContentConfigKeyEnum, infoModuleIconMap, rightTabConfig } from '@/pages/edit-resume/config'
 import './index.less'
-import { IInfoIconConfig, IModuleDataDispatchArgType } from '../../types';
+import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { connect } from 'dva';
 import { IEditResumeModel } from '@/models/edit-resume';
 
 const rootCls = 'edit-right'
 export interface IEditRightProps {
-  moduleList: IInfoIconConfig[];
+  moduleList: IModuleInfoConfig[];
   dispatch: React.Dispatch<IModuleDataDispatchArgType>;
 }
 
@@ -132,7 +132,7 @@ function EditRight(props: IEditRightProps) {
                           }
                           <span>{item.title}</span>
                           {
-                            item.key !== 'basicInfo' && <Switch
+                            item.key !== ContentConfigKeyEnum.BASIC_INFO && <Switch
                               value={!item.hidden}
                               onChange={() => {
                               dispatch({
@@ -145,7 +145,7 @@ function EditRight(props: IEditRightProps) {
                             }}/>
                           }
                           {
-                            item.key !== 'basicInfo' && <DragHandle />
+                            item.key !== ContentConfigKeyEnum.BASIC_INFO && <DragHandle />
                           }
                         </Space>
                       </Row>

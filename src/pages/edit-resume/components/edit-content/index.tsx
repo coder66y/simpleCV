@@ -3,13 +3,13 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-16 09:45:05
+ * @LastEditTime: 2024-10-25 13:51:27
  */
 import './index.less';
 import Editor from '@/components/quill-editor';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
 import { useTheme } from '../../store/theme-context';
-import { IModuleDataDispatchArgType, ModuleInfoConfig } from '../../types';
+import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import enUS from '@/locales/en-US.json';
 import zhCN from '@/locales/zh-CN.json';
@@ -32,7 +32,7 @@ function EditContent(props: IEditContentProps) {
     ['zh-CN', zhCN],
     ['en-US', enUS]
   ])
-  const [editContent, setEditContent] = useState<ModuleInfoConfig>({
+  const [editContent, setEditContent] = useState<IModuleInfoConfig>({
     key: ContentConfigKeyEnum.CV_INFO,
   })
   const [visible, setVisible] = useState<boolean>(false)
@@ -46,6 +46,20 @@ function EditContent(props: IEditContentProps) {
 
   const onModalClose = () => {
     setVisible(false)
+  }
+
+  const changeModuleTitle = (title: string) => {
+    setEditContent({
+      ...editContent,
+      title
+    })
+    props.dispatch({
+      type: 'editResume/changeModuleTitle',
+      payload: {
+        key: editContent.key,
+        title,
+      }
+    })
   }
 
   return (
@@ -114,6 +128,7 @@ function EditContent(props: IEditContentProps) {
           configKey={editContent.key}
           title={editContent.title}
           visible={visible}
+          changeModuleTitle={changeModuleTitle}
           onClose={onModalClose}
         />
       </div>

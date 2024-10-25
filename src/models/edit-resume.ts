@@ -1,6 +1,6 @@
 import { photo } from "@/assets";
-import { infoModuleList } from "@/pages/edit-resume/config";
-import { ModuleInfoConfig } from "@/pages/edit-resume/types";
+import { ContentConfigKeyEnum, infoModuleList } from "@/pages/edit-resume/config";
+import { IModuleInfoConfig } from "@/pages/edit-resume/types";
 import { arrayMove } from "@dnd-kit/sortable";
 
 export const EDIT_RESUME_NAME_SPACE = "editResume"
@@ -13,7 +13,7 @@ const initState = () => ({
   baseInfo: {
     "name": "陆一",
     "birthday": "1999-02",
-    "age": 1,
+    "age": 18,
     "gender": "女",
     "phone": "13800000000",
     "email": "2190389887@qq.com",
@@ -29,7 +29,7 @@ const initState = () => ({
   }
 })
 export interface IEditResumeModel {
-  moduleList: ModuleInfoConfig[];
+  moduleList: IModuleInfoConfig[];
   resumeInfo?: {
     title?: string;
     slogan?: string;
@@ -92,6 +92,20 @@ export default {
       return {
         ...other,
         moduleList: newList
+      }
+    },
+    changeModuleTitle(state: IEditResumeModel, { payload }: {payload: {key: ContentConfigKeyEnum, title: string}}) {
+      return {
+        ...state,
+        moduleList: state.moduleList.map(item => {
+          if(item.key === payload?.key) {
+            return {
+              ...item,
+              title: payload?.title
+            }
+          }
+          return item;
+        })
       }
     },
     changeFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, value: Record<string, any>}}) {

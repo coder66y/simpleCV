@@ -4,6 +4,12 @@
     width: fit-content;
   }
 
+  .module-edit-modal-title {
+    width: fit-content;
+    display: flex;
+    gap: 5px;
+  }
+
   .cv-header-set-form {
     width: 40vw;
   }
@@ -11,5 +17,15 @@
   .base-info-set-form {
     width: 60vw;
     min-width: 40vw;
+
+    .photo-wrapper {
+      position: relative;
+
+      .photo-show-checkbox {
+        position: absolute;
+        top: -5px;
+        left: 50px;
+      }
+    }
   }
 }

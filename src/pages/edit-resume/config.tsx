@@ -1,12 +1,12 @@
 import { ColumnHeightOutlined, SkinOutlined, TranslationOutlined } from '@ant-design/icons'
 import { ReactNode } from 'react';
-import { IInfoIconConfig, IRightTabConfig } from './types';
+import { ILeftInfoIconConfig, IRightTabConfig, IModuleInfoConfig } from './types';
 export enum ThemeConfigKeyEnum {
   SPACEING = "spacing",
   SKIN = "skin",
   LANGUAGE = "language"
 }
-export const leftIconConfig: IInfoIconConfig[] = [
+export const leftIconConfig: ILeftInfoIconConfig[] = [
   {
     title: '间距设置',
     key: ThemeConfigKeyEnum.SPACEING,
@@ -24,6 +24,7 @@ export const leftIconConfig: IInfoIconConfig[] = [
   },
 ]
 
+/** 内容模块枚举 */
 export enum ContentConfigKeyEnum {
   /** 头部 */
   CV_INFO = "cvInfo",
@@ -54,7 +55,7 @@ export const rightTabConfig: IRightTabConfig[] = [
 ]
 
 /** 模块信息列表 */
-export const infoModuleList: IInfoIconConfig[] = [
+export const infoModuleList: IModuleInfoConfig[] = [
   {
     title: '基本信息',
     key: ContentConfigKeyEnum.BASIC_INFO,
