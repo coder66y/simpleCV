@@ -21,7 +21,7 @@ function BaseInfo(props: IBaseInfoProps) {
         <ReadItem value={baseInfo?.birthday} label="出生日期" />
       </Col>
       <Col span={colSpan2}>
-        {baseInfo?.photoShow ? <img className="avatar" width={100} src={baseInfo?.photo} /> : null}
+        {baseInfo?.photoShow ? <img className="avatar" width={120} src={baseInfo?.photo} /> : null}
       </Col> 
       <ReadItem span={colSpan1} needCol={true} value={baseInfo?.gender} label="性&emsp;&emsp;别" />
       <ReadItem span={colSpan1} needCol={true} value={baseInfo?.age} label="年&emsp;&emsp;龄" />

@@ -31,7 +31,7 @@ const initState = () => ({
     post: '前端开发工程师',
     salary: '13-18'
   },
-  educationInfo: {
+  educationInfo: [{
     content: "<ol>\n<li>主修课程：</li>\n<li>管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销</li>\n</ol>",
     degree: "本科",
     end: "2009-06",
@@ -39,7 +39,7 @@ const initState = () => ({
     name: "上海熊猫大学 11",
     start: "2005-06",
     today: true
-  }
+  }]
 })
 
 /** 教育经历类型 */

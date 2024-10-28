@@ -7,6 +7,7 @@ import BaseInfoSetForm from "./base-info-set-form";
 import { CheckOutlined, EditOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useClickAway } from "ahooks";
+import EducationSetForm from "./education-set-form";
 
 export interface IContentEditModalProps extends ModalProps{
   configKey: ContentConfigKeyEnum;
@@ -22,7 +23,8 @@ export default function ContentEditModal(props: IContentEditModalProps) {
 
   const formMap = new Map<ContentConfigKeyEnum, React.ReactNode>([
    [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
-   [ContentConfigKeyEnum.BASIC_INFO, <BaseInfoSetForm />]
+   [ContentConfigKeyEnum.BASIC_INFO, <BaseInfoSetForm />],
+   [ContentConfigKeyEnum.EDUCATION, <EducationSetForm />],
   ])
 
   useClickAway(() => {

@@ -49,3 +49,12 @@ export const signInOptions = [
   {value: "一月内到岗", label: '一月内到岗'},
   {value: "另议", label: '另议'},
 ]
+
+export const degreeOptions = [
+  {value: "", label: '不填'},
+  {value: "高中", label: '高中'},
+  {value: "大专", label: '大专'},
+  {value: "本科", label: '本科'},
+  {value: "硕士", label: '硕士'},
+  {value: "博士", label: '博士'},
+]
