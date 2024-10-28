@@ -1,4 +1,4 @@
-import { Button, Input, Modal } from "antd";
+import { Button, Input, message, Modal } from "antd";
 import { ModalProps } from "antd/lib";
 import CVHeaderSetForm from "./cv-header-set-form";
 import { ContentConfigKeyEnum } from "../../config";
@@ -33,9 +33,17 @@ export default function ContentEditModal(props: IContentEditModalProps) {
     return (
       <div className="module-edit-modal-title">
         {
-          isEditing ? <Input id="module-title-edit-input" value={title} onChange={(e) => {
-            changeModuleTitle?.(e.target.value)
-          }} /> : title
+          isEditing ? <Input
+            id="module-title-edit-input"
+            value={title}
+            onChange={(e) => {
+              const value = e.target.value;
+              if(value.length > 30) {
+                message.warning('标题长度推荐在30个字内')
+                return
+              }
+              changeModuleTitle?.(e.target.value)
+            }} /> : title
         }
         {
           isEditing
@@ -56,7 +64,7 @@ export default function ContentEditModal(props: IContentEditModalProps) {
     <Modal
       className='content-edit-modal'
       open={visible}
-      title={renderTitle()}
+      title={configKey === ContentConfigKeyEnum.CV_INFO ? null : renderTitle()}
       footer={renderFooter()}
       onCancel={onClose}
     >

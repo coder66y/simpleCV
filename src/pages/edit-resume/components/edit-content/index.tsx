@@ -3,10 +3,9 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-25 13:51:27
+ * @LastEditTime: 2024-10-27 22:17:28
  */
 import './index.less';
-import Editor from '@/components/quill-editor';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
 import { useTheme } from '../../store/theme-context';
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
@@ -18,6 +17,7 @@ import { ContentConfigKeyEnum } from '../../config';
 import ContentEditModal from '../content-edit-modal';
 import { connect } from 'dva';
 import { IEditResumeModel } from '@/models/edit-resume';
+import ShowModuleContent from '../show-module-content';
 
 const rootCls = 'edit-resume';
 export interface IEditContentProps {
@@ -27,7 +27,7 @@ export interface IEditContentProps {
 }
 function EditContent(props: IEditContentProps) {
   const { moduleList, resumeInfo  } = props;
-  const { color, pageMargin, moduleMargin, secondaryColor, fontFamily, fontSize, language = "zh-CN" } = useTheme();
+  const { color, pageMargin, moduleMargin, secondaryColor, fontFamily, fontSize, language = "zh-CN", lineHeight } = useTheme();
   const messageMap = new Map([
     ['zh-CN', zhCN],
     ['en-US', enUS]
@@ -37,6 +37,7 @@ function EditContent(props: IEditContentProps) {
   })
   const [visible, setVisible] = useState<boolean>(false)
   const onContentClick = (key: ContentConfigKeyEnum, title?: string) => {
+    
     setEditContent({
       key,
       title
@@ -98,7 +99,7 @@ function EditContent(props: IEditContentProps) {
           {
             moduleList?.map(item => {
               return item.hidden ? null : <div
-                onClick={() => {
+                onClick={(e) => {
                   onContentClick(item.key, item.title)
                 }}
                 className={`${rootCls}-info-module`}
@@ -106,8 +107,10 @@ function EditContent(props: IEditContentProps) {
               >
                 <div className='module-title' style={{backgroundColor: color}}>
                   <span className='title-text'>
-                    <FormattedMessage id={item.key}/>
-                    {/* {item.title} */}
+                    <FormattedMessage id={item.key} values={{
+                      key: item.key,
+                      title: item.title
+                    }}/>
                   </span>
                   <div className='title-icon'>
                     <i></i>
@@ -116,8 +119,8 @@ function EditContent(props: IEditContentProps) {
                 </div>
                 <div className='module-line'>
                 </div>
-                <div className='module-content-main'>
-                  <Editor readOnly={true} value={"123"}/>
+                <div className='module-content-main' style={{'--lineHeight': lineHeight}}>
+                  <ShowModuleContent configKey={item.key}/>
                 </div>
               </div>
             })

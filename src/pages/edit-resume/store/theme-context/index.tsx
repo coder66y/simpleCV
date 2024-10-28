@@ -6,7 +6,7 @@ export type  IThemeStoreTypes = {
   color: string;
   secondaryColor: string;
   moduleMargin: number;
-  lineHight: number;
+  lineHeight: number;
   pageMargin: number;
   fontSize: number;
   fontFamily: string;
@@ -27,7 +27,7 @@ export const initialTheme: IThemeStoreTypes = {
   color: colorPrimary,
   moduleMargin: 10,
   secondaryColor: "#999",
-  lineHight: 1,
+  lineHeight: 2,
   pageMargin: 40,
   fontSize: 14,
   fontFamily: 'Microsoft YaHei',

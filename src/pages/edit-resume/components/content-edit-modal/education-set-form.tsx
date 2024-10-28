@@ -3,22 +3,22 @@ import { useDebounceFn } from "ahooks";
 import { Form, Input } from "antd"
 import { connect } from "dva";
 
-export interface ICVHeaderSetFormProps {
-  resumeInfo?: IEditResumeModel['resumeInfo'];
+export interface IEducationSetFormProps {
+  educationInfo?: IEditResumeModel['educationInfo'];
   dispatch?: React.Dispatch<any>;
 }
-export type ICVHeaderSetFormValues = IEditResumeModel['resumeInfo'];
-function CVHeaderSetForm(props: ICVHeaderSetFormProps) {
-  const { resumeInfo, dispatch } = props;
+export type ICVHeaderSetFormValues = IEditResumeModel['educationInfo'];
+function EducationSetForm(props: IEducationSetFormProps) {
+  const { educationInfo, dispatch } = props;
   const [form] = Form.useForm<ICVHeaderSetFormValues>();
-  const initValues = resumeInfo;
+  const initValues = educationInfo;
 
   const { run } = useDebounceFn(() => {
     const values = form.getFieldsValue()
     dispatch?.({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
-        key: 'resumeInfo',
+        key: 'educationInfo',
         value: values
       }
     })
@@ -45,6 +45,6 @@ function CVHeaderSetForm(props: ICVHeaderSetFormProps) {
 }
 export default connect(({editResume}: {editResume: IEditResumeModel}) => {
   return {
-    resumeInfo: editResume.resumeInfo
+    educationInfo: editResume.educationInfo
   }
-})(CVHeaderSetForm)
+})(EducationSetForm)

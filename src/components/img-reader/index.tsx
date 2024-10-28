@@ -1,5 +1,5 @@
 import { Input, message } from "antd";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import styles from './index.less'
 export const getBase64 = (img: File, callback: (url: string) => void) => {
   const reader = new FileReader();

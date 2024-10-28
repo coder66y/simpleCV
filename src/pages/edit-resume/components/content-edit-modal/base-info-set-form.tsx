@@ -1,30 +1,42 @@
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume'
 import { useDebounceFn } from 'ahooks';
-import { Checkbox, Col, Form, Input, Row, Select, Space } from 'antd';
+import { Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from 'antd';
 import React from 'react'
 import ImgReader from '@/components/img-reader';
 import { connect } from 'dva'
-import { genderOptions, maritalStatusOptions, politicalOptions, workAgeOptions } from './config';
+import type { Dayjs } from 'dayjs';
+import dayjs from '@/components/extend-dayjs';
+import { genderOptions, maritalStatusOptions, politicalOptions, signInOptions, workAgeOptions } from './config';
+import ContentHeader from '@/components/content-header';
 
 export interface IBaseInfoSetFormProps {
   baseInfo?: IEditResumeModel['baseInfo'];
   dispatch?: React.Dispatch<any>
 }
 
-type BaseInfoSetFormValues = IEditResumeModel['baseInfo'];
+type BaseInfoSetFormValues = IEditResumeModel['baseInfo'] & {
+  birthday: Dayjs;
+}
 export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
   const { baseInfo, dispatch } = props;
   const [form] = Form.useForm<BaseInfoSetFormValues>();
-  const initValues = baseInfo;
-  const gutter = 40, colSpan1 = 9, colSpan2 = 6;
+  const format = 'YYYY-MM-DD'
+  const initValues = {
+    ...baseInfo,
+    birthday: dayjs(baseInfo?.birthday)
+  };
+  const gutter = 40, colSpan1 = 9, colSpan2 = 6, colSpan3 = 6;
 
   const { run } = useDebounceFn(() => {
-    const values = form.getFieldsValue()
+    const values = form.getFieldsValue();
     dispatch?.({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
         key: 'baseInfo',
-        value: values
+        value: {
+          ...values,
+          birthday: values?.birthday?.format(format)
+        }
       }
     })
   }, { wait: 500 })
@@ -39,6 +51,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         run()
       }}
     >
+      <ContentHeader value="个人信息"/>
       <Row gutter={gutter}>
         <Col span={18}>
           <Row gutter={gutter}>
@@ -71,7 +84,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
           <Form.Item name="photo" label="头像">
               <ImgReader  width={90}/>
             </Form.Item>
-            <Form.Item name="photoShow" className='photo-show-checkbox'>
+            <Form.Item name="photoShow" valuePropName='checked' className='photo-show-checkbox'>
               <Checkbox>显示头像</Checkbox>
             </Form.Item>
         </div>
@@ -79,20 +92,20 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
       </Row>
       <Row gutter={gutter}>
         <Col span={colSpan1}>
+          <Form.Item name="birthday" label="出生日期">
+            <DatePicker format={format} />
+          </Form.Item>
+        </Col>
+        <Col span={colSpan1}>
           <Form.Item name="email" label="邮箱">
             <Input></Input>
           </Form.Item>
         </Col>
-        <Col span={colSpan1}>
+        <Col span={colSpan2}>
           <Form.Item name="workAge" label="工作年限">
             <Select options={workAgeOptions}/>
           </Form.Item>
         </Col>
-        <Col span={colSpan2}>
-          <Form.Item name="maritalStatus" label="婚姻状况">
-            <Select options={maritalStatusOptions}/>
-          </Form.Item>
-        </Col> 
       </Row>
       <Row gutter={gutter}>
         <Col span={colSpan1}>
@@ -106,20 +119,48 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         </Space>
         </Col>
         <Col span={colSpan1}>
-          <Form.Item name="nationality" label="民族">
-            <Input/>
+          <Form.Item name="maritalStatus" label="婚姻状况">
+            <Select options={maritalStatusOptions}/>
           </Form.Item>
-        </Col>
+        </Col> 
         <Col span={colSpan2}>
-          <Form.Item name="nativePlace" label="工作城市">
+          <Form.Item name="nativePlace" label="籍贯">
             <Input/>
           </Form.Item>
         </Col> 
       </Row>
       <Row gutter={gutter}>
         <Col span={colSpan1}>
+          <Form.Item name="nationality" label="民族">
+            <Input/>
+          </Form.Item>
+        </Col>
+        <Col span={colSpan1}>
           <Form.Item name="political" label="政治面貌">
             <Select options={politicalOptions}/>
+          </Form.Item>
+        </Col>
+      </Row>
+      <ContentHeader value="求职意向"/>
+      <Row gutter={gutter}>
+        <Col span={colSpan3}>
+          <Form.Item name="post" label="求职岗位">
+            <Input/>
+          </Form.Item>
+        </Col>
+        <Col span={colSpan3}>
+          <Form.Item name="city" label="意向城市">
+            <Input/>
+          </Form.Item>
+        </Col>
+        <Col span={colSpan3}>
+          <Form.Item name="joinTime" label="到岗时间">
+            <Select options={signInOptions}/>
+          </Form.Item>
+        </Col>
+        <Col span={colSpan3}>
+          <Form.Item name="salary" label="期望薪资">
+            <Input/>
           </Form.Item>
         </Col>
       </Row>

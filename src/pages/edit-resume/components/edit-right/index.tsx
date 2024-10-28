@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-24 19:57:51
+ * @LastEditTime: 2024-10-27 21:12:23
  */
 import React from 'react'
 import { useContext, useMemo } from 'react'
@@ -56,7 +56,7 @@ interface RowContextProps {
   setActivatorNodeRef?: (element: HTMLElement | null) => void;
   listeners?: SyntheticListenerMap;
 }
-const Row = (props: RowProps) => {
+const SortRow = (props: RowProps) => {
   const {
     attributes,
     listeners,
@@ -125,12 +125,12 @@ function EditRight(props: IEditRightProps) {
                 >
                   {
                     moduleList.map(item => {
-                      return <Row key={item.key} className='info-module-item' data-row-key={item.key}>
-                        <Space className='module-right' size={18}>
+                      return <SortRow data-row-key={item.key} key={item.key} >
+                        <Space key={item.key}  size={18} className='info-module-item' data-row-key={item.key}>
                           {
                             infoModuleIconMap.get(item.key)
                           }
-                          <span>{item.title}</span>
+                          <span className='module-title'>{item.title}</span>
                           {
                             item.key !== ContentConfigKeyEnum.BASIC_INFO && <Switch
                               value={!item.hidden}
@@ -148,7 +148,7 @@ function EditRight(props: IEditRightProps) {
                             item.key !== ContentConfigKeyEnum.BASIC_INFO && <DragHandle />
                           }
                         </Space>
-                      </Row>
+                      </SortRow>
                     })
                   }
                 </SortableContext>

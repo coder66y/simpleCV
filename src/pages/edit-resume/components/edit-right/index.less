@@ -12,8 +12,6 @@
   }
 
   .info-module-item {
-    display: flex;
-    align-items: center;
     height: 48px;
     width: 230px;
     line-height: 48px;
@@ -24,6 +22,18 @@
     color: @grey-2;
     cursor: pointer;
     padding: 0 10px;
+
+    .ant-space-item {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .module-title {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
 
     .module-left {
       font-size: 14px;

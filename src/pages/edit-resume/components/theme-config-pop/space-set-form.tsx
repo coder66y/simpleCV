@@ -9,7 +9,7 @@ export function SpaceSetForm() {
   const [form] = Form.useForm<ISpaceSetFormValues>()
   const initValues = {
     pageMargin: theme.pageMargin,
-    lineHeight: theme.lineHight,
+    lineHeight: theme.lineHeight,
     moduleMargin: theme.moduleMargin
   }
   return (
@@ -33,7 +33,7 @@ export function SpaceSetForm() {
         <SliderWithValue min={20} max={50} step={1}/>
       </Form.Item>
       <Form.Item label="行高" name="lineHeight">
-        <SliderWithValue min={0.3} max={1.2} step={0.1}/>
+        <SliderWithValue min={1} max={3} step={0.1}/>
       </Form.Item>
       <Form.Item label="模块边距" name="moduleMargin">
         <SliderWithValue min={5} max={30} step={1}/>

@@ -40,3 +40,12 @@ export const genderOptions = [
   {value: "男", label: '男'},
   {value: "女", label: '女'},
 ]
+
+export const signInOptions = [
+  {value: "", label: '不填'},
+  {value: "随时到岗", label: '随时到岗'},
+  {value: "一周内到岗", label: '一周内到岗'},
+  {value: "两周内到岗", label: '两周内到岗'},
+  {value: "一月内到岗", label: '一月内到岗'},
+  {value: "另议", label: '另议'},
+]
