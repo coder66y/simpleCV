@@ -2,7 +2,19 @@
   width: fit-content !important;
   .ant-modal-content {
     width: fit-content;
+    position: relative;
     padding: 35px;
+    min-height: 40vh;
+
+    .ant-modal-body {
+      overflow-y: scroll;
+    }
+  }
+
+  .add-btn {
+    position: absolute;
+    left: 35px;
+    bottom: 35px;
   }
 
   .module-edit-modal-title {
@@ -30,12 +42,16 @@
     }
   }
 
-  .education-base-set-form {
-    width: 50vw;
+  .education-base-set-form-wrapper {
+    width: fit-content;
 
-    .ql-editor {
-      padding: 0;
-      background-color: #fff;
+    .education-base-set-form {
+      height: 300px;
+      .ql-editor {
+        padding: 0;
+        min-height: 100px;
+        background-color: #fff;
+      }
     }
   }
 }

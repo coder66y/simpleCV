@@ -57,9 +57,11 @@ export default function ContentEditModal(props: IContentEditModalProps) {
   }
 
   const renderFooter = () => {
-    return <Button type='primary' size="large" onClick={() => {
+    return <div>
+      <Button type='primary' onClick={() => {
       onClose?.()
     }}>保存</Button>
+    </div>
   }
 
   return (

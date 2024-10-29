@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactQuill, { ReactQuillProps } from 'react-quill';
 import 'react-quill/dist/quill.snow.css'
+import './index.less'
 export interface IEditorProps extends ReactQuillProps {
 }
 
@@ -21,13 +22,12 @@ const Editor = (props: IEditorProps) => {
     value={value}
     onChange={(...arg) => {
       onChange?.(...arg)
-      // console.info(`%c info arg: %o`, 'color: green; font-size: 20px; font-weight: 700', arg)
     }}
     readOnly={readOnly}
     modules={{
       toolbar: readOnly ? false : toolbarOptions
     }}
-    className='ql-editor'
+    className='quill-editor'
     {...rest}
   />
 }

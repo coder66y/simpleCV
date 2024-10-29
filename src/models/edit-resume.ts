@@ -31,8 +31,8 @@ const initState = () => ({
     post: '前端开发工程师',
     salary: '13-18'
   },
-  educationInfo: [{
-    content: "<ol>\n<li>主修课程：</li>\n<li>管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销</li>\n</ol>",
+  education: [{
+    content: "<p> 主修课程： 管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销 </p>",
     degree: "本科",
     end: "2009-06",
     major: "市场营销",
@@ -86,7 +86,7 @@ export interface IEditResumeModel {
     post: string;
     salary: string;
   },
-  educationInfo: IEducationInfoValues[]
+  education: IEducationInfoValues[]
 }
 export default {
   namespace: EDIT_RESUME_NAME_SPACE,
@@ -137,11 +137,11 @@ export default {
         })
       }
     },
-    changeFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, value: Record<string, any>}}) {
+    changeFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, value: Record<string, any> | Record<string, any>[]}}) {
       const { key, value } = payload;
       return {
         ...state,
-        [key]: {
+        [key]: Array.isArray(value) ? value : {
           ...state[key],
           ...value,
         }

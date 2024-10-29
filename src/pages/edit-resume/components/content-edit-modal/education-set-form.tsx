@@ -1,6 +1,6 @@
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel, IEducationInfoValues } from "@/models/edit-resume";
 import { useDebounceFn } from "ahooks";
-import { Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from "antd"
+import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from "antd"
 import { connect } from "dva";
 import { degreeOptions } from "./config";
 import QuillEditor from "@/components/quill-editor";
@@ -9,7 +9,7 @@ import type { Dayjs } from 'dayjs';
 import { ContentConfigKeyEnum } from "../../config";
 
 export interface IEducationSetFormProps {
-  educationInfo?: IEditResumeModel['educationInfo'];
+  educationInfo?: IEditResumeModel['education'];
   dispatch: React.Dispatch<any>;
 }
 export interface IEducationSetBaseFormProps {
@@ -23,12 +23,21 @@ export interface IEducationSetBseFormValues extends Omit<IEducationInfoValues, '
   end?: Dayjs;
 };
 const format = 'YYYY-MM-DD'
+const emptyData = {
+  content: '',
+  degree: '',
+  end: '',
+  major: '',
+  name: '',
+  start: '',
+  today: false
+}
 
 /** 教育经理基础表单 */
 function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   const { initValues, onChange, index } = props;
   const [form] = Form.useForm<IEducationSetBseFormValues>();
-  const colSpan1 = 12, gutter = 40;
+  const colSpan1 = 14, colSpan2 = 10,gutter = 40;
   const initialValues = {
     ...initValues,
     start: dayjs(initValues?.start),
@@ -60,7 +69,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
             <Input />
           </Form.Item>
         </Col>
-        <Col span={colSpan1}>
+        <Col span={colSpan2}>
           <Form.Item name="major" label="专业">
             <Input />
           </Form.Item>
@@ -80,7 +89,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
             </Form.Item>
           </Space>
         </Col>
-        <Col span={colSpan1}>
+        <Col span={colSpan2}>
           <Form.Item name="degree" label="学历">
             <Select options={degreeOptions}/>
           </Form.Item>
@@ -98,17 +107,25 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
 }
 
 function EducationSetForm(props: IEducationSetFormProps) {
-  const { dispatch, educationInfo } = props;
-  const handleChange = (values: IEducationInfoValues, index:number) => {
-    const newValues = educationInfo?.map((item, idx) => {
-      if(index === idx) {
-        return {
-          ...item,
-          ...values
+  const { dispatch, educationInfo = [] } = props;
+  const handleChange = (values: IEducationInfoValues, index?:number) => {
+    let newValues = educationInfo
+    if(!index) {
+      newValues = [
+        ...educationInfo,
+        values,
+      ]
+    } else {
+      newValues = educationInfo?.map((item, idx) => {
+        if(index === idx) {
+          return {
+            ...item,
+            ...values
+          }
         }
-      }
-      return item
-    })
+        return item
+      })
+    }
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
@@ -117,18 +134,26 @@ function EducationSetForm(props: IEducationSetFormProps) {
       }
     })
   }
-  return educationInfo?.map((item, index) => {
-    return <EducationSetBaseForm
-      onChange={handleChange}
-      initValues={item}
-      index={index}
-      key={index}
-    />
-  })
 
+  const onAdd = () => {
+    handleChange(emptyData)
+  }
+  return <div className="education-base-set-form-wrapper">
+    {
+      educationInfo?.map?.((item, index) => {
+        return <EducationSetBaseForm
+          key={`${item.name}-${item.start}-${item.end}-${item.major}=${index}`}
+          onChange={handleChange}
+          initValues={item}
+          index={index}
+        />
+      })
+    }
+    <Button className="add-btn" onClick={onAdd}>新增教育经历</Button>
+  </div>
 }
 export default connect(({editResume}: {editResume: IEditResumeModel}) => {
   return {
-    educationInfo: editResume.educationInfo
+    educationInfo: editResume.education
   }
 })(EducationSetForm)

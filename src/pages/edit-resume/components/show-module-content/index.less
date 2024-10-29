@@ -1,4 +1,26 @@
 .show-module-content-wrapper {
+  padding: 0 20px;
+
+  .left {
+    text-align: left;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  .ql-container.ql-snow {
+    border: none;
+
+    .ql-editor {
+      padding: 0;
+      line-height: var(--line-height);
+    }
+  }
 
   .avatar {
     position: absolute;
@@ -7,7 +29,12 @@
   }
   .base-info-module-content {
     position: relative;
-    padding: 0 20px
+  }
+
+  .education-info-module-content-wrapper {
+    .education-info-module-content {
+      margin: 0;
+    }
   }
 
 }
