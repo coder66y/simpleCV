@@ -12,13 +12,15 @@ export interface IEducationSetFormProps {
   educationInfo?: IEditResumeModel['education'];
   dispatch: React.Dispatch<any>;
 }
+/** 教育经历表单属性 */
 export interface IEducationSetBaseFormProps {
-  initValues?: IEducationInfoValues;
-  onChange?: (values: IEducationInfoValues, index: number) => void;
+  initValues?: IEducationSetFormValues;
+  onChange?: (values: IEducationSetFormValues, index: number) => void;
   index: number;
 }
-export type IEducationSetFormValues = Record<number, IEducationInfoValues>;
-export interface IEducationSetBseFormValues extends Omit<IEducationInfoValues, 'start' | 'end'> {
+
+/** 教育信息表单初始值 */
+export interface IEducationSetFormValues extends Omit<IEducationInfoValues, 'start' | 'end'> {
   start?: Dayjs;
   end?: Dayjs;
 };
@@ -26,17 +28,17 @@ const format = 'YYYY-MM-DD'
 const emptyData = {
   content: '',
   degree: '',
-  end: '',
+  end: dayjs(),
   major: '',
   name: '',
-  start: '',
+  start: dayjs(),
   today: false
 }
 
 /** 教育经理基础表单 */
 function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   const { initValues, onChange, index } = props;
-  const [form] = Form.useForm<IEducationSetBseFormValues>();
+  const [form] = Form.useForm<IEducationSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10,gutter = 40;
   const initialValues = {
     ...initValues,
@@ -46,11 +48,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
 
   const { run: onSave } = useDebounceFn(() => {
     const values = form.getFieldsValue()
-    onChange?.({
-      ...values,
-      start: dayjs(values?.start).format(format),
-      end: dayjs(values?.end).format(format)
-    }, index)
+    onChange?.(values, index)
   }, { wait: 500 })
 
   return (
@@ -108,29 +106,34 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
 
 function EducationSetForm(props: IEducationSetFormProps) {
   const { dispatch, educationInfo = [] } = props;
-  const handleChange = (values: IEducationInfoValues, index?:number) => {
-    let newValues = educationInfo
-    if(!index) {
-      newValues = [
-        ...educationInfo,
-        values,
-      ]
-    } else {
-      newValues = educationInfo?.map((item, idx) => {
+  const handleChange = (values: IEducationSetFormValues, index?:number) => {
+    let newEducationInfo = []
+    const newValues = {
+      ...values,
+      start: dayjs(values?.start).format(format),
+      end: dayjs(values?.end).format(format)
+    }
+    if(Number(index ?? -1) >= 0) {
+      newEducationInfo = educationInfo?.map((item, idx) => {
         if(index === idx) {
           return {
             ...item,
-            ...values
+            ...newValues,
           }
         }
         return item
       })
+    } else {
+      newEducationInfo = [
+        ...educationInfo,
+        newValues,
+      ]
     }
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
         key: ContentConfigKeyEnum.EDUCATION,
-        value: newValues
+        value: newEducationInfo
       }
     })
   }
@@ -143,8 +146,14 @@ function EducationSetForm(props: IEducationSetFormProps) {
       educationInfo?.map?.((item, index) => {
         return <EducationSetBaseForm
           key={`${item.name}-${item.start}-${item.end}-${item.major}=${index}`}
-          onChange={handleChange}
-          initValues={item}
+          onChange={(values: IEducationSetFormValues) => {
+            handleChange(values, index)
+          }}
+          initValues={{
+            ...item,
+            start: dayjs(item.start),
+            end: dayjs(item.end)
+          }}
           index={index}
         />
       })

@@ -15,17 +15,19 @@ export interface IReadItemProps {
   needCol?: boolean;
   span?: number;
   className?: string;
+  /** 需要占位 */
+  needPlace?: boolean;
 }
 
 export default function ReadItem(props: IReadItemProps) {
-  const { value, label, suffix = '', prefix = '', needCol = false, span, className = ''} = props;
+  const { value, label, suffix = '', prefix = '', needCol = false, needPlace = false, span, className = ''} = props;
   const readItem = <div className={`${className} read-item`}>
     <span className="read-item-label" >{label ? label + '：' : ''}</span>
     <span className="read-item-value">{value ? prefix + value + suffix : ''}</span>
   </div>
   if(needCol) {
     return (
-      value ? <Col span={span} className={className}>
+      (needPlace || value) ? <Col span={span} className={className}>
         {React.isValidElement(value) ? value : readItem}
       </Col> : null
     )

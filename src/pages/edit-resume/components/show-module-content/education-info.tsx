@@ -16,14 +16,14 @@ function EducationInfo(props: EducationInfoProps) {
         education?.map?.(item => (
           <>
           <Row className="education-info-module-content" >
-            <ReadItem className="left" value={
+            <ReadItem needPlace className="left" value={
               <>
                 <ReadItem value={item.start} suffix="&ensp;--&ensp;"/>
-                <ReadItem value={item.end}/>
+                {item.today ? '至今' : <ReadItem value={item.end}/>}
               </>
             } needCol span={span}/>
-            <ReadItem className="center" value={item.name} needCol span={span}/>
-            <ReadItem className="right" value={
+            <ReadItem needPlace className="center" value={item.name} needCol span={span}/>
+            <ReadItem needPlace className="right" value={
               <>
                 <ReadItem value={item.major} />
                 {item.degree ?  <ReadItem value={'(' + item.degree + ')'} /> : ''}
@@ -32,7 +32,7 @@ function EducationInfo(props: EducationInfoProps) {
           </Row>
           <Row>
             <Col span={24}>
-            <QuillEditor readOnly={true} value={item.content}/>
+            <QuillEditor readOnly value={item.content}/>
             </Col>
           </Row>
           </>
