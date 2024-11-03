@@ -2,6 +2,8 @@
   "basicInfo": "{title}",
   "education": "{title}",
   "workExperience": "{title}",
+  "schoolExperience": "{title}",
+  "internshipExperience": "{title}",
   "projectExperience": "{title}",
   "skills": "{title}",
   "honor": "{title}",

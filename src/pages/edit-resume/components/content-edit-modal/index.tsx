@@ -8,6 +8,10 @@ import { CheckOutlined, EditOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useClickAway } from "ahooks";
 import EducationSetForm from "./education-set-form";
+import WorkExperienceSetForm from "./work-experience-set-form";
+import ProjectExperienceSetForm from "./project-experience-set-form";
+import SchoolExperienceSetForm from "./school-experience-set-form";
+import InternshipExperienceSetForm from "./internship-experience-set-form";
 
 export interface IContentEditModalProps extends ModalProps{
   configKey: ContentConfigKeyEnum;
@@ -25,6 +29,10 @@ export default function ContentEditModal(props: IContentEditModalProps) {
    [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
    [ContentConfigKeyEnum.BASIC_INFO, <BaseInfoSetForm />],
    [ContentConfigKeyEnum.EDUCATION, <EducationSetForm />],
+   [ContentConfigKeyEnum.WORK_EXPERIENCE, <WorkExperienceSetForm />],
+   [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ProjectExperienceSetForm />],
+   [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <SchoolExperienceSetForm />],
+   [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <InternshipExperienceSetForm />],
   ])
 
   useClickAway(() => {

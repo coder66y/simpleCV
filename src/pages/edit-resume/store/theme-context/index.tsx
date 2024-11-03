@@ -24,7 +24,7 @@ export type ThemeDispatchActionType = Dispatch<IThemeDispatchArgType>;
 
 /** 主题初始值 */
 export const initialTheme: IThemeStoreTypes = {
-  color: colorPrimary,
+  color: '#4e7880',
   moduleMargin: 10,
   secondaryColor: "#999",
   lineHeight: 2,

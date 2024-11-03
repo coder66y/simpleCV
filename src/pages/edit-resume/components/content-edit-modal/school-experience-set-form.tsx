@@ -1,48 +1,46 @@
-import { EDIT_RESUME_NAME_SPACE, IEditResumeModel, IEducationInfoValues } from "@/models/edit-resume";
+import { EDIT_RESUME_NAME_SPACE, IEditResumeModel, ISchoolExperienceValues } from "@/models/edit-resume";
 import { useDebounceFn } from "ahooks";
-import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from "antd"
+import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Space } from "antd"
 import { connect } from "dva";
-import { degreeOptions } from "./config";
 import QuillEditor from "@/components/quill-editor";
 import dayjs from "@/components/extend-dayjs";
 import type { Dayjs } from 'dayjs';
 import { ContentConfigKeyEnum, SortTypeEnum } from "../../config";
 import { ArrowDownOutlined, ArrowUpOutlined, DeleteOutlined } from "@ant-design/icons";
 
-export interface IEducationSetFormProps {
-  educationInfo?: IEditResumeModel['education'];
+export interface ISchoolExperienceSetFormProps {
+  schoolExperience?: IEditResumeModel['schoolExperience'];
   dispatch: React.Dispatch<any>;
   infoModuleList?: IEditResumeModel['moduleList']
 }
-/** 教育经历表单属性 */
-export interface IEducationSetBaseFormProps {
-  initValues?: IEducationSetFormValues;
-  onChange?: (values: IEducationSetFormValues, index: number) => void;
+/** 表单属性 */
+export interface ISchoolExperienceBaseSetFormProps {
+  initValues?: ISchoolExperienceSetFormValues;
+  onChange?: (values: ISchoolExperienceSetFormValues, index: number) => void;
   index: number;
   length?: number;
   onSort?: (type: SortTypeEnum, index: number) => void
 }
 
-/** 教育信息表单初始值 */
-export interface IEducationSetFormValues extends Omit<IEducationInfoValues, 'start' | 'end'> {
+/** 表单初始值 */
+export interface ISchoolExperienceSetFormValues extends Omit<ISchoolExperienceValues, 'start' | 'end'> {
   start?: Dayjs;
   end?: Dayjs;
 };
 const format = 'YYYY-MM-DD'
 const emptyData = {
   content: '',
-  degree: '',
   end: dayjs(),
-  major: '',
+  job: '',
   name: '',
   start: dayjs(),
   today: false
 }
 
-/** 教育经理基础表单 */
-function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
+/** 基础表单 */
+function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
   const { initValues, onChange, index, length = 0, onSort } = props;
-  const [form] = Form.useForm<IEducationSetFormValues>();
+  const [form] = Form.useForm<ISchoolExperienceSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10,gutter = 40;
 
   const { run: onSave } = useDebounceFn(() => {
@@ -55,7 +53,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   }
 
   return (
-    <div className="common-list-set-form-wrapper">
+    <div className="common-list-base-set-form-wrapper">
     <Row justify="end">
       <Space>
         {
@@ -80,7 +78,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     </Row>
     <Form
       form={form}
-      className="common-list-set-form"
+      className="common-list-base-set-form"
       layout="horizontal"
       initialValues={initValues}
       onValuesChange={() => {
@@ -89,12 +87,12 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     >
       <Row gutter={gutter}>
         <Col span={colSpan1}>
-          <Form.Item name="name" label="学校名称">
+          <Form.Item name="name" label="经历名称">
             <Input />
           </Form.Item>
         </Col>
         <Col span={colSpan2}>
-          <Form.Item name="major" label="专业">
+          <Form.Item name="job" label="角色">
             <Input />
           </Form.Item>
         </Col>
@@ -102,7 +100,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
       <Row gutter={gutter}>
         <Col span={colSpan1}>
           <Space>
-            <Form.Item name="start" label="起止时间">
+            <Form.Item name="start" label="时间">
               <DatePicker />
             </Form.Item>
             <Form.Item name="end">
@@ -114,14 +112,11 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
           </Space>
         </Col>
         <Col span={colSpan2}>
-          <Form.Item name="degree" label="学历">
-            <Select options={degreeOptions}/>
-          </Form.Item>
         </Col>
       </Row>
       <Row gutter={gutter}>
         <Col span={24}>
-          <Form.Item name="content" layout="vertical" label="学业/专业描述：">
+          <Form.Item name="content" layout="vertical" label="经历描述：">
             <QuillEditor />
           </Form.Item>
         </Col>
@@ -131,17 +126,17 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   )
 }
 
-function EducationSetForm(props: IEducationSetFormProps) {
-  const { dispatch, educationInfo = [], infoModuleList } = props;
-  const handleChange = (values: IEducationSetFormValues, index?:number) => {
-    let newEducationInfo = []
+function SchoolExperienceSetForm(props: ISchoolExperienceSetFormProps) {
+  const { dispatch, schoolExperience = [], infoModuleList } = props;
+  const handleChange = (values: ISchoolExperienceSetFormValues, index?:number) => {
+    let newList = []
     const newValues = {
       ...values,
       start: dayjs(values?.start).format(format),
       end: dayjs(values?.end).format(format)
     }
     if(Number(index ?? -1) >= 0) {
-      newEducationInfo = educationInfo?.map((item, idx) => {
+      newList = schoolExperience?.map((item, idx) => {
         if(index === idx) {
           return {
             ...item,
@@ -151,16 +146,16 @@ function EducationSetForm(props: IEducationSetFormProps) {
         return item
       })
     } else {
-      newEducationInfo = [
-        ...educationInfo,
+      newList = [
+        ...schoolExperience,
         newValues,
       ]
     }
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
-        key: ContentConfigKeyEnum.EDUCATION,
-        value: newEducationInfo
+        key: ContentConfigKeyEnum.SCHOOL_EXPERIENCE,
+        value: newList
       }
     })
   }
@@ -172,22 +167,22 @@ function EducationSetForm(props: IEducationSetFormProps) {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/sortModuleFormValues`,
       payload: {
-        key: ContentConfigKeyEnum.EDUCATION,
+        key: ContentConfigKeyEnum.SCHOOL_EXPERIENCE,
         type,
         index,
       }
     })
   }
 
-  return <div className="common-list-base-set-form-wrapper">
+  return <div className="common-list-set-form-wrapper">
     {
-      educationInfo?.map?.((item, index) => {
-        return <EducationSetBaseForm
-          key={`${item.name}-${item.start}-${item.end}-${item.major}-${item.content}-${index}`}
-          onChange={(values: IEducationSetFormValues) => {
+      schoolExperience?.map?.((item, index) => {
+        return <SchoolExperienceBaseSetForm
+          key={`${item.name}-${item.start}-${item.end}-${item.job}-${item.content}-${index}`}
+          onChange={(values: ISchoolExperienceSetFormValues) => {
             handleChange(values, index)
           }}
-          length={educationInfo.length}
+          length={schoolExperience.length}
           onSort={onSort}
           initValues={{
             ...item,
@@ -198,14 +193,14 @@ function EducationSetForm(props: IEducationSetFormProps) {
         />
       })
     }
-     <Button className="add-btn" onClick={onAdd}>新增{
-      infoModuleList?.find(item => item.key === ContentConfigKeyEnum.WORK_EXPERIENCE)?.title
+    <Button className="add-btn" onClick={onAdd}>新增{
+      infoModuleList?.find(item => item.key === ContentConfigKeyEnum.SCHOOL_EXPERIENCE)?.title
     }</Button>
   </div>
 }
 export default connect(({editResume}: {editResume: IEditResumeModel}) => {
   return {
-    educationInfo: editResume.education,
+    schoolExperience: editResume.schoolExperience,
     infoModuleList: editResume.moduleList
   }
-})(EducationSetForm)
+})(SchoolExperienceSetForm)

@@ -34,6 +34,10 @@ export enum ContentConfigKeyEnum {
   WORK_EXPERIENCE = "workExperience",
   /** 教育经历 */
   EDUCATION = "education",
+  /** 实习经验 */
+  INTERNSHIP_EXPERIENCE = 'internshipExperience',
+  /** 校园经验 */
+  SCHOOL_EXPERIENCE = 'schoolExperience',
   /** 项目经历 */
   PROJECT_EXPERIENCE = "projectExperience",
   /** 个人技能 */
@@ -42,6 +46,7 @@ export enum ContentConfigKeyEnum {
   HONOR = "honor",
   /** 求职意向 */
   INTENTION = "intention",
+  
   /** 自我评价 */
   SELF_EVALUATION = "selfEvaluation"
 }
@@ -68,8 +73,18 @@ export const infoModuleList: IModuleInfoConfig[] = [
     icon: <ColumnHeightOutlined />
   },
   {
+    title: '校园经历',
+    key: ContentConfigKeyEnum.SCHOOL_EXPERIENCE,
+    icon: <ColumnHeightOutlined />
+  },
+  {
     title: '工作经历',
     key: ContentConfigKeyEnum.WORK_EXPERIENCE,
+    icon: <ColumnHeightOutlined />
+  },
+  {
+    title: '实习经历',
+    key: ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE,
     icon: <ColumnHeightOutlined />
   },
   {
@@ -104,11 +119,20 @@ export const infoModuleIconMap = new Map<string, ReactNode>([
   [ContentConfigKeyEnum.BASIC_INFO, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.WORK_EXPERIENCE, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.SKILLS, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.SELF_EVALUATION, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.HONOR, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.INTENTION, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <ColumnHeightOutlined />],
 ])
+
+
+export enum SortTypeEnum {
+  UP = 'up',
+  DOWN = 'down',
+  DELETE = 'delete',
+}
 

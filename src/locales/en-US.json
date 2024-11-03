@@ -2,6 +2,8 @@
   "basicInfo": "BasicInfo",
   "education": "Education",
   "workExperience": "WorkExperience",
+  "schoolExperience": "SchoolExperience",
+  "internshipExperience": "InternshipExperience",
   "projectExperience": "ProjectExperience",
   "skills": "Skills",
   "honor": "Honors & Awards",

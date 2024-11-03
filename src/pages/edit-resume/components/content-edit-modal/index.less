@@ -4,7 +4,6 @@
     width: fit-content;
     position: relative;
     padding: 35px;
-    min-height: 40vh;
 
     .ant-modal-body {
       overflow-y: scroll;
@@ -42,15 +41,27 @@
     }
   }
 
-  .education-base-set-form-wrapper {
-    width: fit-content;
+  .common-list-set-form-wrapper {
+    min-width: 800px;
+    
 
-    .education-base-set-form {
-      height: 300px;
-      .ql-editor {
-        padding: 0;
-        min-height: 100px;
-        background-color: #fff;
+    .common-list-base-set-form-wrapper {
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+
+      .ant-space .ant-space-item .ant-btn {
+        padding: 4px 6px;
+      }
+
+      .common-list-base-set-form {
+        height: 300px;
+        margin: 10px 0;
+  
+        .ql-editor {
+          padding: 0;
+          min-height: 100px;
+          background-color: #fff;
+        }
       }
     }
   }

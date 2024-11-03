@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-27 22:17:28
+ * @LastEditTime: 2024-11-04 01:38:18
  */
 import './index.less';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
@@ -64,7 +64,7 @@ function EditContent(props: IEditContentProps) {
   }
 
   return (
-      <div className={`${rootCls}`} style={{'--primaryColor': color, '--secondaryColor': secondaryColor,  '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`, fontFamily: fontFamily, '--fontSize': `${fontSize}px`}}>
+      <div className={`${rootCls}`} style={{'--primaryColor': color, '--secondaryColor': secondaryColor,  '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`, fontFamily: fontFamily, '--fontSize': `${fontSize}px`, '--lineHeight': lineHeight, '--fontFamily': fontFamily}}>
         <IntlProvider messages={messageMap.get(language)} locale={language} defaultLocale="zh_CN">
           <div className={`${rootCls}-header`} style={{color}} onClick={() => {
             onContentClick(ContentConfigKeyEnum.CV_INFO)
@@ -119,7 +119,7 @@ function EditContent(props: IEditContentProps) {
                 </div>
                 <div className='module-line'>
                 </div>
-                <div className='module-content-main' style={{'--lineHeight': lineHeight}}>
+                <div className='module-content-main'>
                   <ShowModuleContent configKey={item.key}/>
                 </div>
               </div>
