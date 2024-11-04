@@ -5,8 +5,22 @@
   .slider {
     flex: 1;
   }
+
+  .prefix {
+    width: 100%;
+  }
   .slider-tips {
     padding-left: 20px;
     color: @primary-color;
+  }
+}
+
+.slider-with-value-wrapper {
+  width: 100%;
+
+  .prefix {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }

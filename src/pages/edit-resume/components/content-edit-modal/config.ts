@@ -58,3 +58,11 @@ export const degreeOptions = [
   {value: "硕士", label: '硕士'},
   {value: "博士", label: '博士'},
 ]
+
+export const masteryOptions = [
+  {value: "50%", label: '一般'},
+  {value: "65%", label: '良好'},
+  {value: "75%", label: '熟练'},
+  {value: "85%", label: '擅长'},
+  {value: "95%", label: '精通'},
+]

@@ -10,10 +10,32 @@
     }
   }
 
+  .ant-modal-header {
+    margin-bottom: 20px;
+  }
+
+  .ql-editor {
+    padding: 0;
+    min-height: 100px;
+    background-color: #fff;
+  }
+
+  .ql-toolbar.ql-snow {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .ql-container.ql-snow {
+    border-radius: 0 0 5px 5px;
+  }
+
   .add-btn {
     position: absolute;
     left: 35px;
     bottom: 35px;
+  }
+
+  .anticon-delete {
+    color: @primary-color;
   }
 
   .module-edit-modal-title {
@@ -21,6 +43,8 @@
     display: flex;
     gap: 5px;
   }
+
+
 
   .cv-header-set-form {
     width: 40vw;
@@ -44,7 +68,6 @@
   .common-list-set-form-wrapper {
     min-width: 800px;
     
-
     .common-list-base-set-form-wrapper {
       border-top: 1px solid #ccc;
       padding-top: 10px;
@@ -62,6 +85,26 @@
           min-height: 100px;
           background-color: #fff;
         }
+      }
+    }
+  }
+
+  .skills-set-form-wrapper {
+    min-width: 800px;
+    width: 40vw;
+
+    .skills-desc-title {
+      margin-bottom: 5px;
+    }
+
+    .skills-bar-set-form {
+      margin: 10px 0;
+
+      .skill-name {
+        width: 90px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
   }

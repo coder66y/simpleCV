@@ -93,7 +93,7 @@ export const infoModuleList: IModuleInfoConfig[] = [
     key: ContentConfigKeyEnum.PROJECT_EXPERIENCE,
   },
   {
-    title: '个人技能',
+    title: '技能特长',
     icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.SKILLS,
   },

@@ -47,6 +47,18 @@ export interface IInternshipExperienceValues {
   start: string;
   today: boolean;
 }
+export interface IBarChartItem {
+  name: string;
+  mastery: {
+    value: string;
+    label: string;
+  };
+  showBar: boolean;
+}
+export interface ISkillsValues {
+  data: IBarChartItem[],
+  content: string;
+}
 export interface IEditResumeModel {
   moduleList: IModuleInfoConfig[];
   resumeInfo?: {
@@ -86,9 +98,10 @@ export interface IEditResumeModel {
   projectExperience: IProjectExperienceValues[],
   schoolExperience: ISchoolExperienceValues[],
   internshipExperience: IInternshipExperienceValues[],
-  // skills: ISkillInfoValues[],
+  skills: ISkillsValues,
   // honor: IHonorInfoValues[],
 }
+
 const initState = () => ({
   moduleList: infoModuleList,
   resumeInfo: {
@@ -165,6 +178,26 @@ const initState = () => ({
       "content": "<p>工作内容是什么，收获是什么</p>",
     }
   ],
+  skills: {
+    data: [
+      {
+        name: "xxx技能",
+        showBar: true,
+        mastery: {value: 50, label: '一般'},
+      },
+      {
+        name: "xxx技能1",
+        showBar: false,
+        mastery: {value: 50, label: '一般'},
+      },
+      {
+        name: "xxx超长超长超长超长技能2",
+        showBar: false,
+        mastery: {value: 50, label: '一般'},
+      }
+    ],
+    content: "<p>技能特长描述</p>"
+  }
 })
 export default {
   namespace: EDIT_RESUME_NAME_SPACE,

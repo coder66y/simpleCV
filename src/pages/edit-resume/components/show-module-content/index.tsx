@@ -5,6 +5,7 @@ import './index.less'
 import InternshipExperience from "./internship-experience";
 import ProjectExperience from "./project-experience";
 import SchoolExperience from "./school-experience";
+import Skills from "./skills";
 import WorkExperience from "./work-experience";
 
 export interface IShowModuleContentProps {
@@ -22,6 +23,7 @@ export default function ShowModuleContent(props: IShowModuleContentProps) {
     [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ProjectExperience />],
     [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <SchoolExperience />],
     [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <InternshipExperience />],
+    [ContentConfigKeyEnum.SKILLS, <Skills />],
   ])
 
   return (
