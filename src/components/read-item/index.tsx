@@ -15,7 +15,7 @@ export interface IReadItemProps {
   needCol?: boolean;
   span?: number;
   className?: string;
-  /** 需要占位 */
+  /** 是否需要占位 默认不需要 */
   needPlace?: boolean;
 }
 

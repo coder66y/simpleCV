@@ -43,9 +43,9 @@ export enum ContentConfigKeyEnum {
   /** 个人技能 */
   SKILLS = "skills",
   /** 荣誉奖项 */
-  HONOR = "honor",
-  /** 求职意向 */
-  INTENTION = "intention",
+  HONOR = "honors",
+  /** 自定义 */
+  CUSTOMIZATION = "customization",
   
   /** 自我评价 */
   SELF_EVALUATION = "selfEvaluation"
@@ -98,7 +98,7 @@ export const infoModuleList: IModuleInfoConfig[] = [
     key: ContentConfigKeyEnum.SKILLS,
   },
   {
-    title: '荣誉奖项',
+    title: '荣誉证书',
     icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.HONOR,
   },
@@ -108,9 +108,9 @@ export const infoModuleList: IModuleInfoConfig[] = [
     key: ContentConfigKeyEnum.SELF_EVALUATION,
   },
   {
-    title: '求职意向',
+    title: '自定义',
     icon: <ColumnHeightOutlined />,
-    key: ContentConfigKeyEnum.INTENTION,
+    key: ContentConfigKeyEnum.CUSTOMIZATION,
   }
 ]
 
@@ -125,7 +125,7 @@ export const infoModuleIconMap = new Map<string, ReactNode>([
   [ContentConfigKeyEnum.SELF_EVALUATION, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.HONOR, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.INTENTION, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.CUSTOMIZATION, <ColumnHeightOutlined />],
   [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <ColumnHeightOutlined />],
 ])
 

@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-11-04 01:38:18
+ * @LastEditTime: 2024-11-05 23:15:37
  */
 import './index.less';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
@@ -99,13 +99,15 @@ function EditContent(props: IEditContentProps) {
           {
             moduleList?.map(item => {
               return item.hidden ? null : <div
-                onClick={(e) => {
-                  onContentClick(item.key, item.title)
-                }}
                 className={`${rootCls}-info-module`}
                 key={item.key}
               >
-                <div className='module-title' style={{backgroundColor: color}}>
+                <div
+                  className='module-title'
+                  onClick={(e) => {
+                    onContentClick(item.key, item.title)
+                  }}
+                >
                   <span className='title-text'>
                     <FormattedMessage id={item.key} values={{
                       key: item.key,

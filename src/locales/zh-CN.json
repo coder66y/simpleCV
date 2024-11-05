@@ -6,8 +6,9 @@
   "internshipExperience": "{title}",
   "projectExperience": "{title}",
   "skills": "{title}",
-  "honor": "{title}",
+  "honors": "{title}",
   "selfEvaluation": "{title}",
   "intention": "{title}",
-  "personalResume": "{title}"
+  "personalResume": "{title}",
+  "customization": "{title}"
 }

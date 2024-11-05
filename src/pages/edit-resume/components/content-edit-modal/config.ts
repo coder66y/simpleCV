@@ -60,9 +60,9 @@ export const degreeOptions = [
 ]
 
 export const masteryOptions = [
-  {value: "50%", label: '一般'},
-  {value: "65%", label: '良好'},
-  {value: "75%", label: '熟练'},
-  {value: "85%", label: '擅长'},
-  {value: "95%", label: '精通'},
+  {value: 0.5, label: '一般'},
+  {value: 0.65, label: '良好'},
+  {value: 0.75, label: '熟练'},
+  {value: 0.85, label: '擅长'},
+  {value: 0.95, label: '精通'},
 ]

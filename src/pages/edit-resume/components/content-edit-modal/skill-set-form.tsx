@@ -11,17 +11,19 @@ import { useState } from "react";
 export interface ISkillsBarSetFormProps {
   index: number;
   values: IBarChartItem;
-  onDelete?: () => void;
+  onValuesChange: (values: IBarChartItem) => void;
+  onDelete: () => void;
 }
 export interface ISkillsSetFormProps {
   dispatch: React.Dispatch<any>;
   skills: IEditResumeModel['skills'];
-  infoModuleList: IEditResumeModel['moduleList']
+  infoModuleList: IEditResumeModel['moduleList'],
+  
 }
 const SkillsBarSetForm = (props: ISkillsBarSetFormProps) => {
-  const { index, values, onDelete } = props;
+  const { values, onDelete, onValuesChange } = props;
   const [form] = Form.useForm();
-  return <Form form={form} layout="inline" initialValues={values} className="skills-bar-set-form">
+  return <Form form={form} layout="inline" onValuesChange={onValuesChange} initialValues={values} className="skills-bar-set-form">
     <Form.Item name="name">
       <ReadItem className="skill-name"/>
     </Form.Item>
@@ -68,7 +70,7 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
           ...skills,
           data: [...data, {
             name,
-            mastery: '95%',
+            mastery: 0.95,
             showBar: true
           }]
         }
@@ -88,6 +90,28 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
       }
     })
   }
+
+  const onListValueChange = (value: IBarChartItem, index: number) => {
+    const newList = data.map((item, idx) => {
+      if(index === idx) {
+        return {
+            ...item,
+            ...value,
+          }
+        }
+      return item
+    })
+    dispatch({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
+      payload: {
+        key: ContentConfigKeyEnum.SKILLS,
+        value: {
+          ...skills,
+          data: newList
+        }
+      }
+    })
+  }
   return (
     <div className="skills-set-form-wrapper">
       <Row>
@@ -100,7 +124,7 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
         {
           data.map((item, index) => (
             <Col span={colSpan2}>
-              <SkillsBarSetForm key={item.name} index={index} values={item} onDelete={() => onDelete(index)} />
+              <SkillsBarSetForm key={item.name} index={index} values={item} onValuesChange={(v) => onListValueChange(v, index)} onDelete={() => onDelete(index)} />
             </Col>
           ))
         }

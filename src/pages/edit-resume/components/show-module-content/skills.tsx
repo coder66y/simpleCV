@@ -11,20 +11,27 @@ export interface SkillsProps {
 function Skills(props: SkillsProps) {
   const { skills } = props;
   const { data, content } = skills ?? {}
-  const span = 8;
   return (
     <div className="skills-module-content-wrapper">
       <QuillEditor readOnly value={content}/>
-      <Row>
+      <Row justify="space-between">
       {
         data?.map(item => (
           <ReadItem
             needCol
+            needPlace={false}
             value={
-              <SliderWithValue prefix={item.name} value={item.mastery.value} suffix={item.mastery.label}/>
+              <SliderWithValue
+                disabled
+                prefix={item.name}
+                min={0}
+                max={1}
+                step={0.01}
+                showValue={false}
+                value={item.mastery.value}
+                valueSuffix={item.showBar ? `${item.mastery.value * 100}%` : item.mastery.label}/>
             }
-            span={span}
-            key={item.name}
+            key={`${item.name}-${item.mastery.value}-${item.showBar}`}
           />
         ))
       }

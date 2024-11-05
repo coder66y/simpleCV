@@ -1,6 +1,8 @@
 .content-edit-modal {
+  min-width: 800px;
   width: 60vw !important;
   .ant-modal-content {
+    min-width: 800px;
     width: fit-content;
     position: relative;
     padding: 35px;
@@ -8,6 +10,14 @@
     .ant-modal-body {
       overflow-y: scroll;
     }
+  }
+
+  .desc-title {
+    margin-bottom: 5px;
+  }
+
+  .ant-tag {
+    padding: 4px 10px;
   }
 
   .ant-modal-header {
@@ -93,10 +103,6 @@
     min-width: 800px;
     width: 40vw;
 
-    .skills-desc-title {
-      margin-bottom: 5px;
-    }
-
     .skills-bar-set-form {
       margin: 10px 0;
 
@@ -106,6 +112,12 @@
         white-space: nowrap;
         overflow: hidden;
       }
+    }
+  }
+
+  .honors-set-form-wrapper {
+    .ant-row {
+      margin: 20px 0;
     }
   }
 }

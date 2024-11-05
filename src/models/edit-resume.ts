@@ -50,13 +50,18 @@ export interface IInternshipExperienceValues {
 export interface IBarChartItem {
   name: string;
   mastery: {
-    value: string;
+    value: number;
     label: string;
   };
   showBar: boolean;
 }
 export interface ISkillsValues {
   data: IBarChartItem[],
+  content: string;
+}
+
+export interface IHonorsValues {
+  data: string[];
   content: string;
 }
 export interface IEditResumeModel {
@@ -99,7 +104,8 @@ export interface IEditResumeModel {
   schoolExperience: ISchoolExperienceValues[],
   internshipExperience: IInternshipExperienceValues[],
   skills: ISkillsValues,
-  // honor: IHonorInfoValues[],
+  honors: IHonorsValues,
+  selfEvaluation: string;
 }
 
 const initState = () => ({
@@ -183,21 +189,26 @@ const initState = () => ({
       {
         name: "xxx技能",
         showBar: true,
-        mastery: {value: 50, label: '一般'},
+        mastery: {value: 0.5, label: '一般'},
       },
       {
         name: "xxx技能1",
         showBar: false,
-        mastery: {value: 50, label: '一般'},
+        mastery: {value: 0.5, label: '一般'},
       },
       {
         name: "xxx超长超长超长超长技能2",
         showBar: false,
-        mastery: {value: 50, label: '一般'},
+        mastery: {value: 0.5, label: '一般'},
       }
     ],
     content: "<p>技能特长描述</p>"
-  }
+  },
+  honors: {
+    data: ['证书1', '证书2'],
+    content: "<p><span>普通话一级甲等；</span></p><p><span>大学英语四/六级（CET-4/6），良好的听说读写能力，快速浏览英语专业文件及书籍；</span></p><p><span>通过全国计算机二级考试，熟练运用office相关软件。</span></p>"
+  },
+  selfEvaluation: '',
 })
 export default {
   namespace: EDIT_RESUME_NAME_SPACE,
@@ -250,12 +261,20 @@ export default {
     },
     changeFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, value: Record<string, any> | Record<string, any>[]}}) {
       const { key, value } = payload;
-      return {
-        ...state,
-        [key]: Array.isArray(value) ? value : {
+      let newData;
+      if(Array.isArray(value)) {
+        newData = value
+      } else if(Object.prototype.toString.call(value) === '[object Object]' && typeof state[key] === 'object') {
+        newData = {
           ...state[key],
           ...value,
         }
+      } else {
+        newData = value
+      }
+      return {
+        ...state,
+        [key]: newData
       }
     },
     sortModuleFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, type: SortTypeEnum, index: number}}) {

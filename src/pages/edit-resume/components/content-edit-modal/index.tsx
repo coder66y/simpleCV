@@ -13,6 +13,8 @@ import ProjectExperienceSetForm from "./project-experience-set-form";
 import SchoolExperienceSetForm from "./school-experience-set-form";
 import InternshipExperienceSetForm from "./internship-experience-set-form";
 import SkillsSetForm from "./skill-set-form";
+import HonorSetForm from "./honor-set-form";
+import SelfEvaluationSetForm from "./self-evaluation-set-form";
 
 export interface IContentEditModalProps extends ModalProps{
   configKey: ContentConfigKeyEnum;
@@ -35,6 +37,8 @@ export default function ContentEditModal(props: IContentEditModalProps) {
    [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <SchoolExperienceSetForm />],
    [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <InternshipExperienceSetForm />],
    [ContentConfigKeyEnum.SKILLS, <SkillsSetForm />],
+   [ContentConfigKeyEnum.HONOR, <HonorSetForm />],
+   [ContentConfigKeyEnum.SELF_EVALUATION, <SelfEvaluationSetForm />],
   ])
 
   useClickAway(() => {
