@@ -6,29 +6,29 @@ import QuillEditor from "@/components/quill-editor";
 
 export interface IHonorsSetFormProps {
   dispatch: React.Dispatch<any>;
-  selfEvaluation: IEditResumeModel['selfEvaluation'];
+  customization: IEditResumeModel['customization'];
   infoModuleList: IEditResumeModel['moduleList'],
 }
 
-function SelfEvaluationSetForm(props: IHonorsSetFormProps) {
-  const { infoModuleList, dispatch, selfEvaluation } = props;
+function CustomizationSetForm(props: IHonorsSetFormProps) {
+  const { infoModuleList, dispatch, customization } = props;
   const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.SELF_EVALUATION)?.title ?? ''
   const onChangeContent = (value: string) => {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
-        key: ContentConfigKeyEnum.SELF_EVALUATION,
+        key: ContentConfigKeyEnum.CUSTOMIZATION,
         value,
       }
     })
   }
 
   return (
-    <div className="self-evaluation-set-form-wrapper">
+    <div className="customization-set-form-wrapper">
       <Row>
         <Col span={24}>
           <div className="desc-title">{title}描述：</div>
-          <QuillEditor value={selfEvaluation} onChange={onChangeContent}/>
+          <QuillEditor value={customization} onChange={onChangeContent}/>
         </Col>
       </Row>
     </div>
@@ -37,7 +37,7 @@ function SelfEvaluationSetForm(props: IHonorsSetFormProps) {
 
 export default connect(({editResume}: {editResume: IEditResumeModel}) => {
   return {
-    selfEvaluation: editResume.selfEvaluation,
+    customization: editResume.customization,
     infoModuleList: editResume.moduleList
   }
-})(SelfEvaluationSetForm)
+})(CustomizationSetForm)

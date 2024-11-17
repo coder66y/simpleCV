@@ -13,7 +13,7 @@ function Skills(props: SkillsProps) {
   const { data, content } = skills ?? {}
   return (
     <div className="skills-module-content-wrapper">
-      <QuillEditor readOnly value={content}/>
+      {content && <QuillEditor readOnly value={content}/>}
       <Row justify="space-between">
       {
         data?.map(item => (

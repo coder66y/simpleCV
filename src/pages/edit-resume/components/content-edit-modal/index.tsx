@@ -15,31 +15,55 @@ import InternshipExperienceSetForm from "./internship-experience-set-form";
 import SkillsSetForm from "./skill-set-form";
 import HonorSetForm from "./honor-set-form";
 import SelfEvaluationSetForm from "./self-evaluation-set-form";
+import CustomizationSetForm from "./customization-set-form";
+import HobbySetForm from "./hobby-set-form";
+import { connect } from "dva";
+import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from "@/models/edit-resume";
 
 export interface IContentEditModalProps extends ModalProps{
   configKey: ContentConfigKeyEnum;
   visible: boolean;
-  onClose?: () => void;
   title?: string;
-  changeModuleTitle?: (title: string) => void;
+  dispatch: React.Dispatch<any>;
 }
 
-export default function ContentEditModal(props: IContentEditModalProps) {
-  const { configKey, visible, onClose, title, changeModuleTitle } = props;
+function ContentEditModal(props: IContentEditModalProps) {
+  const { configKey, visible, title, dispatch } = props;
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
   const formMap = new Map<ContentConfigKeyEnum, React.ReactNode>([
-   [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
-   [ContentConfigKeyEnum.BASIC_INFO, <BaseInfoSetForm />],
-   [ContentConfigKeyEnum.EDUCATION, <EducationSetForm />],
-   [ContentConfigKeyEnum.WORK_EXPERIENCE, <WorkExperienceSetForm />],
-   [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ProjectExperienceSetForm />],
-   [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <SchoolExperienceSetForm />],
-   [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <InternshipExperienceSetForm />],
-   [ContentConfigKeyEnum.SKILLS, <SkillsSetForm />],
-   [ContentConfigKeyEnum.HONOR, <HonorSetForm />],
-   [ContentConfigKeyEnum.SELF_EVALUATION, <SelfEvaluationSetForm />],
-  ])
+    [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
+    [ContentConfigKeyEnum.BASIC_INFO, <BaseInfoSetForm />],
+    [ContentConfigKeyEnum.EDUCATION, <EducationSetForm />],
+    [ContentConfigKeyEnum.WORK_EXPERIENCE, <WorkExperienceSetForm />],
+    [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ProjectExperienceSetForm />],
+    [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <SchoolExperienceSetForm />],
+    [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <InternshipExperienceSetForm />],
+    [ContentConfigKeyEnum.SKILLS, <SkillsSetForm />],
+    [ContentConfigKeyEnum.HONOR, <HonorSetForm />],
+    [ContentConfigKeyEnum.SELF_EVALUATION, <SelfEvaluationSetForm />],
+    [ContentConfigKeyEnum.CUSTOMIZATION, <CustomizationSetForm />],
+    [ContentConfigKeyEnum.HOBBY, <HobbySetForm />],
+   ])
+   
+  const changeModuleTitle = (title: string) => {
+    props.dispatch({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeModuleTitle`,
+      payload: {
+        key: configKey,
+        title,
+      }
+    })
+  }
+
+  const onClose = () => {
+    dispatch?.({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeContentEditModalVisible`,
+      payload: {
+        visible: false
+      }
+    })
+  }
+
 
   useClickAway(() => {
     setIsEditing(false)
@@ -92,3 +116,11 @@ export default function ContentEditModal(props: IContentEditModalProps) {
     </Modal>
   )
 }
+
+export default connect(({editResume}: {editResume: IEditResumeModel}) => {
+  return {
+    configKey: editResume.currentEditContent?.key,
+    title: editResume.currentEditContent?.title,
+    visible: editResume.contentEditModalVisible,
+  }
+})(ContentEditModal)

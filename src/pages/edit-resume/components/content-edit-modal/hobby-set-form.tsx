@@ -7,24 +7,24 @@ import { ContentConfigKeyEnum } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
 
-export interface IHonorsSetFormProps {
+export interface IHobbySetFormProps {
   dispatch: React.Dispatch<any>;
-  honors: IEditResumeModel['honors'];
+  hobby: IEditResumeModel['hobby'];
   infoModuleList: IEditResumeModel['moduleList'],
 }
 
-function HonorsSetForm(props: IHonorsSetFormProps) {
-  const { infoModuleList, dispatch, honors } = props;
+function HobbySetForm(props: IHobbySetFormProps) {
+  const { infoModuleList, dispatch, hobby } = props;
   const [name, setName] = useState<string>('')
-  const { data = [], content } = honors ?? {}
-  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HONOR)?.title ?? ''
+  const { data = [], content } = hobby ?? {}
+  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HOBBY)?.title ?? ''
   const onChangeContent = (value: string) => {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
-        key: ContentConfigKeyEnum.HONOR,
+        key: ContentConfigKeyEnum.HOBBY,
         value: {
-          ...honors,
+          ...hobby,
           content: value
         }
       }
@@ -38,9 +38,9 @@ function HonorsSetForm(props: IHonorsSetFormProps) {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
-        key: ContentConfigKeyEnum.HONOR,
+        key: ContentConfigKeyEnum.HOBBY,
         value: {
-          ...honors,
+          ...hobby,
           data: [...data, name]
         }
       }
@@ -51,17 +51,17 @@ function HonorsSetForm(props: IHonorsSetFormProps) {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
-        key: ContentConfigKeyEnum.HONOR,
+        key: ContentConfigKeyEnum.HOBBY,
         value: {
-          ...honors,
-          data: data?.filter((it, idx) => idx !== index)
+          ...hobby,
+          data: data.filter((it, idx) => idx !== index)
         }
       }
     })
   }
 
   return (
-    <div className="honors-set-form-wrapper">
+    <div className="hobby-set-form-wrapper">
       <Row>
         <Space>
           <Input value={name} placeholder={`请输入${title}`} onChange={(e) => setName(e.target.value)}/>
@@ -87,7 +87,7 @@ function HonorsSetForm(props: IHonorsSetFormProps) {
 
 export default connect(({editResume}: {editResume: IEditResumeModel}) => {
   return {
-    honors: editResume.honors,
+    hobby: editResume.hobby,
     infoModuleList: editResume.moduleList
   }
-})(HonorsSetForm)
+})(HobbySetForm)

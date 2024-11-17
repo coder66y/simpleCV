@@ -1,6 +1,8 @@
 import { ContentConfigKeyEnum } from "../../config";
 import BaseInfo from "./base-info";
+import Customization from "./customization";
 import EducationInfo from "./education-info";
+import Hobby from "./hobby";
 import Honors from "./honors";
 import './index.less'
 import InternshipExperience from "./internship-experience";
@@ -28,6 +30,8 @@ export default function ShowModuleContent(props: IShowModuleContentProps) {
     [ContentConfigKeyEnum.SKILLS, <Skills />],
     [ContentConfigKeyEnum.HONOR, <Honors />],
     [ContentConfigKeyEnum.SELF_EVALUATION, <SelfEvaluation />],
+    [ContentConfigKeyEnum.CUSTOMIZATION, <Customization />],
+    [ContentConfigKeyEnum.HOBBY, <Hobby />],
   ])
 
   return (

@@ -10,7 +10,7 @@ function Honors(props: HonorsProps) {
   const { data, content } = honors ?? {}
   return (
     <div className="honors-module-content-wrapper">
-      <QuillEditor readOnly value={content}/>
+      {content && <QuillEditor readOnly value={content}/>}
       <Row>
       {
         data?.map(item => (

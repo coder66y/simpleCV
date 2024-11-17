@@ -5,6 +5,7 @@ import ThreeColumnLayout from "@/components/three-column-layout";
 import './index.less'
 import Header from "./components/header";
 import { ThemeProvider } from './store/theme-context';
+import ContentEditModal from "./components/content-edit-modal";
 
 export default function EditResume() {
   return (
@@ -17,6 +18,7 @@ export default function EditResume() {
         <EditContent data-width="auto"></EditContent>
         <EditRight data-width={200}></EditRight>
       </ThreeColumnLayout>
+      <ContentEditModal />
     </ThemeProvider>
   )
 }

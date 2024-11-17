@@ -6,9 +6,10 @@ export interface SelfEvaluationProps {
 }
 function SelfEvaluation(props: SelfEvaluationProps) {
   const { selfEvaluation } = props;
+
   return (
     <div className="self-evaluation-module-content-wrapper">
-      <QuillEditor readOnly value={selfEvaluation}/>
+      {selfEvaluation && <QuillEditor readOnly value={selfEvaluation}/>}
     </div>
   )
 }

@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-11-05 23:15:37
+ * @LastEditTime: 2024-11-17 23:07:52
  */
 import './index.less';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
@@ -12,11 +12,10 @@ import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import enUS from '@/locales/en-US.json';
 import zhCN from '@/locales/zh-CN.json';
-import { useState } from 'react';
+import { CSSProperties } from 'react';
 import { ContentConfigKeyEnum } from '../../config';
-import ContentEditModal from '../content-edit-modal';
 import { connect } from 'dva';
-import { IEditResumeModel } from '@/models/edit-resume';
+import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume';
 import ShowModuleContent from '../show-module-content';
 
 const rootCls = 'edit-resume';
@@ -26,48 +25,46 @@ export interface IEditContentProps {
   dispatch: React.Dispatch<IModuleDataDispatchArgType>;
 }
 function EditContent(props: IEditContentProps) {
-  const { moduleList, resumeInfo  } = props;
+  const { moduleList, resumeInfo, dispatch  } = props;
   const { color, pageMargin, moduleMargin, secondaryColor, fontFamily, fontSize, language = "zh-CN", lineHeight } = useTheme();
   const messageMap = new Map([
     ['zh-CN', zhCN],
     ['en-US', enUS]
   ])
-  const [editContent, setEditContent] = useState<IModuleInfoConfig>({
-    key: ContentConfigKeyEnum.CV_INFO,
-  })
-  const [visible, setVisible] = useState<boolean>(false)
-  const onContentClick = (key: ContentConfigKeyEnum, title?: string) => {
-    
-    setEditContent({
-      key,
-      title
-    });
-    setVisible(true);
-  }
 
-  const onModalClose = () => {
-    setVisible(false)
-  }
-
-  const changeModuleTitle = (title: string) => {
-    setEditContent({
-      ...editContent,
-      title
-    })
-    props.dispatch({
-      type: 'editResume/changeModuleTitle',
+  const onContentClick = (item: IModuleInfoConfig) => {
+    dispatch?.({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeCurrentEditContent`,
       payload: {
-        key: editContent.key,
-        title,
+        config: item
+      }
+    })
+    dispatch?.({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeContentEditModalVisible`,
+      payload: {
+        visible: true
       }
     })
   }
 
+  const containerStyle: CSSProperties = {
+    fontFamily: fontFamily,
+    '--primaryColor': color,
+    '--secondaryColor': secondaryColor,
+    '--pageMargin': `${pageMargin}px`,
+    '--moduleMargin': `${moduleMargin}px`,
+    '--fontSize': `${fontSize}px`,
+    '--lineHeight': lineHeight,
+    '--fontFamily': fontFamily,
+  } as CSSProperties;
+
   return (
-      <div className={`${rootCls}`} style={{'--primaryColor': color, '--secondaryColor': secondaryColor,  '--pageMargin': `${pageMargin}px`, '--moduleMargin': `${moduleMargin}px`, fontFamily: fontFamily, '--fontSize': `${fontSize}px`, '--lineHeight': lineHeight, '--fontFamily': fontFamily}}>
+      <div className={`${rootCls}`} style={containerStyle}>
         <IntlProvider messages={messageMap.get(language)} locale={language} defaultLocale="zh_CN">
           <div className={`${rootCls}-header`} style={{color}} onClick={() => {
-            onContentClick(ContentConfigKeyEnum.CV_INFO)
+            onContentClick({
+              key: ContentConfigKeyEnum.CV_INFO,
+            })
           }}>
             <dl className="left-box" >
               {
@@ -101,12 +98,12 @@ function EditContent(props: IEditContentProps) {
               return item.hidden ? null : <div
                 className={`${rootCls}-info-module`}
                 key={item.key}
+                onClick={(e) => {
+                  onContentClick(item)
+                }}
               >
                 <div
                   className='module-title'
-                  onClick={(e) => {
-                    onContentClick(item.key, item.title)
-                  }}
                 >
                   <span className='title-text'>
                     <FormattedMessage id={item.key} values={{
@@ -129,13 +126,6 @@ function EditContent(props: IEditContentProps) {
           }
           </div>
         </IntlProvider>
-        <ContentEditModal
-          configKey={editContent.key}
-          title={editContent.title}
-          visible={visible}
-          changeModuleTitle={changeModuleTitle}
-          onClose={onModalClose}
-        />
       </div>
   )
 }

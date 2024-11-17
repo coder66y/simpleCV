@@ -64,8 +64,14 @@ export interface IHonorsValues {
   data: string[];
   content: string;
 }
+export interface IHobbyValues {
+  data: string[];
+  content: string;
+}
 export interface IEditResumeModel {
   moduleList: IModuleInfoConfig[];
+  currentEditContent?: IModuleInfoConfig;
+  contentEditModalVisible?: boolean;
   resumeInfo?: {
     title?: string;
     slogan?: string;
@@ -98,14 +104,16 @@ export interface IEditResumeModel {
     post: string;
     salary: string;
   },
-  education: IEducationInfoValues[],
-  workExperience: IWorkExperienceValues[],
-  projectExperience: IProjectExperienceValues[],
-  schoolExperience: ISchoolExperienceValues[],
-  internshipExperience: IInternshipExperienceValues[],
-  skills: ISkillsValues,
-  honors: IHonorsValues,
-  selfEvaluation: string;
+  education?: IEducationInfoValues[],
+  workExperience?: IWorkExperienceValues[],
+  projectExperience?: IProjectExperienceValues[],
+  schoolExperience?: ISchoolExperienceValues[],
+  internshipExperience?: IInternshipExperienceValues[],
+  skills?: ISkillsValues,
+  honors?: IHonorsValues,
+  hobby?: IHobbyValues,
+  selfEvaluation?: string;
+  customization?: string;
 }
 
 const initState = () => ({
@@ -138,18 +146,18 @@ const initState = () => ({
   education: [{
     content: "<p> 主修课程： 管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销 </p>",
     degree: "本科",
-    end: "2017-06",
+    end: "2017-06-01",
     major: "xx专业",
     name: "xx大学 ",
-    start: "2017-09",
+    start: "2017-09-01",
     today: true
   }],
   workExperience: [
     {
       "name": "xxx公司",
       "job": "xxx职位",
-      "start": "2024-06",
-      "end": "2024-06",
+      "start": "2024-06-01",
+      "end": "2024-06-01",
       "today": true,
       "content": "<p>担任什么角色，做了什么，得到了什么样的结果</p>",
     }
@@ -158,7 +166,7 @@ const initState = () => ({
     {
       "name": "xx项目",
       "job": "xx角色",
-      "start": "2024-01",
+      "start": "2024-01-01",
       "end": "",
       "today": true,
       "content": "<p>在什么项目里，担任什么角色，做了什么，获得什么结果</p>",
@@ -168,7 +176,7 @@ const initState = () => ({
     {
       "name": "什么学校",
       "job": "什么社团职位",
-      "start": "2024-11",
+      "start": "2024-11-01",
       "end": "",
       "today": true,
       "content": "<p>什么时候组织了什么活动，规模多少，获得了什么结果</p>",
@@ -178,7 +186,7 @@ const initState = () => ({
     {
       "name": "xx公司",
       "job": "xxx实习生",
-      "start": "2024-02",
+      "start": "2024-02-01",
       "end": "",
       "today": true,
       "content": "<p>工作内容是什么，收获是什么</p>",
@@ -208,7 +216,12 @@ const initState = () => ({
     data: ['证书1', '证书2'],
     content: "<p><span>普通话一级甲等；</span></p><p><span>大学英语四/六级（CET-4/6），良好的听说读写能力，快速浏览英语专业文件及书籍；</span></p><p><span>通过全国计算机二级考试，熟练运用office相关软件。</span></p>"
   },
-  selfEvaluation: '',
+  selfEvaluation: '深度互联网从业人员，对互联网保持高度的敏感性和关注度，熟悉产品开发流程，有很强的产品规划、需求分析、交互设计能力，能独立承担APP和WEB项目的管控工作，善于沟通，贴近用户。',
+  customization:'自定义内容',
+  hobby: {
+    data: ['跑步', '瑜伽'],
+    content: ""
+  },
 })
 export default {
   namespace: EDIT_RESUME_NAME_SPACE,
@@ -296,6 +309,19 @@ export default {
         [key]: newValueList
       }
     },
+    changeCurrentEditContent(state: IEditResumeModel, { payload }: {payload: {config: IModuleInfoConfig}}) {
+      const { config } = payload;
+      return {
+        ...state,
+        currentEditContent: config
+      }
+    },
+    changeContentEditModalVisible(state: IEditResumeModel, { payload }: {payload: { visible: boolean}}) {
+      return {
+        ...state,
+        contentEditModalVisible: payload.visible
+      }
+    }
   },
 };
 

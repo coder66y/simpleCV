@@ -29,11 +29,11 @@ function WorkExperience(props: WorkExperienceProps) {
               </>
             } needCol span={span}/>
           </Row>
-          <Row>
+          { item?.content && <Row>
             <Col span={24}>
             <QuillEditor readOnly value={item.content}/>
             </Col>
-          </Row>
+          </Row>}
           </>
         ))
       }

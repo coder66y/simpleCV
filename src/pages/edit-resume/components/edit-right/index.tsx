@@ -3,9 +3,9 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-27 21:12:23
+ * @LastEditTime: 2024-11-17 22:54:01
  */
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext, useMemo } from 'react'
 import { DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
@@ -19,7 +19,8 @@ import { ContentConfigKeyEnum, infoModuleIconMap, rightTabConfig } from '@/pages
 import './index.less'
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { connect } from 'dva';
-import { IEditResumeModel } from '@/models/edit-resume';
+import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume';
+import ContentEditModal from '../content-edit-modal';
 
 const rootCls = 'edit-right'
 export interface IEditRightProps {
@@ -110,6 +111,21 @@ function EditRight(props: IEditRightProps) {
       })
     }
   };
+
+  const onClick = (item: IModuleInfoConfig) => {
+    dispatch({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeCurrentEditContent`,
+      payload: {
+        config: item
+      }
+    })
+    dispatch?.({
+      type: `${EDIT_RESUME_NAME_SPACE}/changeContentEditModalVisible`,
+      payload: {
+        visible: true
+      }
+    })
+  }
   
   return (
     <div className={`${rootCls}`}>
@@ -126,7 +142,15 @@ function EditRight(props: IEditRightProps) {
                   {
                     moduleList.map(item => {
                       return <SortRow data-row-key={item.key} key={item.key} >
-                        <Space key={item.key}  size={18} className='info-module-item' data-row-key={item.key}>
+                        <Space
+                          onClick={() => {
+                            onClick(item)
+                          }}
+                          key={item.key}
+                          size={18}
+                          className='info-module-item'
+                          data-row-key={item.key}
+                        >
                           {
                             infoModuleIconMap.get(item.key)
                           }

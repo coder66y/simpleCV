@@ -1,4 +1,4 @@
-import { ColumnHeightOutlined, SkinOutlined, TranslationOutlined } from '@ant-design/icons'
+import { AuditOutlined, ColumnHeightOutlined, FileAddOutlined, FileTextOutlined, HeartOutlined, HomeOutlined, IdcardOutlined, ProfileOutlined, ProjectOutlined, SkinOutlined, SolutionOutlined, TranslationOutlined, UserOutlined, VerifiedOutlined } from '@ant-design/icons'
 import { ReactNode } from 'react';
 import { ILeftInfoIconConfig, IRightTabConfig, IModuleInfoConfig } from './types';
 export enum ThemeConfigKeyEnum {
@@ -46,7 +46,8 @@ export enum ContentConfigKeyEnum {
   HONOR = "honors",
   /** 自定义 */
   CUSTOMIZATION = "customization",
-  
+  /** 兴趣爱好 */
+  HOBBY = 'hobby',
   /** 自我评价 */
   SELF_EVALUATION = "selfEvaluation"
 }
@@ -64,28 +65,23 @@ export const infoModuleList: IModuleInfoConfig[] = [
   {
     title: '基本信息',
     key: ContentConfigKeyEnum.BASIC_INFO,
-    icon: <ColumnHeightOutlined />,
     hidden: false,
   },
   {
     title: '教育经历',
     key: ContentConfigKeyEnum.EDUCATION,
-    icon: <ColumnHeightOutlined />
   },
   {
     title: '校园经历',
     key: ContentConfigKeyEnum.SCHOOL_EXPERIENCE,
-    icon: <ColumnHeightOutlined />
   },
   {
     title: '工作经历',
     key: ContentConfigKeyEnum.WORK_EXPERIENCE,
-    icon: <ColumnHeightOutlined />
   },
   {
     title: '实习经历',
     key: ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE,
-    icon: <ColumnHeightOutlined />
   },
   {
     title: '项目经历',
@@ -94,39 +90,39 @@ export const infoModuleList: IModuleInfoConfig[] = [
   },
   {
     title: '技能特长',
-    icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.SKILLS,
   },
   {
     title: '荣誉证书',
-    icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.HONOR,
   },
   {
+    title: '兴趣爱好',
+    key: ContentConfigKeyEnum.HOBBY,
+  },
+  {
     title: '自我评价',
-    icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.SELF_EVALUATION,
   },
   {
     title: '自定义',
-    icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.CUSTOMIZATION,
   }
 ]
 
 /** 模块图标映射 */
 export const infoModuleIconMap = new Map<string, ReactNode>([
-  [ContentConfigKeyEnum.BASIC_INFO, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.BASIC_INFO, <UserOutlined />],
+  [ContentConfigKeyEnum.EDUCATION, <AuditOutlined />],
   [ContentConfigKeyEnum.WORK_EXPERIENCE, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.SKILLS, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.SELF_EVALUATION, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.EDUCATION, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.HONOR, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.CUSTOMIZATION, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <ColumnHeightOutlined />],
+  [ContentConfigKeyEnum.SCHOOL_EXPERIENCE,<HomeOutlined />],
+  [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ProjectOutlined />],
+  [ContentConfigKeyEnum.SKILLS, <ProfileOutlined />],
+  [ContentConfigKeyEnum.SELF_EVALUATION, <SolutionOutlined />],
+  [ContentConfigKeyEnum.HONOR, <VerifiedOutlined />],
+  [ContentConfigKeyEnum.HOBBY, <HeartOutlined />],
+  [ContentConfigKeyEnum.CUSTOMIZATION, <FileAddOutlined />],
+  [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <FileTextOutlined />],
 ])
 
 
