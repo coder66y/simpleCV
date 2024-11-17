@@ -3,17 +3,15 @@
  * @Author: luyi.lss
  * @Date: 2024-09-12 15:27:51
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-10-07 22:54:55
+ * @LastEditTime: 2024-11-17 23:24:02
  */
 import { leftIconConfig, ThemeConfigKeyEnum } from '@/pages/edit-resume/config'
 import './index.less';
-import { useThemeDispatch } from '../../store/theme-context';
 import ThemeConfigPop from '../theme-config-pop';
 
 const rootCls = 'edit-left'
 export interface IEditLeftProps {}
 export default function EditLeft(props: IEditLeftProps) {
-  const dispatch = useThemeDispatch();  
   return (
     <div className={`${rootCls}`}>
       {leftIconConfig.map(item => {
