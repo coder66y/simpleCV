@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-11-17 22:54:01
+ * @LastEditTime: 2024-11-18 23:05:16
  */
 import React, { useState } from 'react'
 import { useContext, useMemo } from 'react'
@@ -154,19 +154,20 @@ function EditRight(props: IEditRightProps) {
                           {
                             infoModuleIconMap.get(item.key)
                           }
-                          <span className='module-title'>{item.title}</span>
+                          <div className='module-title'>{item.title}</div>
                           {
                             item.key !== ContentConfigKeyEnum.BASIC_INFO && <Switch
                               value={!item.hidden}
-                              onChange={() => {
-                              dispatch({
-                                type: 'editResume/changeModuleHidden',
-                                payload: {
-                                  key: item.key,
-                                  hidden: !item.hidden
-                                }
-                              })
-                            }}/>
+                              onChange={(checked: boolean, event: React.MouseEvent<HTMLButtonElement>) => {
+                                event.stopPropagation()
+                                dispatch({
+                                  type: 'editResume/changeModuleHidden',
+                                  payload: {
+                                    key: item.key,
+                                    hidden: !item.hidden
+                                  }
+                                })
+                              }}/>
                           }
                           {
                             item.key !== ContentConfigKeyEnum.BASIC_INFO && <DragHandle />

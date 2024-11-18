@@ -13,7 +13,7 @@ function BaseInfo(props: IBaseInfoProps) {
   const colSpan2 = 2;
 
   return (
-    <Row wrap={true} className="base-info-module-content">
+    <Row wrap={true} className="base-info info-module-content-wrapper">
       <Col span={colSpan1}>
         <ReadItem value={baseInfo?.name} label="姓&emsp;&emsp;名" />
       </Col>

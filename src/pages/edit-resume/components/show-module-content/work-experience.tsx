@@ -11,11 +11,11 @@ function WorkExperience(props: WorkExperienceProps) {
   const { workExperience } = props;
   const span= 8;
   return (
-    <div className="workExperience-info-module-content-wrapper">
+    <div className="work-experience info-module-content-wrapper">
       {
         workExperience?.map?.(item => (
           <>
-          <Row className="workExperience-info-module-content" >
+          <Row className="work-experience info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
                 <ReadItem value={item.start} suffix="&ensp;--&ensp;"/>

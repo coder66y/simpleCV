@@ -11,11 +11,11 @@ function SchoolExperience(props: SchoolExperienceProps) {
   const { schoolExperience } = props;
   const span= 8;
   return (
-    <div className="school-xperience-info-module-content-wrapper">
+    <div className="school-experience info-module-content-wrapper">
       {
         schoolExperience?.map?.(item => (
           <>
-          <Row className="school-experience-info-module-content" >
+          <Row className="school-experience info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
                 <ReadItem value={item.start} suffix="&ensp;--&ensp;"/>

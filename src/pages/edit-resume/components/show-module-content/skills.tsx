@@ -12,7 +12,7 @@ function Skills(props: SkillsProps) {
   const { skills } = props;
   const { data, content } = skills ?? {}
   return (
-    <div className="skills-module-content-wrapper">
+    <div className="skills info-module-content-wrapper">
       {content && <QuillEditor readOnly value={content}/>}
       <Row justify="space-between">
       {

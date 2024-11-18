@@ -2,7 +2,7 @@ import ReadItem from "@/components/read-item";
 import { EDIT_RESUME_NAME_SPACE, IBarChartItem, IEditResumeModel } from "@/models/edit-resume"
 import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space } from "antd"
 import { masteryOptions } from "./config";
-import { DeleteOutlined, DeleteTwoTone, PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { connect } from "dva";
 import { ContentConfigKeyEnum } from "../../config";
 import QuillEditor from "@/components/quill-editor";
@@ -22,7 +22,7 @@ export interface ISkillsSetFormProps {
 }
 const SkillsBarSetForm = (props: ISkillsBarSetFormProps) => {
   const { values, onDelete, onValuesChange } = props;
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<IBarChartItem>();
   return <Form form={form} layout="inline" onValuesChange={onValuesChange} initialValues={values} className="skills-bar-set-form">
     <Form.Item name="name">
       <ReadItem className="skill-name"/>
@@ -43,7 +43,7 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
   const { infoModuleList, dispatch, skills } = props;
   const [name, setName] = useState<string>('')
   const colSpan1 = 8, colSpan2 = 12;
-  const { data, content } = skills ?? {}
+  const { data = [], content } = skills ?? {}
   const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.SKILLS)?.title ?? ''
   const onChangeContent = (value: string) => {
     dispatch({
@@ -70,7 +70,9 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
           ...skills,
           data: [...data, {
             name,
-            mastery: 0.95,
+            mastery: {
+              value: 0.95
+            },
             showBar: true
           }]
         }

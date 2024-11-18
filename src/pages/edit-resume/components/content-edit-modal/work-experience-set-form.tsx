@@ -101,10 +101,10 @@ function WorkExperienceBaseSetForm(props: IWorkExperienceBaseSetFormProps) {
         <Col span={colSpan1}>
           <Space>
             <Form.Item name="start" label="在职时间">
-              <DatePicker />
+              <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="end">
-              <DatePicker />
+              <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="today" valuePropName="checked">
               <Checkbox>至今</Checkbox>
@@ -132,8 +132,8 @@ function WorkExperienceSetForm(props: IWorkExperienceSetFormProps) {
     let newList = []
     const newValues = {
       ...values,
-      start: dayjs(values?.start).format(format),
-      end: dayjs(values?.end).format(format)
+      start: values?.start?.format(format),
+      end: values?.end?.format(format)
     }
     if(Number(index ?? -1) >= 0) {
       newList = workExperience?.map((item, idx) => {

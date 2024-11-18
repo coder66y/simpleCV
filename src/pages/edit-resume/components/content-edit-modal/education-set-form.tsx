@@ -43,7 +43,7 @@ const emptyData = {
 function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IEducationSetFormValues>();
-  const colSpan1 = 14, colSpan2 = 10,gutter = 40;
+  const colSpan1 = 14, colSpan2 = 10, gutter = 40;
 
   const { run: onSave } = useDebounceFn(() => {
     const values = form.getFieldsValue()
@@ -55,7 +55,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   }
 
   return (
-    <div className="common-list-set-form-wrapper">
+    <div className="common-list-base-set-form-wrapper">
     <Row justify="end">
       <Space>
         {
@@ -80,7 +80,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     </Row>
     <Form
       form={form}
-      className="common-list-set-form"
+      className="common-list-base-set-form"
       layout="horizontal"
       initialValues={initValues}
       onValuesChange={() => {
@@ -103,10 +103,10 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
         <Col span={colSpan1}>
           <Space>
             <Form.Item name="start" label="起止时间">
-              <DatePicker />
+              <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="end">
-              <DatePicker />
+              <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="today" valuePropName="checked">
               <Checkbox>至今</Checkbox>
@@ -137,8 +137,8 @@ function EducationSetForm(props: IEducationSetFormProps) {
     let newEducationInfo = []
     const newValues = {
       ...values,
-      start: dayjs(values?.start).format(format),
-      end: dayjs(values?.end).format(format)
+      start: values?.start?.format(format),
+      end: values?.end?.format(format)
     }
     if(Number(index ?? -1) >= 0) {
       newEducationInfo = educationInfo?.map((item, idx) => {
@@ -179,7 +179,7 @@ function EducationSetForm(props: IEducationSetFormProps) {
     })
   }
 
-  return <div className="common-list-base-set-form-wrapper">
+  return <div className="common-list-set-form-wrapper">
     {
       educationInfo?.map?.((item, index) => {
         return <EducationSetBaseForm
@@ -199,7 +199,7 @@ function EducationSetForm(props: IEducationSetFormProps) {
       })
     }
      <Button className="add-btn" onClick={onAdd}>新增{
-      infoModuleList?.find(item => item.key === ContentConfigKeyEnum.WORK_EXPERIENCE)?.title
+      infoModuleList?.find(item => item.key === ContentConfigKeyEnum.EDUCATION)?.title
     }</Button>
   </div>
 }

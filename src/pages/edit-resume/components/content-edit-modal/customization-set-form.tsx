@@ -12,7 +12,7 @@ export interface IHonorsSetFormProps {
 
 function CustomizationSetForm(props: IHonorsSetFormProps) {
   const { infoModuleList, dispatch, customization } = props;
-  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.SELF_EVALUATION)?.title ?? ''
+  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.CUSTOMIZATION)?.title ?? ''
   const onChangeContent = (value: string) => {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,

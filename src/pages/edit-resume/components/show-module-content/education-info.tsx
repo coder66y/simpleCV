@@ -11,11 +11,11 @@ function EducationInfo(props: EducationInfoProps) {
   const { education } = props;
   const span= 8;
   return (
-    <div className="education-info-module-content-wrapper">
+    <div className="education info-module-content-wrapper">
       {
         education?.map?.(item => (
           <>
-          <Row className="education-info-module-content" >
+          <Row className="education info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
                 <ReadItem value={item.start} suffix="&ensp;--&ensp;"/>

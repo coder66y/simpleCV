@@ -8,7 +8,7 @@ function Customization(props: CustomizationProps) {
   const { customization } = props;
 
   return (
-    <div className="customization-module-content-wrapper">
+    <div className="customization info-module-content-wrapper">
       { customization && <QuillEditor readOnly value={customization}/>}
     </div>
   )

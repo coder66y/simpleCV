@@ -101,10 +101,10 @@ function ProjectExperienceBaseSetForm(props: IProjectExperienceBaseSetFormProps)
         <Col span={colSpan1}>
           <Space>
             <Form.Item name="start" label="项目时间">
-              <DatePicker />
+              <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="end">
-              <DatePicker />
+              <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="today" valuePropName="checked">
               <Checkbox>至今</Checkbox>
@@ -132,8 +132,8 @@ function ProjectExperienceSetForm(props: IProjectExperienceSetFormProps) {
     let newList = []
     const newValues = {
       ...values,
-      start: values?.start ? dayjs(values?.start).format(format) : '',
-      end: values?.end ? dayjs(values?.end).format(format) : ''
+      start: values?.start ? values?.start?.format(format) : null,
+      end: values?.end ? values?.end?.format(format) : null
     }
     if(Number(index ?? -1) >= 0) {
       newList = projectExperience?.map((item, idx) => {

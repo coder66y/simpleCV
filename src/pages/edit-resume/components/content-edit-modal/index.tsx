@@ -5,8 +5,8 @@ import { ContentConfigKeyEnum } from "../../config";
 import './index.less'
 import BaseInfoSetForm from "./base-info-set-form";
 import { CheckOutlined, EditOutlined } from "@ant-design/icons";
-import { useState } from "react";
-import { useClickAway } from "ahooks";
+import { useEffect, useState } from "react";
+import { useClickAway, useDebounceFn } from "ahooks";
 import EducationSetForm from "./education-set-form";
 import WorkExperienceSetForm from "./work-experience-set-form";
 import ProjectExperienceSetForm from "./project-experience-set-form";
@@ -28,7 +28,8 @@ export interface IContentEditModalProps extends ModalProps{
 }
 
 function ContentEditModal(props: IContentEditModalProps) {
-  const { configKey, visible, title, dispatch } = props;
+  const { configKey, visible, title = '', dispatch } = props;
+  const [moduleTitle, setModuleTitle] = useState<string>(title)
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const formMap = new Map<ContentConfigKeyEnum, React.ReactNode>([
     [ContentConfigKeyEnum.CV_INFO, <CVHeaderSetForm />],
@@ -43,17 +44,26 @@ function ContentEditModal(props: IContentEditModalProps) {
     [ContentConfigKeyEnum.SELF_EVALUATION, <SelfEvaluationSetForm />],
     [ContentConfigKeyEnum.CUSTOMIZATION, <CustomizationSetForm />],
     [ContentConfigKeyEnum.HOBBY, <HobbySetForm />],
-   ])
-   
-  const changeModuleTitle = (title: string) => {
-    props.dispatch({
+  ])
+
+  const { run: onSave } = useDebounceFn((title: string) => {
+    dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeModuleTitle`,
       payload: {
         key: configKey,
-        title,
+        title
       }
     })
+  }, { wait: 500 })
+
+  const changeModuleTitle = (title: string) => {
+    setModuleTitle(title)
+    onSave(title)
   }
+
+  useEffect(() => {
+    setModuleTitle(title)
+  }, [title])
 
   const onClose = () => {
     dispatch?.({
@@ -75,7 +85,7 @@ function ContentEditModal(props: IContentEditModalProps) {
         {
           isEditing ? <Input
             id="module-title-edit-input"
-            value={title}
+            value={moduleTitle}
             onChange={(e) => {
               const value = e.target.value;
               if(value.length > 30) {
@@ -83,7 +93,7 @@ function ContentEditModal(props: IContentEditModalProps) {
                 return
               }
               changeModuleTitle?.(e.target.value)
-            }} /> : title
+            }} /> : moduleTitle
         }
         {
           isEditing
@@ -97,8 +107,8 @@ function ContentEditModal(props: IContentEditModalProps) {
   const renderFooter = () => {
     return <div>
       <Button type='primary' onClick={() => {
-      onClose?.()
-    }}>保存</Button>
+          onClose?.()
+      }}>保存</Button>
     </div>
   }
 
