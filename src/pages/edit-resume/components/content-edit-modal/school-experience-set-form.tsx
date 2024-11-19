@@ -41,10 +41,10 @@ const emptyData = {
 function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<ISchoolExperienceSetFormValues>();
-  const colSpan1 = 14, colSpan2 = 10,gutter = 40;
+  const colSpan1 = 14, colSpan2 = 10;
 
-  const { run: onSave } = useDebounceFn(() => {
-    const values = form.getFieldsValue()
+  const { run: onSave } = useDebounceFn(async () => {
+    const values = await form.validateFields()
     onChange?.(values, index)
   }, { wait: 500 })
 
@@ -85,7 +85,7 @@ function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
         onSave()
       }}
     >
-      <Row gutter={gutter}>
+      <Row>
         <Col span={colSpan1}>
           <Form.Item name="name" label="经历名称">
             <Input />
@@ -97,13 +97,45 @@ function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
           </Form.Item>
         </Col>
       </Row>
-      <Row gutter={gutter}>
+      <Row>
         <Col span={colSpan1}>
           <Space>
-            <Form.Item name="start" label="时间">
+            <Form.Item name="start" label="时间" rules={[
+              {
+                validator(rule, value: Dayjs) {
+                  const end = form.getFieldValue('end');
+                  if (value) {
+                    if (value.isAfter(end)) {
+                      return Promise.reject('不能早于结束时间');
+                       
+                    } else {
+                      return Promise.resolve();
+                    }
+                  } else {
+                    return Promise.resolve();
+                  }
+                },
+              }
+            ]}>
               <DatePicker format={format}/>
             </Form.Item>
-            <Form.Item name="end">
+            <Form.Item name="end" rules={[
+              {
+                validator(rule, value: Dayjs) {
+                  const start = form.getFieldValue('start');
+                  if (value) {
+                    if (value.isBefore(start)) {
+                      return Promise.reject('不能早于开始时间');
+                       
+                    } else {
+                      return Promise.resolve();
+                    }
+                  } else {
+                    return Promise.resolve();
+                  }
+                },
+              }
+            ]}>
               <DatePicker format={format}/>
             </Form.Item>
             <Form.Item name="today" valuePropName="checked">
@@ -114,7 +146,7 @@ function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
         <Col span={colSpan2}>
         </Col>
       </Row>
-      <Row gutter={gutter}>
+      <Row>
         <Col span={24}>
           <Form.Item name="content" layout="vertical" label="经历描述：">
             <QuillEditor />

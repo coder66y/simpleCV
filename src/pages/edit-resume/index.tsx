@@ -16,7 +16,7 @@ export default function EditResume() {
       <ThreeColumnLayout gap={20} className="edit-cv-container">
         <EditLeft data-width={"auto"}></EditLeft>
         <EditContent data-width="auto"></EditContent>
-        <EditRight data-width={200}></EditRight>
+        <EditRight data-width={"auto"}></EditRight>
       </ThreeColumnLayout>
       <ContentEditModal />
     </ThemeProvider>
