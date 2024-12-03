@@ -8,6 +8,8 @@ import dayjs from "@/components/extend-dayjs";
 import type { Dayjs } from 'dayjs';
 import { ContentConfigKeyEnum, SortTypeEnum } from "../../config";
 import { ArrowDownOutlined, ArrowUpOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
+import { useScrollIntoView } from "@/utils/use-scroll-into-view";
 
 export interface IEducationSetFormProps {
   educationInfo?: IEditResumeModel['education'];
@@ -50,6 +52,8 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     onChange?.(values, index)
   }, { wait: 500 })
 
+  useScrollIntoView('lastOne', [length])
+
   const handleSort = (type: SortTypeEnum) => {
     onSort?.(type, index)
   }
@@ -59,7 +63,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     <Row justify="end">
       <Space>
         {
-          index > 0 && <Button type="primary" ghost onClick={() => handleSort(SortTypeEnum.UP)}>
+          index > 0 && <Button type="primary" id={index === length - 1 ? 'lastOne' : ''} ghost onClick={() => handleSort(SortTypeEnum.UP)}>
           上移
           <ArrowUpOutlined />
         </Button>

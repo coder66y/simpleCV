@@ -258,13 +258,14 @@ export default {
         moduleList: newList
       }
     },
-    changeModuleTitle(state: IEditResumeModel, { payload }: {payload: {key: ContentConfigKeyEnum, title: string}}) {
+    changeModuleTitle(state: IEditResumeModel, { payload }: {payload: {key: ContentConfigKeyEnum, title: string, edited: boolean}}) {
       return {
         ...state,
         moduleList: state.moduleList.map(item => {
           if(item.key === payload?.key) {
             return {
               ...item,
+              edited: payload?.edited ?? false,
               title: payload?.title
             }
           }

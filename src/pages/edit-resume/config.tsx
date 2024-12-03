@@ -64,48 +64,69 @@ export const rightTabConfig: IRightTabConfig[] = [
 export const infoModuleList: IModuleInfoConfig[] = [
   {
     title: '基本信息',
+    edited: false,
+    originalTitle: '基本信息',
     key: ContentConfigKeyEnum.BASIC_INFO,
     hidden: false,
   },
   {
     title: '教育经历',
+    originalTitle: '教育经历',
     key: ContentConfigKeyEnum.EDUCATION,
   },
   {
     title: '校园经历',
+    originalTitle: '校园经历',
+    edited: false,
     key: ContentConfigKeyEnum.SCHOOL_EXPERIENCE,
   },
   {
     title: '工作经历',
+    originalTitle: '工作经历',
+    edited: false,
     key: ContentConfigKeyEnum.WORK_EXPERIENCE,
   },
   {
     title: '实习经历',
+    originalTitle: '实习经历',
+    edited: false,
     key: ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE,
   },
   {
     title: '项目经历',
+    originalTitle: '项目经历',
+    edited: false,
     icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.PROJECT_EXPERIENCE,
   },
   {
     title: '技能特长',
+    originalTitle: '技能特长',
+    edited: false,
     key: ContentConfigKeyEnum.SKILLS,
   },
   {
     title: '荣誉证书',
+    originalTitle: '荣誉证书',
+    edited: false,
     key: ContentConfigKeyEnum.HONOR,
   },
   {
     title: '兴趣爱好',
+    originalTitle: '兴趣爱好',
+    edited: false,
     key: ContentConfigKeyEnum.HOBBY,
   },
   {
     title: '自我评价',
+    originalTitle: '自我评价',
+    edited: false,
     key: ContentConfigKeyEnum.SELF_EVALUATION,
   },
   {
     title: '自定义',
+    originalTitle: '自定义',
+    edited: false,
     key: ContentConfigKeyEnum.CUSTOMIZATION,
   }
 ]

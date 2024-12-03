@@ -7,6 +7,7 @@ import dayjs from "@/components/extend-dayjs";
 import type { Dayjs } from 'dayjs';
 import { ContentConfigKeyEnum, SortTypeEnum } from "../../config";
 import { ArrowDownOutlined, ArrowUpOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useScrollIntoView } from "@/utils/use-scroll-into-view";
 
 export interface IProjectExperienceSetFormProps {
   projectExperience?: IEditResumeModel['projectExperience'];
@@ -42,6 +43,7 @@ function ProjectExperienceBaseSetForm(props: IProjectExperienceBaseSetFormProps)
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IProjectExperienceSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
+  useScrollIntoView('lastOne', [length])
 
   const { run: onSave } = useDebounceFn(async () => {
     const values = await form.validateFields()
@@ -57,7 +59,7 @@ function ProjectExperienceBaseSetForm(props: IProjectExperienceBaseSetFormProps)
     <Row justify="end">
       <Space>
         {
-          index > 0 && <Button type="primary" ghost onClick={() => handleSort(SortTypeEnum.UP)}>
+          index > 0 && <Button type="primary" id={index === length - 1 ? 'lastOne' : ''} ghost onClick={() => handleSort(SortTypeEnum.UP)}>
           上移
           <ArrowUpOutlined />
         </Button>

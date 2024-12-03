@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-11-17 23:07:52
+ * @LastEditTime: 2024-12-03 22:32:49
  */
 import './index.less';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
@@ -106,10 +106,13 @@ function EditContent(props: IEditContentProps) {
                   className='module-title'
                 >
                   <span className='title-text'>
-                    <FormattedMessage id={item.key} values={{
-                      key: item.key,
-                      title: item.title
-                    }}/>
+                    {
+                    item?.edited ? item.title :<FormattedMessage
+                      id={item.key}
+                      values={{
+                        key: item.key,
+                      }}/>
+                    }
                   </span>
                   <div className='title-icon'>
                     <i></i>

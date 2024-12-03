@@ -6,6 +6,7 @@ import { connect } from "dva";
 import { ContentConfigKeyEnum } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
+import { useScrollIntoView } from "@/utils/use-scroll-into-view";
 
 export interface IHobbySetFormProps {
   dispatch: React.Dispatch<any>;
@@ -17,7 +18,8 @@ function HobbySetForm(props: IHobbySetFormProps) {
   const { infoModuleList, dispatch, hobby } = props;
   const [name, setName] = useState<string>('')
   const { data = [], content } = hobby ?? {}
-  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HOBBY)?.title ?? ''
+  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HOBBY)?.title ?? '';
+
   const onChangeContent = (value: string) => {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,

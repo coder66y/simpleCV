@@ -51,6 +51,7 @@ function ContentEditModal(props: IContentEditModalProps) {
       type: `${EDIT_RESUME_NAME_SPACE}/changeModuleTitle`,
       payload: {
         key: configKey,
+        edited: true,
         title
       }
     })
