@@ -1,3 +1,4 @@
+import { injectIntl, IntlShape } from "react-intl";
 import { ContentConfigKeyEnum } from "../../config";
 import BaseInfo from "./base-info";
 import Customization from "./customization";
@@ -17,7 +18,7 @@ export interface IShowModuleContentProps {
 }
 
 const rootClassName = 'show-module-content-wrapper'
-export default function ShowModuleContent(props: IShowModuleContentProps) {
+const ShowModuleContent = (props: IShowModuleContentProps) => {
   const { configKey } = props;
 
   const moduleMap = new Map<ContentConfigKeyEnum, React.ReactNode>([
@@ -42,3 +43,5 @@ export default function ShowModuleContent(props: IShowModuleContentProps) {
     </div>
   )
 }
+
+export default ShowModuleContent

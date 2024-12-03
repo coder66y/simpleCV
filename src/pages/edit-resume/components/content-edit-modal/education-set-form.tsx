@@ -2,13 +2,11 @@ import { EDIT_RESUME_NAME_SPACE, IEditResumeModel, IEducationInfoValues } from "
 import { useDebounceFn } from "ahooks";
 import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from "antd"
 import { connect } from "dva";
-import { degreeOptions } from "./config";
 import QuillEditor from "@/components/quill-editor";
 import dayjs from "@/components/extend-dayjs";
 import type { Dayjs } from 'dayjs';
-import { ContentConfigKeyEnum, SortTypeEnum } from "../../config";
+import { ContentConfigKeyEnum, SortTypeEnum, degreeOptions } from "../../config";
 import { ArrowDownOutlined, ArrowUpOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
 import { useScrollIntoView } from "@/utils/use-scroll-into-view";
 
 export interface IEducationSetFormProps {
@@ -33,7 +31,7 @@ export interface IEducationSetFormValues extends Omit<IEducationInfoValues, 'sta
 const format = 'YYYY-MM-DD'
 const emptyData = {
   content: '',
-  degree: '',
+  degree: {value: '', label: "不填"},
   end: dayjs(),
   major: '',
   name: '',
@@ -41,7 +39,7 @@ const emptyData = {
   today: false
 }
 
-/** 教育经理基础表单 */
+/** 教育基础表单 */
 function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IEducationSetFormValues>();
@@ -52,14 +50,12 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     onChange?.(values, index)
   }, { wait: 500 })
 
-  useScrollIntoView('lastOne', [length])
-
   const handleSort = (type: SortTypeEnum) => {
     onSort?.(type, index)
   }
 
   return (
-    <div className="common-list-base-set-form-wrapper">
+    <div className={`common-list-base-set-form-wrapper`}>
     <Row justify="end">
       <Space>
         {
@@ -149,7 +145,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
         </Col>
         <Col span={colSpan2}>
           <Form.Item name="degree" label="学历">
-            <Select options={degreeOptions}/>
+            <Select options={degreeOptions} labelInValue/>
           </Form.Item>
         </Col>
       </Row>
@@ -167,6 +163,7 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
 
 function EducationSetForm(props: IEducationSetFormProps) {
   const { dispatch, educationInfo = [], infoModuleList } = props;
+  useScrollIntoView("lastOne", [educationInfo.length])
   const handleChange = (values: IEducationSetFormValues, index?:number) => {
     let newEducationInfo = []
     const newValues = {

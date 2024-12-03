@@ -43,8 +43,6 @@ function WorkExperienceBaseSetForm(props: IWorkExperienceBaseSetFormProps) {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IWorkExperienceSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
-  useScrollIntoView('lastOne', [length])
-
 
   const { run: onSave } = useDebounceFn(async () => {
     const values = await form.validateFields()
@@ -163,6 +161,8 @@ function WorkExperienceBaseSetForm(props: IWorkExperienceBaseSetFormProps) {
 
 function WorkExperienceSetForm(props: IWorkExperienceSetFormProps) {
   const { dispatch, workExperience = [], infoModuleList } = props;
+  useScrollIntoView("lastOne", [workExperience.length])
+
   const handleChange = (values: IWorkExperienceSetFormValues, index?:number) => {
     let newList = []
     const newValues = {

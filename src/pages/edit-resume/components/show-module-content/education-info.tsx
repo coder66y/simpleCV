@@ -1,8 +1,7 @@
 import QuillEditor from "@/components/quill-editor"
 import ReadItem from "@/components/read-item"
 import { IEditResumeModel, IEducationInfoValues } from "@/models/edit-resume"
-import { Col } from "antd"
-import { Row } from "antd/lib"
+import { Col, Row } from "antd"
 import { connect } from "dva"
 import { injectIntl, IntlShape } from "react-intl"
 export interface EducationInfoProps {
@@ -12,8 +11,15 @@ export interface EducationInfoProps {
 function EducationInfo(props: EducationInfoProps) {
   const { education, intl } = props;
   const span= 8;
-  const getIntl = (id: string) => {
+  const getIntlText = (id: string) => {
     return intl.formatMessage({id})
+  }
+  const getIntlTime = (date: string) => {
+    return intl.formatDate(date, {
+      month: 'short',
+      year: "numeric",
+      day: 'numeric'
+    })
   }
   return (
     <div className="education info-module-content-wrapper">
@@ -23,15 +29,15 @@ function EducationInfo(props: EducationInfoProps) {
           <Row className="education info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
-                <ReadItem value={item.start} suffix="&ensp;--&ensp;"/>
-                {item.today ? getIntl('present') : <ReadItem value={item.end}/>}
+                <ReadItem value={getIntlTime(item.start)} suffix="&ensp;-&ensp;"/>
+                {item.today ? getIntlText('present') : <ReadItem value={getIntlTime(item.end)}/>}
               </>
             } needCol span={span}/>
             <ReadItem needPlace className="center" value={item.name} needCol span={span}/>
             <ReadItem needPlace className="right" value={
               <>
                 <ReadItem value={item.major} />
-                {item.degree ?  <ReadItem value={'(' + item.degree + ')'} /> : ''}
+                {item.degree.value ? <ReadItem value={'(' + getIntlText(item.degree.value) + ')'} /> : ''}
               </>
             } needCol span={span}/>
           </Row>

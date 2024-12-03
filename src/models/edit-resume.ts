@@ -5,10 +5,15 @@ import { arrayMove } from "@dnd-kit/sortable";
 
 export const EDIT_RESUME_NAME_SPACE = "editResume"
 
+export interface SelectOptionsType {
+  value: string;
+  label: string;
+}
+
 /** 教育经历类型 */
 export interface IEducationInfoValues {
   content: string;
-  degree: string;
+  degree: SelectOptionsType;
   end: string;
   major: string;
   name: string;
@@ -80,13 +85,13 @@ export interface IEditResumeModel {
   baseInfo?: {
     age?: string;
     birthday?: string;
-    gender?: string;
+    gender?: SelectOptionsType;
     height?: string;
     name: string;
     phone: string;
     email: string; 
     /** 婚姻状态 */ 
-    maritalStatus?: string;
+    maritalStatus?: SelectOptionsType;
     /** 民族 */
     nationality?: string;
     /** 籍贯 */
@@ -95,12 +100,12 @@ export interface IEditResumeModel {
     /** 是否展示图片 */
     photoShow?: boolean;
     /** 政治身份 */
-    political?: string;
+    political?: SelectOptionsType;
     weight?: string;
     /** 工作经验 */
-    workAge?: string;
+    workAge?: SelectOptionsType;
     city: string;
-    joinTime: string;
+    joinTime: SelectOptionsType;
     post: string;
     salary: string;
   },
@@ -131,22 +136,22 @@ const initState = () => ({
     "email": "2190389887@qq.com",
     "photo": photo,
     "photoShow": true,
-    "workAge": "3年经验",
+    "workAge": {label: "3年经验", value: "3YearExperience"},
     "height": "155",
     "weight": "45",
     "nationality": "布依族",
     "nativePlace": "成都",
-    "maritalStatus": "未婚",
-    "political": "普通公民",
+    "maritalStatus": {label: "未婚", value: "single" },
+    "political": {label: "普通公民", value: "citizen"},
     city: '成都',
-    joinTime: '一周内到岗',
+    joinTime: {label: '一周内到岗', value: "within1Week"},
     post: '前端开发工程师',
-    salary: '13-18'
+    salary: '13k-18k'
   },
   education: [{
     content: "<p> 主修课程： 管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销 </p>",
-    degree: "本科",
-    end: "2017-06-01",
+    degree: {label: "本科", value: "university"},
+    end: "2017-11-01",
     major: "xx专业",
     name: "xx大学 ",
     start: "2017-09-01",

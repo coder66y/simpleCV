@@ -1,10 +1,9 @@
 import ReadItem from "@/components/read-item";
 import { EDIT_RESUME_NAME_SPACE, IBarChartItem, IEditResumeModel } from "@/models/edit-resume"
 import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space } from "antd"
-import { masteryOptions } from "./config";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { connect } from "dva";
-import { ContentConfigKeyEnum } from "../../config";
+import { ContentConfigKeyEnum, masteryOptions } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
 

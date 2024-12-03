@@ -44,9 +44,6 @@ function InternshipExperienceBaseSetForm(props: IInternshipExperienceBaseSetForm
   const [form] = Form.useForm<IInternshipExperienceSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
 
-  useScrollIntoView('lastOne', [length])
-
-
   const { run: onSave } = useDebounceFn(async () => {
     const values = await form.validateFields()
     onChange?.(values, index)
@@ -164,6 +161,7 @@ function InternshipExperienceBaseSetForm(props: IInternshipExperienceBaseSetForm
 
 function InternshipExperienceSetForm(props: IInternshipExperienceSetFormProps) {
   const { dispatch, internshipExperience = [], infoModuleList } = props;
+  useScrollIntoView("lastOne", [internshipExperience.length])
   const handleChange = (values: IInternshipExperienceSetFormValues, index?:number) => {
     let newList = []
     const newValues = {

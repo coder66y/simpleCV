@@ -6,6 +6,8 @@ export enum ThemeConfigKeyEnum {
   SKIN = "skin",
   LANGUAGE = "language"
 }
+
+/** 左侧样式配置项 */
 export const leftIconConfig: ILeftInfoIconConfig[] = [
   {
     title: '间距设置',
@@ -146,10 +148,83 @@ export const infoModuleIconMap = new Map<string, ReactNode>([
   [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <FileTextOutlined />],
 ])
 
-
+/** 排序类型枚举 */
 export enum SortTypeEnum {
   UP = 'up',
   DOWN = 'down',
   DELETE = 'delete',
 }
+
+export const workAgeOptions = [
+  {value: "", label: '不填'},
+  {value: 'graduate', label: '应届生'},
+  {value: 'within1YearExperience', label: '一年经验以内'},
+  {value: '2YearExperience', label: '两年经验'},
+  {value: '3YearExperience', label: '3年经验'},
+  {value: '4YearExperience', label: '4年经验'},
+  {value: '5YearExperience', label: '5年经验'},
+  {value: '6YearExperience', label: '6年经验'},
+  {value: '7YearExperience', label: '7年经验'},
+  {value: '8YearExperience', label: '8年经验'},
+  {value: '9YearExperience', label: '9年经验'},
+  {value: 'over10YearExperience', label: '10年及以上经验'},
+]
+
+export const maritalStatusOptions = [
+  {value: "", label: '不填'},
+  {value: 'single', label: '未婚'},
+  {value: 'married', label: '已婚'},
+  {value: 'divorced', label: '离异'},
+  {value: 'widowed', label: '丧偶'},
+]
+
+export const booleanOptions = [
+  {value: true, label: '是'},
+  {value: false, label: '否'},
+]
+
+export const politicalOptions = [
+  {value: "", label: '不填'},
+  {value: "citizen", label: '普通公民'},
+  {value: "masses", label: '群众'},
+  {value: "partyMember", label: '中共党员'},
+  {value: "probationaryParty", label: '中共预备党员'},
+  {value: "leagueMember", label: '共青团员'},
+]
+
+export const genderOptions = [
+  {value: "", label: '不填'},
+  {value: "male", label: '男'},
+  {value: "female", label: '女'},
+]
+
+export const signInOptions = [
+  {value: "", label: '不填'},
+  {value: "immediately", label: '随时到岗'},
+  {value: "within1Week", label: '一周内到岗'},
+  {value: "within2Weeks", label: '两周内到岗'},
+  {value: "within1month", label: '一月内到岗'},
+  {value: "toBeDetermined", label: '另议'},
+]
+
+export const degreeOptions = [
+  {value: "", label: '不填'},
+  {value: "primary", label: '小学'},
+  {value: "middle", label: '初中'},
+  {value: "junior", label: '高中'},
+  {value: "senior", label: '中专'},
+  {value: "college", label: '大专'},
+  {value: "university", label: '大学'},
+  {value: "master", label: '硕士'},
+  {value: "doctor", label: '博士'},
+  {value: "others", label: '其他'},
+]
+
+export const masteryOptions = [
+  {value: 0.5, label: '一般'},
+  {value: 0.65, label: '良好'},
+  {value: 0.75, label: '熟练'},
+  {value: 0.85, label: '擅长'},
+  {value: 0.95, label: '精通'},
+]
 

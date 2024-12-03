@@ -43,7 +43,6 @@ function ProjectExperienceBaseSetForm(props: IProjectExperienceBaseSetFormProps)
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IProjectExperienceSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
-  useScrollIntoView('lastOne', [length])
 
   const { run: onSave } = useDebounceFn(async () => {
     const values = await form.validateFields()
@@ -162,6 +161,8 @@ function ProjectExperienceBaseSetForm(props: IProjectExperienceBaseSetFormProps)
 
 function ProjectExperienceSetForm(props: IProjectExperienceSetFormProps) {
   const { dispatch, projectExperience = [], infoModuleList } = props;
+  useScrollIntoView("lastOne", [projectExperience.length])
+
   const handleChange = (values: IProjectExperienceSetFormValues, index?:number) => {
     let newList = []
     const newValues = {

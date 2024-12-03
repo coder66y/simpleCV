@@ -6,7 +6,7 @@ import ImgReader from '@/components/img-reader';
 import { connect } from 'dva'
 import type { Dayjs } from 'dayjs';
 import dayjs from '@/components/extend-dayjs';
-import { genderOptions, maritalStatusOptions, politicalOptions, signInOptions, workAgeOptions } from './config';
+import { genderOptions, maritalStatusOptions, politicalOptions, signInOptions, workAgeOptions } from '@/pages/edit-resume/config';
 import ContentHeader from '@/components/content-header';
 
 export interface IBaseInfoSetFormProps {
@@ -62,14 +62,14 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
             </Col>
             <Col span={12}>
               <Form.Item name="gender" label="性别">
-                <Select options={genderOptions} />
+                <Select options={genderOptions} labelInValue/>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={gutter}>
             <Col span={12}>
               <Form.Item name="age" label="年龄">
-                <Input></Input>
+                <Input suffix="岁"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -103,7 +103,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         </Col>
         <Col span={colSpan2}>
           <Form.Item name="workAge" label="工作年限">
-            <Select options={workAgeOptions}/>
+            <Select options={workAgeOptions} labelInValue/>
           </Form.Item>
         </Col>
       </Row>
@@ -120,7 +120,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         </Col>
         <Col span={colSpan1}>
           <Form.Item name="maritalStatus" label="婚姻状况">
-            <Select options={maritalStatusOptions}/>
+            <Select options={maritalStatusOptions} labelInValue/>
           </Form.Item>
         </Col> 
         <Col span={colSpan2}>
@@ -137,7 +137,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         </Col>
         <Col span={colSpan1}>
           <Form.Item name="political" label="政治面貌">
-            <Select options={politicalOptions}/>
+            <Select options={politicalOptions} labelInValue/>
           </Form.Item>
         </Col>
       </Row>
@@ -155,7 +155,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         </Col>
         <Col span={colSpan3}>
           <Form.Item name="joinTime" label="到岗时间">
-            <Select options={signInOptions}/>
+            <Select options={signInOptions} labelInValue/>
           </Form.Item>
         </Col>
         <Col span={colSpan3}>

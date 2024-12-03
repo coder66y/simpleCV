@@ -43,7 +43,6 @@ function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<ISchoolExperienceSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
-  useScrollIntoView('lastOne', [length])
 
   const { run: onSave } = useDebounceFn(async () => {
     const values = await form.validateFields()
@@ -162,6 +161,8 @@ function SchoolExperienceBaseSetForm(props: ISchoolExperienceBaseSetFormProps) {
 
 function SchoolExperienceSetForm(props: ISchoolExperienceSetFormProps) {
   const { dispatch, schoolExperience = [], infoModuleList } = props;
+  useScrollIntoView("lastOne", [schoolExperience.length])
+
   const handleChange = (values: ISchoolExperienceSetFormValues, index?:number) => {
     let newList = []
     const newValues = {
