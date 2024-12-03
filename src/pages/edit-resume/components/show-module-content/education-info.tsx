@@ -4,12 +4,17 @@ import { IEditResumeModel, IEducationInfoValues } from "@/models/edit-resume"
 import { Col } from "antd"
 import { Row } from "antd/lib"
 import { connect } from "dva"
+import { injectIntl, IntlShape } from "react-intl"
 export interface EducationInfoProps {
-  education: IEducationInfoValues[]
+  education: IEducationInfoValues[];
+  intl: IntlShape; 
 }
 function EducationInfo(props: EducationInfoProps) {
-  const { education } = props;
+  const { education, intl } = props;
   const span= 8;
+  const getIntl = (id: string) => {
+    return intl.formatMessage({id})
+  }
   return (
     <div className="education info-module-content-wrapper">
       {
@@ -19,7 +24,7 @@ function EducationInfo(props: EducationInfoProps) {
             <ReadItem needPlace className="left" value={
               <>
                 <ReadItem value={item.start} suffix="&ensp;--&ensp;"/>
-                {item.today ? '至今' : <ReadItem value={item.end}/>}
+                {item.today ? getIntl('present') : <ReadItem value={item.end}/>}
               </>
             } needCol span={span}/>
             <ReadItem needPlace className="center" value={item.name} needCol span={span}/>
@@ -47,4 +52,4 @@ const mapStateToProps = ({editResume}: { editResume: IEditResumeModel}) => ({
   education: editResume.education
 })
 
-export default connect(mapStateToProps)(EducationInfo)
+export default connect(mapStateToProps)(injectIntl(EducationInfo))
