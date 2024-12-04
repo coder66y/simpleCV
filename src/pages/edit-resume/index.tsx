@@ -14,7 +14,7 @@ export default function EditResume() {
         <Header />
       </div>
       <ThreeColumnLayout gap={20} className="edit-cv-container">
-        <EditLeft data-width={"auto"}></EditLeft>
+        <EditLeft data-width={"fit-content"}></EditLeft>
         <EditContent data-width="auto"></EditContent>
         <EditRight data-width={"auto"}></EditRight>
       </ThreeColumnLayout>

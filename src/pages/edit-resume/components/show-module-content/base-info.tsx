@@ -13,16 +13,19 @@ function BaseInfo(props: IBaseInfoProps) {
   const { baseInfo, intl } = props
   const colSpan1 = 11;
   const colSpan2 = 2;
-  
   const getIntlText = (id: string) => intl.formatMessage({id})
-
+  const getIntlDate = (date: string) => intl.formatDate(date, {
+    year: "numeric",
+    month: 'short',
+    day: 'numeric'
+  })
   return (
     <Row wrap={true} className="base-info info-module-content-wrapper">
       <Col span={colSpan1}>
         <ReadItem value={baseInfo?.name} label={getIntlText("name")} />
       </Col>
       <Col span={colSpan1}>
-        <ReadItem value={baseInfo?.birthday} label={getIntlText('birthday')} />
+        <ReadItem value={baseInfo?.birthday ? getIntlDate(baseInfo?.birthday) : ''} label={getIntlText('birthday')} />
       </Col>
       <Col span={colSpan2}>
         {baseInfo?.photoShow ? <img className="avatar" width={120} src={baseInfo?.photo} /> : null}

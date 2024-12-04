@@ -11,9 +11,8 @@ export interface ILeftInfoIconConfig {
 
 /** 内容模块类型配置类型 */
 export interface IModuleInfoConfig {
+  /** 原始的标题 */
   originalTitle?: string;
-  /** 是否编辑过 */
-  edited?: boolean;
   title?: string;
   key: ContentConfigKeyEnum;
   icon?: React.ReactNode;
