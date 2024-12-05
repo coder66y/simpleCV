@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-12-05 14:19:20
+ * @LastEditTime: 2024-12-05 17:01:52
  */
 import './index.less';
 import { BulbFilled, CalendarFilled, EditFilled } from '@ant-design/icons';
@@ -12,7 +12,7 @@ import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import enUS from '@/locales/en-US.json';
 import zhCN from '@/locales/zh-CN.json';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 import { ContentConfigKeyEnum } from '../../config';
 import { connect } from 'dva';
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume';
