@@ -204,7 +204,7 @@ export const degreeOptions = [
   {value: "junior", label: '高中'},
   {value: "senior", label: '中专'},
   {value: "college", label: '大专'},
-  {value: "university", label: '大学'},
+  {value: "university", label: '本科'},
   {value: "master", label: '硕士'},
   {value: "doctor", label: '博士'},
   {value: "others", label: '其他'},

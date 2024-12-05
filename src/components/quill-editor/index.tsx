@@ -15,11 +15,12 @@ const Editor = (props: IEditorProps) => {
     ['bold', 'italic', 'underline', 'link'],
     [{ 'color': [] }, { 'background': [] }],
   ]
-
   return <ReactQuill
     theme="snow"
     value={value}
     onChange={(...arg) => {
+      // 非用户操作，不触发更改
+      if(arg[2] !== 'user') return;
       onChange?.(...arg)
     }}
     readOnly={readOnly}

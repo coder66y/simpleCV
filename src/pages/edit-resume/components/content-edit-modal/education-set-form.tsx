@@ -49,7 +49,6 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
     const values = await form.validateFields()
     onChange?.(values, index)
   }, { wait: 500 })
-
   const handleSort = (type: SortTypeEnum) => {
     onSort?.(type, index)
   }
