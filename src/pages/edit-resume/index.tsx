@@ -10,15 +10,15 @@ import ContentEditModal from "./components/content-edit-modal";
 export default function EditResume() {
   return (
     <ThemeProvider>
-      <div className="edit-cv-header">
-        <Header />
+      <div className="page-container">
+        <Header className="edit-cv-header"/>
+        <ThreeColumnLayout gap={20} className="edit-cv-container">
+          <EditLeft data-width={"fit-content"}></EditLeft>
+          <EditContent data-width="auto"></EditContent>
+          <EditRight data-width={"auto"}></EditRight>
+        </ThreeColumnLayout>
+        <ContentEditModal />
       </div>
-      <ThreeColumnLayout gap={20} className="edit-cv-container">
-        <EditLeft data-width={"fit-content"}></EditLeft>
-        <EditContent data-width="auto"></EditContent>
-        <EditRight data-width={"auto"}></EditRight>
-      </ThreeColumnLayout>
-      <ContentEditModal />
     </ThemeProvider>
   )
 }

@@ -3,9 +3,9 @@
  * @Author: luyi.lss
  * @Date: 2024-09-13 00:07:08
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-12-05 23:09:02
+ * @LastEditTime: 2024-12-06 00:17:56
  */
-import { Button, Modal, Space } from "antd";
+import { Button, Space } from "antd";
 import './index.less';
 import ThreeColumnLayout from "@/components/three-column-layout";
 import { _html2Canvas, exportPdf } from "@/utils/convert-pdf";
@@ -13,8 +13,10 @@ import { connect } from "dva";
 import { IEditResumeModel } from "@/models/edit-resume";
 import { useState } from "react";
 function Header(props: {
+  className?: string;
   baseInfo: IEditResumeModel['baseInfo'];
 }) {
+  const { className, baseInfo } = props;
   const [downloadLoading, setDownloadLoading] = useState<boolean>(false)
   const [printLoading, setPrintLoading] = useState<boolean>(false)
   /** 下载图片 */
@@ -25,7 +27,7 @@ function Header(props: {
       const dataURL = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = dataURL;
-      const filename = `${props.baseInfo?.name ?? '姓名'}-${props.baseInfo?.post ?? '意向岗位'}-${props.baseInfo?.phone ?? '联系电话'}`
+      const filename = `${baseInfo?.name ?? '姓名'}-${baseInfo?.post ?? '意向岗位'}-${baseInfo?.phone ?? '联系电话'}`
       link.download = `${filename}.png`;
       link.click();
     }
@@ -47,7 +49,7 @@ function Header(props: {
   /** 下载pdf */
   const onDownloadPDF = () => {
     setDownloadLoading(true)
-    const filename = `${props.baseInfo?.name ?? '姓名'}-${props.baseInfo?.post ?? '意向岗位'}-${props.baseInfo?.phone ?? '联系电话'}`
+    const filename = `${baseInfo?.name ?? '姓名'}-${baseInfo?.post ?? '意向岗位'}-${baseInfo?.phone ?? '联系电话'}`
     const $ele = document.getElementById('resumeContent') as HTMLElement;
     exportPdf($ele, filename, () => {
       setDownloadLoading(false)
@@ -55,7 +57,7 @@ function Header(props: {
   }
   
   return (
-    <ThreeColumnLayout gap={20} className="edit-cv-title">
+    <ThreeColumnLayout gap={20} className={`edit-cv-title ${className}`}>
       <div data-width="auto" className="logo">
         编辑你自己的简历
       </div>
