@@ -4,6 +4,8 @@ export default defineConfig({
   routes: [
     { path: "/", component: "@/pages/edit-resume" },
   ],
+  history: {type: 'hash'},
+  publicPath: '/simpleCV/',
   theme: { 
     '@primary-color': '#44a6d7',
     "@grey-2": '#616161',

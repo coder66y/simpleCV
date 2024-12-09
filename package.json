@@ -9,7 +9,7 @@
     "setup": "umi setup",
     "start": "npm run dev",
     "predeploy" : "npm run build",
-    "deploy" : "gh-pages-d build"
+    "deploy" : "gh-pages -d dist"
   },
   "resolutions": {
     "moment": "^2.30.1"
