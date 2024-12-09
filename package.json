@@ -1,6 +1,7 @@
 {
-  "private": true,
-  "author": "luyi.lss <lushasha@come-future.com>",
+  "homepage": "https://coder66y.github.io/simpleCV",
+  "name": "simplecv",
+  "author": "luyi <2160360887@qq.com>",
   "scripts": {
     "dev": "umi dev",
     "build": "umi build",
