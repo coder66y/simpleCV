@@ -28,7 +28,7 @@ function BaseInfo(props: IBaseInfoProps) {
         <ReadItem value={baseInfo?.birthday ? getIntlDate(baseInfo?.birthday) : ''} label={getIntlText('birthday')} />
       </Col>
       <Col span={colSpan2}>
-        {baseInfo?.photoShow ? <img className="avatar" width={120} src={baseInfo?.photo} /> : null}
+        {baseInfo?.photoShow ? <img className="avatar" width={120} height={120 * 1.4} src={baseInfo?.photo} /> : null}
       </Col> 
       <ReadItem span={colSpan1} needCol={true} value={baseInfo?.gender?.value ? getIntlText(baseInfo?.gender?.value) : ''} label={getIntlText('gender')} />
       <ReadItem span={colSpan1} suffix="岁" needCol={true} value={baseInfo?.age} label={getIntlText('age')} />

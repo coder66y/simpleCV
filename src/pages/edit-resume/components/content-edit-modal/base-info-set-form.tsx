@@ -1,13 +1,14 @@
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume'
 import { useDebounceFn } from 'ahooks';
 import { Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from 'antd';
-import React from 'react'
+import React, { useEffect } from 'react'
 import ImgReader from '@/components/img-reader';
 import { connect } from 'dva'
 import type { Dayjs } from 'dayjs';
 import dayjs from '@/components/extend-dayjs';
 import { genderOptions, maritalStatusOptions, politicalOptions, signInOptions, workAgeOptions } from '@/pages/edit-resume/config';
 import ContentHeader from '@/components/content-header';
+import { RuleObject } from 'antd/es/form';
 
 export interface IBaseInfoSetFormProps {
   baseInfo?: IEditResumeModel['baseInfo'];
@@ -26,9 +27,20 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
     birthday: dayjs(baseInfo?.birthday)
   };
   const gutter = 40, colSpan1 = 9, colSpan2 = 6, colSpan3 = 6;
+  const commonRules = [
+    {
+      warningOnly: true,
+      validator(rule: RuleObject, value: string) {
+        if(!value) {
+          return Promise.reject('建议必填')
+        }
+        return Promise.resolve();
+      },
+    }
+  ]
 
-  const { run } = useDebounceFn(() => {
-    const values = form.getFieldsValue();
+  const { run } = useDebounceFn(async () => {
+    const values = await form.validateFields();
     dispatch?.({
       type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
       payload: {
@@ -56,7 +68,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         <Col span={18}>
           <Row gutter={gutter}>
             <Col span={12}>
-              <Form.Item name="name" label="姓名">
+              <Form.Item name="name" label="姓名" rules={commonRules}>
                 <Input />
               </Form.Item>
             </Col>
@@ -68,12 +80,12 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
           </Row>
           <Row gutter={gutter}>
             <Col span={12}>
-              <Form.Item name="age" label="年龄">
+              <Form.Item name="age" label="年龄" rules={commonRules}>
                 <Input suffix="岁"></Input>
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="phone" label="联系电话">
+              <Form.Item name="phone" label="联系电话" rules={commonRules}>
                 <Input></Input>
               </Form.Item>
             </Col>
@@ -82,7 +94,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
         <Col span={colSpan2}>
         <div className='photo-wrapper'>
           <Form.Item name="photo" label="头像">
-              <ImgReader  width={90}/>
+              <ImgReader width={90}/>
             </Form.Item>
             <Form.Item name="photoShow" valuePropName='checked' className='photo-show-checkbox'>
               <Checkbox>显示头像</Checkbox>
@@ -97,12 +109,12 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
           </Form.Item>
         </Col>
         <Col span={colSpan1}>
-          <Form.Item name="email" label="邮箱">
+          <Form.Item name="email" label="邮箱" rules={commonRules}>
             <Input></Input>
           </Form.Item>
         </Col>
         <Col span={colSpan2}>
-          <Form.Item name="workAge" label="工作年限">
+          <Form.Item name="workAge" label="工作年限" rules={commonRules}>
             <Select options={workAgeOptions} labelInValue/>
           </Form.Item>
         </Col>
@@ -144,7 +156,7 @@ export const BaseInfoSetForm = (props: IBaseInfoSetFormProps) => {
       <ContentHeader value="求职意向"/>
       <Row gutter={gutter}>
         <Col span={colSpan3}>
-          <Form.Item name="post" label="求职岗位">
+          <Form.Item name="post" label="求职岗位" rules={commonRules}>
             <Input/>
           </Form.Item>
         </Col>

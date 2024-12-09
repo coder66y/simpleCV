@@ -227,7 +227,7 @@ function InternshipExperienceSetForm(props: IInternshipExperienceSetFormProps) {
         />
       })
     }
-    <Button className="add-btn" onClick={onAdd}>新增{
+    <Button type="primary" ghost className="add-btn" onClick={onAdd}>新增{
       infoModuleList?.find(item => item.key === ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE)?.title
     }</Button>
   </div>

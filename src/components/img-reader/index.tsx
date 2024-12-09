@@ -2,8 +2,15 @@ import { Input, message } from "antd";
 import { ChangeEvent } from "react";
 import styles from './index.less'
 export const getBase64 = (img: File, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result as string));
+  let reader: FileReader | undefined = new FileReader();
+  reader.addEventListener('load', (e: ProgressEvent<FileReader>) => {
+    if(e.loaded > 1024*1024*2) {
+      message.error('图片大小不能超过2M');
+      reader = undefined;
+      return;
+    }
+    callback(reader?.result as string)
+  });
   reader.readAsDataURL(img);
 };
 
@@ -33,7 +40,7 @@ export default function ImgReader(props: ImgReaderProps) {
 
   return (
     <div className={styles['img-reader-contanier']}>
-      <Input rootClassName="img-input" accept=".jpg,.png,.pdf,.jpeg" type="file" onChange={handleClick} style={commonStyle}></Input>
+      <Input rootClassName="img-input" accept=".jpg,.png,.jpeg" type="file" onChange={handleClick} style={commonStyle}></Input>
       <img
         className="img-show"
         src={value}

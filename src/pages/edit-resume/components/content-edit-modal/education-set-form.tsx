@@ -228,7 +228,7 @@ function EducationSetForm(props: IEducationSetFormProps) {
         />
       })
     }
-     <Button className="add-btn" onClick={onAdd}>新增{
+     <Button type="primary" ghost className="add-btn" onClick={onAdd}>新增{
       infoModuleList?.find(item => item.key === ContentConfigKeyEnum.EDUCATION)?.title
     }</Button>
   </div>
