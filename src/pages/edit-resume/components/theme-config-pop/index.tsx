@@ -17,7 +17,8 @@ export default function ThemeConfigPop(props: IThemeConfigPopProps) {
   const formMap = new Map([
    [ThemeConfigKeyEnum.SPACEING, <SpaceSetForm />],
    [ThemeConfigKeyEnum.SKIN, <SkinSetForm />],
-   [ThemeConfigKeyEnum.LANGUAGE, <LanguageSetForm />]
+   [ThemeConfigKeyEnum.LANGUAGE, <LanguageSetForm />],
+   [ThemeConfigKeyEnum.TEMPLATE, <div>暂未维护</div>]
   ])
 
   return (

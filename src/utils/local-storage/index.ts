@@ -1,7 +1,17 @@
 export const setLocalStorage = (key: string, value: Record<string, any> = {}) => {
-	localStorage.setItem(key, JSON.stringify(value ?? {}))
+  try {
+    localStorage.setItem(key, JSON.stringify(value ?? {}))
+  } catch (error) {
+    console.error('localStorage setItem error', error)
+  }
 }
 
 export const getLocalStorage = (key: string) => {
-	return JSON.parse(localStorage.getItem(key) || '{}')
+  let data = {}
+  try {
+    data = JSON.parse(localStorage.getItem(key) || '{}')
+  } catch (error) {
+    console.error('localStorage getItem error', error)
+  }
+  return data;
 }

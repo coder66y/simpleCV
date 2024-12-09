@@ -1,10 +1,11 @@
-import { AuditOutlined, ColumnHeightOutlined, FileAddOutlined, FileTextOutlined, HeartOutlined, HomeOutlined, IdcardOutlined, ProfileOutlined, ProjectOutlined, SkinOutlined, SolutionOutlined, TranslationOutlined, UserOutlined, VerifiedOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, AuditOutlined, ColumnHeightOutlined, FileAddOutlined, FileTextOutlined, HeartOutlined, HomeOutlined, IdcardOutlined, ProfileOutlined, ProjectOutlined, SkinOutlined, SolutionOutlined, TranslationOutlined, UserOutlined, VerifiedOutlined } from '@ant-design/icons'
 import { ReactNode } from 'react';
 import { ILeftInfoIconConfig, IRightTabConfig, IModuleInfoConfig } from './types';
 export enum ThemeConfigKeyEnum {
   SPACEING = "spacing",
   SKIN = "skin",
-  LANGUAGE = "language"
+  LANGUAGE = "language",
+  TEMPLATE = 'template'
 }
 
 /** 左侧样式配置项 */
@@ -23,6 +24,11 @@ export const leftIconConfig: ILeftInfoIconConfig[] = [
     title: '语言/字体',
     key: ThemeConfigKeyEnum.LANGUAGE,
     icon: <TranslationOutlined />
+  },
+  {
+    title: '更换模板',
+    key: ThemeConfigKeyEnum.TEMPLATE,
+    icon: <AppstoreOutlined />
   },
 ]
 
