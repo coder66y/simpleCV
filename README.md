@@ -1,7 +1,7 @@
 # simpleCV
 
 ## 简介
-simpleCV
+[simpleCV](https://coder66y.github.io/simpleCV)
 简单的简历编辑页面
 支持如下功能
 1. 更改简历颜色
