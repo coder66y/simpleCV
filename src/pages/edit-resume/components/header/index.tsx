@@ -3,15 +3,16 @@
  * @Author: luyi.lss
  * @Date: 2024-09-13 00:07:08
  * @LastEditors: luyi.lss
- * @LastEditTime: 2024-12-06 00:17:56
+ * @LastEditTime: 2024-12-10 14:04:08
  */
-import { Button, Space } from "antd";
+import { Button, Space, Tooltip } from "antd";
 import './index.less';
 import ThreeColumnLayout from "@/components/three-column-layout";
 import { _html2Canvas, exportPdf } from "@/utils/convert-pdf";
 import { connect } from "dva";
 import { IEditResumeModel } from "@/models/edit-resume";
 import { useState } from "react";
+import { GithubOutlined } from "@ant-design/icons";
 function Header(props: {
   className?: string;
   baseInfo: IEditResumeModel['baseInfo'];
@@ -55,6 +56,11 @@ function Header(props: {
       setDownloadLoading(false)
     })
   }
+
+  const onJumpEnter = () => {
+    const jumpUrl = 'https://github.com/coder66y/simpleCV'
+    window.open(jumpUrl, '_blank')
+  }
   
   return (
     <ThreeColumnLayout gap={20} className={`edit-cv-title ${className}`}>
@@ -66,6 +72,9 @@ function Header(props: {
         <Button type="primary" onClick={onPrint} loading={printLoading}>打印</Button>
         <Button type="primary" ghost onClick={onDownloadImg}>下载图片</Button>
         <Button type="primary" ghost onClick={onDownloadPDF} loading={downloadLoading}>下载PDF</Button>
+        <Tooltip title="">
+          <GithubOutlined className="github-icon" onClick={onJumpEnter}/>
+        </Tooltip>
       </Space>
     </ThreeColumnLayout>
   )
