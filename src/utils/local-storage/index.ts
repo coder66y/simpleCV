@@ -1,4 +1,4 @@
-export const setLocalStorage = (key: string, value: Record<string, any> = {}) => {
+export function setLocalStorage<T extends object = object>(key: string, value: T) {
   try {
     localStorage.setItem(key, JSON.stringify(value ?? {}))
   } catch (error) {
@@ -6,8 +6,8 @@ export const setLocalStorage = (key: string, value: Record<string, any> = {}) =>
   }
 }
 
-export const getLocalStorage = (key: string) => {
-  let data = {}
+export function getLocalStorage<T extends object = object>(key: string): T {
+  let data;
   try {
     data = JSON.parse(localStorage.getItem(key) || '{}')
   } catch (error) {

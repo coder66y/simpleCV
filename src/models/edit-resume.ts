@@ -228,7 +228,7 @@ const initState = () => {
       content: ""
     },
   }
-  const cacheData = getLocalStorage(cacheKey)
+  const cacheData = getLocalStorage<IEditResumeModel>(cacheKey)
   if(Object.keys(cacheData)?.length > 0) {
     return cacheData
   }

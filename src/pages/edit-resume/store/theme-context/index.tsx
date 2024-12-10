@@ -1,5 +1,6 @@
 import React, { createContext, Dispatch, Reducer, useContext, useReducer } from 'react';
 import { colorPrimary } from '@/layouts';
+import { getLocalStorage, setLocalStorage } from '@/utils/local-storage';
 
 /** 主题类型 */
 export type  IThemeStoreTypes = {
@@ -22,8 +23,9 @@ export type IThemeDispatchArgType = {
 /** 主题dispatch方法 */
 export type ThemeDispatchActionType = Dispatch<IThemeDispatchArgType>;
 
-/** 主题初始值 */
-export const initialTheme: IThemeStoreTypes = {
+const themeCacheKey = 'themeConfig'
+
+const initState = {
   color: '#4e7880',
   moduleMargin: 10,
   secondaryColor: "#999",
@@ -34,15 +36,26 @@ export const initialTheme: IThemeStoreTypes = {
   language: 'zh-CN'
 }
 
-const ThemeContext = createContext<IThemeStoreTypes>(initialTheme);
+/** 主题初始值 */
+export const initialTheme = (): IThemeStoreTypes => {
+  const cache = getLocalStorage<IThemeStoreTypes>(themeCacheKey)
+  if(Object.keys(cache)?.length > 0) {
+    return cache
+  }
+  return initState;
+}
+
+const state = initialTheme();
+
+const ThemeContext = createContext<IThemeStoreTypes>(state);
 
 const ThemeDispatchContext = createContext<ThemeDispatchActionType | null>(null);
 
 export function ThemeProvider({ children }: {children: React.ReactNode}) {
   const [theme, dispatch] = useReducer(
     themeReducer,
+    state,
     initialTheme,
-    () => initialTheme,
   );
 
   return (
@@ -68,14 +81,16 @@ export function useThemeDispatch() {
 const themeReducer: Reducer<IThemeStoreTypes, IThemeDispatchArgType> = (theme, action) => {
   switch (action.type) {
     case 'reset': {
-      return initialTheme
+      return initState
     };
     case 'changeThemeKey': {
       if(action?.payload?.key) {
-        return {
+        const newState = {
           ...theme,
           [action.payload.key]: action?.payload?.value
         }
+        setLocalStorage(themeCacheKey, newState)
+        return newState;
       }
       return theme;
     };
