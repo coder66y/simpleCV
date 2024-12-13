@@ -4,12 +4,11 @@ import { useTheme, useThemeDispatch } from "../../store/theme-context";
 
 
 const fontOptions = [
-  { label: '楷体', value: '楷体, 楷体_GB2312, KaiTi, STKaiti, STKaiSC, STKaiTC, STKai-TC-Bold, Microsoft YaHei' },
-  { label: '黑体', value: 'SimHei, STHeiti, STHeitiSC, Microsoft YaHei' },
+  { label: '系统默认', value: '系统默认' },
+  { label: '楷体', value: 'ChillKai' },
+  { label: '思源黑体', value: 'Source Han Sans SC VF' },
   { label: '微软雅黑', value: 'Microsoft YaHei' },
-  { label: '华文仿宋', value: 'FangSong, STFangsong, SimSun, Microsoft YaHei' },
-  { label: '报隶', value: 'STBaoliSC, STBaoliTC, LiSu, Microsoft YaHei' },
-  { label: '隶变', value: 'STLibianSC, STLibianTC, LiSu, Microsoft YaHei' },
+  { label: '思源宋体', value:  "Source Han Serif CN VF"},
   { label: 'Times New Roman',value: 'Times New Roman, Microsoft YaHei' },
 ]
 
