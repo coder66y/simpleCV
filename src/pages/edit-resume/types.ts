@@ -2,6 +2,7 @@ import { ContentConfigKeyEnum, ThemeConfigKeyEnum } from "./config";
 
 /** 右侧主题信息类型 */
 export interface ILeftInfoIconConfig {
+  type: 'pop' | 'modal'
   title: string;
   key: ThemeConfigKeyEnum;
   icon: React.ReactNode;

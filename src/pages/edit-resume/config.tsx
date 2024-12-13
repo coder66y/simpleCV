@@ -12,21 +12,25 @@ export enum ThemeConfigKeyEnum {
 export const leftIconConfig: ILeftInfoIconConfig[] = [
   {
     title: '间距设置',
+    type:'pop',
     key: ThemeConfigKeyEnum.SPACEING,
     icon: <ColumnHeightOutlined />
   },
   {
     title: '皮肤设置',
+    type:'pop',
     key: ThemeConfigKeyEnum.SKIN,
     icon: <SkinOutlined />
   },
   {
     title: '语言/字体',
+    type:'pop',
     key: ThemeConfigKeyEnum.LANGUAGE,
     icon: <TranslationOutlined />
   },
   {
     title: '更换模板',
+    type:'modal',
     key: ThemeConfigKeyEnum.TEMPLATE,
     icon: <AppstoreOutlined />
   },

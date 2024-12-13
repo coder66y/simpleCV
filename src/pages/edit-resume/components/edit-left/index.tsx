@@ -2,8 +2,8 @@
  * @Description: 简历编辑页面左侧栏
  * @Author: luyi.lss
  * @Date: 2024-09-12 15:27:51
- * @LastEditors: luyi.lss
- * @LastEditTime: 2024-11-17 23:24:02
+ * @LastEditors: luyi
+ * @LastEditTime: 2024-12-13 14:41:48
  */
 import { leftIconConfig, ThemeConfigKeyEnum } from '@/pages/edit-resume/config'
 import './index.less';
@@ -17,6 +17,7 @@ export default function EditLeft(props: IEditLeftProps) {
       {leftIconConfig.map(item => {
         return <ThemeConfigPop
           key={item.key}
+          type={item.type}
           title={item.title}
           configKey={item.key as ThemeConfigKeyEnum}
           className='left-item'
