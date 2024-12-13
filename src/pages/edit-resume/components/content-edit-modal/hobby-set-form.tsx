@@ -1,13 +1,9 @@
-import ReadItem from "@/components/read-item";
-import { EDIT_RESUME_NAME_SPACE, IBarChartItem, IEditResumeModel } from "@/models/edit-resume"
+import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from "@/models/edit-resume"
 import { Button, Col, Input, message, Row, Space, Tag } from "antd"
-import { PlusOutlined } from "@ant-design/icons";
 import { connect } from "dva";
 import { ContentConfigKeyEnum } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
-import { useScrollIntoView } from "@/utils/use-scroll-into-view";
-
 export interface IHobbySetFormProps {
   dispatch: React.Dispatch<any>;
   hobby: IEditResumeModel['hobby'];
@@ -67,7 +63,7 @@ function HobbySetForm(props: IHobbySetFormProps) {
       <Row>
         <Space>
           <Input value={name} placeholder={`请输入${title}`} onChange={(e) => setName(e.target.value)}/>
-          <Button type="primary" ghost onClick={onAdd}><PlusOutlined />添加{title}</Button>
+          <Button type="primary" ghost onClick={onAdd}><i className='iconfont'>&#xe60c;</i>添加{title}</Button>
         </Space>
       </Row>
       <Row>

@@ -6,7 +6,6 @@ import QuillEditor from "@/components/quill-editor";
 import dayjs from "@/components/extend-dayjs";
 import type { Dayjs } from 'dayjs';
 import { ContentConfigKeyEnum, SortTypeEnum } from "../../config";
-import { ArrowDownOutlined, ArrowUpOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useScrollIntoView } from "@/utils/use-scroll-into-view";
 
 export interface IInternshipExperienceSetFormProps {
@@ -60,19 +59,19 @@ function InternshipExperienceBaseSetForm(props: IInternshipExperienceBaseSetForm
         {
           index > 0 && <Button type="primary" id={index === length - 1 ? 'lastOne' : ''} ghost onClick={() => handleSort(SortTypeEnum.UP)}>
           上移
-          <ArrowUpOutlined />
+          <i className="iconfont">&#xe8f5;</i>
         </Button>
         }
         {
           length > 1 && index < length - 1 && <Button type="primary" ghost onClick={() => handleSort(SortTypeEnum.DOWN)}>
           下移
-          <ArrowDownOutlined />
+          <i className='iconfont'>&#xe8f6;</i>
         </Button>
         }
         {
           length > 1 && <Button type="primary" ghost onClick={() => handleSort(SortTypeEnum.DELETE)}>
           删除
-          <DeleteOutlined />
+          <i className='iconfont'>&#xe600;</i>
         </Button>
         }
       </Space>

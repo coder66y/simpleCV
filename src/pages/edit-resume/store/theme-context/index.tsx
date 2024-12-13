@@ -4,6 +4,7 @@ import { getLocalStorage, setLocalStorage } from '@/utils/local-storage';
 
 /** 主题类型 */
 export type  IThemeStoreTypes = {
+  templateId: string;
   color: string;
   secondaryColor: string;
   moduleMargin: number;
@@ -25,7 +26,8 @@ export type ThemeDispatchActionType = Dispatch<IThemeDispatchArgType>;
 
 const themeCacheKey = 'themeConfig'
 
-const initState = {
+const initState: IThemeStoreTypes = {
+  templateId: "1",
   color: '#4e7880',
   moduleMargin: 10,
   secondaryColor: "#999",

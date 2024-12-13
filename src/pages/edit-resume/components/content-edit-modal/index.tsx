@@ -4,7 +4,6 @@ import CVHeaderSetForm from "./cv-header-set-form";
 import { ContentConfigKeyEnum } from "../../config";
 import './index.less'
 import BaseInfoSetForm from "./base-info-set-form";
-import { CheckOutlined, EditOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useClickAway, useDebounceFn } from "ahooks";
 import EducationSetForm from "./education-set-form";
@@ -97,8 +96,8 @@ function ContentEditModal(props: IContentEditModalProps) {
         }
         {
           isEditing
-          ? <CheckOutlined  onClick={() => {setIsEditing(false)}}/>
-          : <EditOutlined onClick={() => {setIsEditing(true)}} />
+          ? <i className='iconfont' onClick={() => {setIsEditing(false)}}>&#xe60b;</i>
+          : <i className='iconfont' onClick={() => {setIsEditing(true)}}>&#xe69f;</i>
         }
       </div>
     )

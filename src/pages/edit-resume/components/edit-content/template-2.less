@@ -1,0 +1,110 @@
+.template-2 {
+  &-header {
+    font-weight: 700;
+
+    .left-box {
+      overflow: hidden;
+      padding-top: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .resume-title {
+        font-size: 22px;
+        padding: 4px 0;
+      }
+
+      dd {
+        font-size: 16px;
+        margin-left: 0;
+
+        p {
+          margin: 0;
+        }
+        p:last-child {
+          display: none;
+        }
+      }
+
+      
+    }
+
+    .right-box {
+      display: none;
+      width: 0;
+
+      & > span {
+        background-color: var(--secondaryColor);
+        border-radius: 50%;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 10px;
+        text-align: center;
+        width: 40px;
+      }
+      
+    }
+  }
+
+  &-content {
+    margin: 0 var(--pageMargin);
+
+    .module-title {
+      color: var(--secondaryColor);
+      pointer-events: auto;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 400;
+      height: 24px;
+      line-height: 24px;
+      min-width: 140px;
+      position: relative;
+      vertical-align: top;
+
+      .title-text {
+        font-weight: 700;
+        display: block;
+        height: 100%;
+        position: relative;
+        white-space: nowrap;
+        width: 100%;
+      }
+    }
+  }
+
+  &-info-module {
+    border-color: var(--secondaryColor);
+    display: block;
+    position: relative;
+    .module-content-main {
+      line-height: var(--lineHeight);
+      margin: var(--moduleMargin) 0;
+      font-size: var(--fontSize);
+      font-family: var(--fontFamily);
+
+      .ql-container {
+        font-size: var(--fontSize);
+
+        .ql-editor ul {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  .module-line {
+    border-top: 4px solid var(--primaryColor);
+    position: relative;
+    width: 100%;  
+  }
+
+  .show-module-content-wrapper {
+    padding: 0;
+  }
+}

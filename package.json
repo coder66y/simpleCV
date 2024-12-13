@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@ant-design/colors": "^7.1.0",
-    "@ant-design/icons": "^5.4.0",
     "@ant-design/pro-components": "^2.7.15",
     "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/modifiers": "^7.0.0",

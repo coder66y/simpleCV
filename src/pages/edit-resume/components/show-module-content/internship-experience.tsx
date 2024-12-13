@@ -29,11 +29,11 @@ function InternshipExperience(props: InternshipExperienceProps) {
           <Row className="internship-experience info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
-                <ReadItem value={getIntlTime(item.start)} suffix="&ensp;-&ensp;"/>
-                {item.today ? getIntlText('present') : <ReadItem value={getIntlTime(item.end)}/>}
+                <ReadItem needCol={false} value={getIntlTime(item.start)} suffix="&ensp;-&ensp;"/>
+                {item.today ? getIntlText('present') : <ReadItem needCol={false}  value={getIntlTime(item.end)}/>}
               </>
             } needCol span={span}/>
-            <ReadItem needPlace className="center" value={item.name} needCol span={span}/>
+            <ReadItem needPlace className="center" value={item.name} span={span}/>
             <ReadItem needPlace className="right" value={
               <>
                 <ReadItem value={item.job} />

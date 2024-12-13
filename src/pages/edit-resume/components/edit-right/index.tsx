@@ -2,8 +2,8 @@
  * @Description: 简历编辑页面右侧栏
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
- * @LastEditors: luyi.lss
- * @LastEditTime: 2024-11-18 23:05:16
+ * @LastEditors: luyi
+ * @LastEditTime: 2024-12-14 00:45:27
  */
 import React, { useState } from 'react'
 import { useContext, useMemo } from 'react'
@@ -13,14 +13,12 @@ import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import { CSS } from '@dnd-kit/utilities';
 import { Tabs, Switch, Button, Space } from 'antd'
-import { DragOutlined } from '@ant-design/icons'
 
 import { ContentConfigKeyEnum, infoModuleIconMap, rightTabConfig } from '@/pages/edit-resume/config'
 import './index.less'
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { connect } from 'dva';
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume';
-import ContentEditModal from '../content-edit-modal';
 
 const rootCls = 'edit-right'
 export interface IEditRightProps {
@@ -42,7 +40,7 @@ const DragHandle: React.FC = () => {
       type="text"
       size="small"
       className='drag-icon'
-      icon={<DragOutlined />}
+      icon={<i className='iconfont'>&#xe68d;</i>}
       style={{ cursor: 'move' }}
       ref={setActivatorNodeRef}
       {...listeners}

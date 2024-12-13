@@ -49,8 +49,8 @@ export default function A4Container(props: A4ContainerProps) {
                 left: 0,
                 top: (index + 1) * A4Height - 15
               }}>
-                <span>分页区，请在内容里用换行避开此区域</span>
-                <span>第{index + 1}页/共{pageSize}页</span>
+                <span className="page-line-text">分页区，请在内容里用换行避开此区域</span>
+                <span className="page-line-text">第{index + 1}页/共{pageSize}页</span>
             </li>
           ))
         }

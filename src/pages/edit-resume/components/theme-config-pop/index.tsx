@@ -23,7 +23,7 @@ export default function ThemeConfigPop(props: IThemeConfigPopProps) {
    [ThemeConfigKeyEnum.SPACEING, <SpaceSetForm />],
    [ThemeConfigKeyEnum.SKIN, <SkinSetForm />],
    [ThemeConfigKeyEnum.LANGUAGE, <LanguageSetForm />],
-   [ThemeConfigKeyEnum.TEMPLATE, <TemplateSetForm />]
+   [ThemeConfigKeyEnum.TEMPLATE, <TemplateSetForm onClose={() => setOpen(false)} />]
   ])
 
   if(type === 'pop') {
@@ -43,6 +43,7 @@ export default function ThemeConfigPop(props: IThemeConfigPopProps) {
   } else {
     return <>
       <Modal
+        wrapClassName="theme-config-modal"
         title={title}
         open={open}
         footer={null}

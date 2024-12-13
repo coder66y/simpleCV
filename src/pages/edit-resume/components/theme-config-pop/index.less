@@ -19,3 +19,28 @@
 .language-set-form {
   width: 260px;
 }
+
+.theme-config-modal {
+  .ant-modal, .ant-modal-content {
+    min-width: 1200px;
+  }
+}
+
+.template-set-form {
+  display: flex;
+  flex-wrap: wrap;
+  .template-item {
+    width: 300px;
+    text-align: center;
+    border: 2px #ccc solid;
+    margin: 5px;
+  }
+
+  .template-item:active {
+    border: 2px @primary-color solid;
+  }
+
+  .active-template-item {
+    border: 2px @primary-color solid;
+  }
+}

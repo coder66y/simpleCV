@@ -1,7 +1,6 @@
 import ReadItem from "@/components/read-item";
 import { EDIT_RESUME_NAME_SPACE, IBarChartItem, IEditResumeModel } from "@/models/edit-resume"
 import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space } from "antd"
-import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { connect } from "dva";
 import { ContentConfigKeyEnum, masteryOptions } from "../../config";
 import QuillEditor from "@/components/quill-editor";
@@ -33,7 +32,7 @@ const SkillsBarSetForm = (props: ISkillsBarSetFormProps) => {
       <Checkbox >展示百分比</Checkbox>
     </Form.Item>
     <Form.Item >
-    <DeleteOutlined onClick={onDelete}/>
+    <i className='iconfont' onClick={onDelete}>&#xe600;</i>
     </Form.Item>
   </Form>
 }
@@ -118,7 +117,7 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
       <Row>
         <Space>
           <Input value={name} placeholder={`请输入${title}`} onChange={(e) => setName(e.target.value)}/>
-          <Button type="primary" ghost onClick={onAdd}><PlusOutlined />添加{title}</Button>
+          <Button type="primary" ghost onClick={onAdd}><i className='iconfont'>&#xe60c;</i>添加{title}</Button>
         </Space>
       </Row>
       <Row>

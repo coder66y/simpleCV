@@ -29,15 +29,15 @@ function EducationInfo(props: EducationInfoProps) {
           <Row className="education info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
-                <ReadItem value={getIntlTime(item.start)} suffix="&ensp;-&ensp;"/>
-                {item.today ? getIntlText('present') : <ReadItem value={getIntlTime(item.end)}/>}
+                <ReadItem value={getIntlTime(item.start)} needCol={false} suffix="&ensp;-&ensp;"/>
+                {item.today ? getIntlText('present') : <ReadItem needCol={false} value={getIntlTime(item.end)}/>}
               </>
             } needCol span={span}/>
             <ReadItem needPlace className="center" value={item.name} needCol span={span}/>
             <ReadItem needPlace className="right" value={
               <>
-                <ReadItem value={item.major} />
-                {item.degree.value ? <ReadItem value={'(' + getIntlText(item.degree.value) + ')'} /> : ''}
+                <ReadItem value={item.major} needCol={false} />
+                {item.degree.value ? <ReadItem needCol={false}  value={'(' + getIntlText(item.degree.value) + ')'} /> : ''}
               </>
             } needCol span={span}/>
           </Row>

@@ -2,8 +2,8 @@
  * @Description: 简历编辑页面头部
  * @Author: luyi.lss
  * @Date: 2024-09-13 00:07:08
- * @LastEditors: luyi.lss
- * @LastEditTime: 2024-12-10 14:04:08
+ * @LastEditors: luyi
+ * @LastEditTime: 2024-12-14 00:46:21
  */
 import { Button, Space, Tooltip } from "antd";
 import './index.less';
@@ -12,7 +12,6 @@ import { _html2Canvas, exportPdf } from "@/utils/convert-pdf";
 import { connect } from "dva";
 import { IEditResumeModel } from "@/models/edit-resume";
 import { useState } from "react";
-import { GithubOutlined } from "@ant-design/icons";
 function Header(props: {
   className?: string;
   baseInfo: IEditResumeModel['baseInfo'];
@@ -73,7 +72,7 @@ function Header(props: {
         <Button type="primary" ghost onClick={onDownloadImg}>下载图片</Button>
         <Button type="primary" ghost onClick={onDownloadPDF} loading={downloadLoading}>下载PDF</Button>
         <Tooltip title="">
-          <GithubOutlined className="github-icon" onClick={onJumpEnter}/>
+          <i className="iconfont github-icon" onClick={onJumpEnter}>&#xe673;</i>
         </Tooltip>
       </Space>
     </ThreeColumnLayout>

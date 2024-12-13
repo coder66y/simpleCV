@@ -1,4 +1,3 @@
-import { AppstoreOutlined, AuditOutlined, ColumnHeightOutlined, FileAddOutlined, FileTextOutlined, HeartOutlined, HomeOutlined, IdcardOutlined, ProfileOutlined, ProjectOutlined, SkinOutlined, SolutionOutlined, TranslationOutlined, UserOutlined, VerifiedOutlined } from '@ant-design/icons'
 import { ReactNode } from 'react';
 import { ILeftInfoIconConfig, IRightTabConfig, IModuleInfoConfig } from './types';
 export enum ThemeConfigKeyEnum {
@@ -14,25 +13,25 @@ export const leftIconConfig: ILeftInfoIconConfig[] = [
     title: '间距设置',
     type:'pop',
     key: ThemeConfigKeyEnum.SPACEING,
-    icon: <ColumnHeightOutlined />
+    icon: <i className='iconfont'>&#xe614;</i>
   },
   {
     title: '皮肤设置',
     type:'pop',
     key: ThemeConfigKeyEnum.SKIN,
-    icon: <SkinOutlined />
+    icon: <i className='iconfont'>&#xe91e;</i>
   },
   {
     title: '语言/字体',
     type:'pop',
     key: ThemeConfigKeyEnum.LANGUAGE,
-    icon: <TranslationOutlined />
+    icon: <i className='iconfont'>&#xe605;</i>
   },
   {
     title: '更换模板',
     type:'modal',
     key: ThemeConfigKeyEnum.TEMPLATE,
-    icon: <AppstoreOutlined />
+    icon: <i className='iconfont'>&#xe652;</i>
   },
 ]
 
@@ -103,7 +102,6 @@ export const infoModuleList: IModuleInfoConfig[] = [
   {
     title: '项目经历',
     originalTitle: '项目经历',
-    icon: <ColumnHeightOutlined />,
     key: ContentConfigKeyEnum.PROJECT_EXPERIENCE,
   },
   {
@@ -135,17 +133,17 @@ export const infoModuleList: IModuleInfoConfig[] = [
 
 /** 模块图标映射 */
 export const infoModuleIconMap = new Map<string, ReactNode>([
-  [ContentConfigKeyEnum.BASIC_INFO, <UserOutlined />],
-  [ContentConfigKeyEnum.EDUCATION, <AuditOutlined />],
-  [ContentConfigKeyEnum.WORK_EXPERIENCE, <ColumnHeightOutlined />],
-  [ContentConfigKeyEnum.SCHOOL_EXPERIENCE,<HomeOutlined />],
-  [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <ProjectOutlined />],
-  [ContentConfigKeyEnum.SKILLS, <ProfileOutlined />],
-  [ContentConfigKeyEnum.SELF_EVALUATION, <SolutionOutlined />],
-  [ContentConfigKeyEnum.HONOR, <VerifiedOutlined />],
-  [ContentConfigKeyEnum.HOBBY, <HeartOutlined />],
-  [ContentConfigKeyEnum.CUSTOMIZATION, <FileAddOutlined />],
-  [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <FileTextOutlined />],
+  [ContentConfigKeyEnum.BASIC_INFO, <i className='iconfont'>&#xe60a;</i>],
+  [ContentConfigKeyEnum.EDUCATION, <i className='iconfont'>&#xe656;</i>],
+  [ContentConfigKeyEnum.WORK_EXPERIENCE, <i className='iconfont'>&#xe63c;</i>],
+  [ContentConfigKeyEnum.SCHOOL_EXPERIENCE,<i className='iconfont'>&#xe689;</i>],
+  [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <i className='iconfont'>&#xe615;</i>],
+  [ContentConfigKeyEnum.SKILLS, <i className='iconfont'>&#xe60f;</i>],
+  [ContentConfigKeyEnum.SELF_EVALUATION, <i className='iconfont'>&#xe61b;</i>],
+  [ContentConfigKeyEnum.HONOR, <i className='iconfont'>&#xe619;</i>],
+  [ContentConfigKeyEnum.HOBBY, <i className='iconfont'>&#xe62a;</i>],
+  [ContentConfigKeyEnum.CUSTOMIZATION, <i className='iconfont'>&#xeb6a;</i>],
+  [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <i className='iconfont'>&#xe648;</i>],
 ])
 
 /** 排序类型枚举 */

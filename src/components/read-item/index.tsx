@@ -20,7 +20,7 @@ export interface IReadItemProps {
 }
 
 export default function ReadItem(props: IReadItemProps) {
-  const { value, label, suffix = '', prefix = '', needCol = false, needPlace = false, span, className = ''} = props;
+  const { value, label, suffix = '', prefix = '', needCol = true, needPlace = false, span, className = ''} = props;
   const readItem = <div className={`${className} read-item`}>
     <span className="read-item-label" >{label ? label + '：' : ''}</span>
     <span className="read-item-value">{value ? prefix + value + suffix : ''}</span>

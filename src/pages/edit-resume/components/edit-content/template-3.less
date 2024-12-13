@@ -1,0 +1,166 @@
+.template-3 {
+  &-header {
+    font-weight: 700;
+
+    .left-box {
+      overflow: hidden;
+      padding-top: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .resume-title {
+        font-size: 22px;
+        padding: 4px 0;
+      }
+
+      dd {
+        font-size: 16px;
+        margin-left: 0;
+
+        p {
+          margin: 0;
+        }
+        p:last-child {
+          display: none;
+        }
+      }
+
+      
+    }
+
+    .right-box {
+      display: none;
+      width: 0;
+
+      & > span {
+        background-color: var(--secondaryColor);
+        border-radius: 50%;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 10px;
+        text-align: center;
+        width: 40px;
+      }
+      
+    }
+  }
+
+  &-content {
+    margin: 0 var(--pageMargin);
+
+    .module-title {
+      position: relative;
+      color: var(--secondaryColor);
+      pointer-events: auto;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: 400;
+      height: 24px;
+      line-height: 24px;
+      min-width: 140px;
+      position: relative;
+      vertical-align: top;
+
+      .title-text {
+        font-size: 18px;
+        font-weight: 700;
+        display: block;
+        height: 100%;
+        position: relative;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .iconfont::before {
+        position: relative;
+        top: 2px;
+        left: -10px;
+        font-size: 18px;
+        color: #fff;
+        background-color: var(--secondaryColor);
+        border-radius: 50%;
+        padding: 8px;
+      }
+      .title-basicInfo::before {
+        content: '\e8ba';
+        font-weight: 200;
+      }
+
+      .title-education::before {
+        content: '\e656';
+      }
+
+      .title-schoolExperience::before {
+        content: '\e689';
+      }
+
+      .title-workExperience::before {
+        content: '\e63c';
+      }
+
+      .title-internshipExperience::before {
+        content: '\e648';
+      }
+      .title-skills::before {
+        content: '\e60f';
+        font-weight: 300;
+      }
+      .title-projectExperience::before {
+        content: '\e615';
+      }
+      .title-honors::before {
+        content: '\e619';
+      }
+      .title-hobby::before {
+        content: '\e62a';
+        font-weight: 700;
+      }
+
+      .title-selfEvaluation::before {
+        content: '\e61b';
+      }
+
+      .title-customization::before {
+        content: '\eb6a';
+        font-weight: 400;
+      }
+    }
+  }
+
+  &-info-module {
+    border-color: var(--secondaryColor);
+    display: block;
+    position: relative;
+    .module-content-main {
+      line-height: var(--lineHeight);
+      margin: var(--moduleMargin) 0;
+      font-size: var(--fontSize);
+      font-family: var(--fontFamily);
+
+      .ql-container {
+        font-size: var(--fontSize);
+
+        .ql-editor ul {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  .module-line {
+    margin-left: 35px;
+    border-top: 1px solid var(--secondaryColor);
+    position: relative;
+    width: calc(100% - 35px);  
+  }
+
+  .show-module-content-wrapper {
+    padding: 0;
+  }
+}
