@@ -14,9 +14,6 @@ importers:
       '@ant-design/colors':
         specifier: ^7.1.0
         version: 7.1.0
-      '@ant-design/icons':
-        specifier: ^5.4.0
-        version: 5.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/pro-components':
         specifier: ^2.7.15
         version: 2.7.15(antd@5.20.4(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(rc-field-form@2.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -92,7 +89,7 @@ importers:
         version: 5.0.3
       umi-plugin-react:
         specifier: ^1.15.9
-        version: 1.15.9(@babel/core@7.25.2)(dva-core@2.0.4(redux@3.7.2))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 1.15.9(@babel/core@7.25.2)(dva-core@2.0.4(redux@4.2.1))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
 
 packages:
 
@@ -9345,7 +9342,7 @@ snapshots:
       dayjs: 1.11.13
       dva-core: 2.0.4(redux@4.2.1)
       dva-immer: 1.0.2(dva@2.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      dva-loading: 3.0.25(dva-core@2.0.4(redux@4.2.1))
+      dva-loading: 3.0.25(dva-core@2.0.4(redux@3.7.2))
       event-emitter: 0.3.5
       fast-deep-equal: 3.1.3
       intl: 1.2.5
@@ -11054,12 +11051,12 @@ snapshots:
       dva: 2.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       immer: 8.0.4
 
-  dva-loading@3.0.25(dva-core@2.0.4(redux@4.2.1)):
+  dva-loading@3.0.25(dva-core@2.0.4(redux@3.7.2)):
     dependencies:
       '@babel/runtime': 7.25.6
       dva-core: 2.0.4(redux@4.2.1)
 
-  dva-loading@3.0.6(dva-core@2.0.4(redux@3.7.2)):
+  dva-loading@3.0.6(dva-core@2.0.4(redux@4.2.1)):
     dependencies:
       '@babel/runtime': 7.25.6
       dva-core: 2.0.4(redux@4.2.1)
@@ -16200,12 +16197,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  umi-plugin-dva@1.11.4(dva-core@2.0.4(redux@3.7.2))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  umi-plugin-dva@1.11.4(dva-core@2.0.4(redux@4.2.1))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       babel-plugin-dva-hmr: 0.4.2(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       dva: 2.6.0-beta.23(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)
       dva-immer: 0.4.5(dva@2.6.0-beta.23(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1))
-      dva-loading: 3.0.6(dva-core@2.0.4(redux@3.7.2))
+      dva-loading: 3.0.6(dva-core@2.0.4(redux@4.2.1))
       globby: 7.1.1
       lodash.uniq: 4.5.0
       object-assign: 4.1.1
@@ -16247,7 +16244,7 @@ snapshots:
       umi-utils: 1.4.2
       url-polyfill: 1.1.3
 
-  umi-plugin-react@1.15.9(@babel/core@7.25.2)(dva-core@2.0.4(redux@3.7.2))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  umi-plugin-react@1.15.9(@babel/core@7.25.2)(dva-core@2.0.4(redux@4.2.1))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       antd: 3.26.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       antd-mobile: 2.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -16259,7 +16256,7 @@ snapshots:
       preact-compat: 3.19.0(preact@8.4.2)
       register-service-worker: 1.6.2
       umi-plugin-dll: 1.6.1
-      umi-plugin-dva: 1.11.4(dva-core@2.0.4(redux@3.7.2))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      umi-plugin-dva: 1.11.4(dva-core@2.0.4(redux@4.2.1))(react-dom@18.3.1(react@18.3.1))(react-router@6.3.0(react@18.3.1))(react@18.3.1)(redbox-react@1.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       umi-plugin-hd: 1.7.0
       umi-plugin-locale: 2.11.7(react@18.3.1)
       umi-plugin-polyfills: 1.4.2

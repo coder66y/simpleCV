@@ -8,6 +8,7 @@ export default defineConfig({
   // 思源黑体，楷体, 思源宋体
   styles: ['https://static.zeoseven.com/zsft/288/main/result.css', 'https://static.zeoseven.com/zsft/5/main/result.css', 'https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css'],
   publicPath: '/simpleCV/',
+  favicons: ['/favicon.png'],
   theme: { 
     '@primary-color': '#44a6d7',
     "@grey-2": '#616161',
