@@ -1,10 +1,17 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
+const _getScale = () => {
+  if(window.devicePixelRatio > 1) {
+    return window.devicePixelRatio;
+  }
+  return 2;
+}
+
 export const _html2Canvas = async (element: HTMLElement) => {
   return await html2canvas(element, {
     backgroundColor: "#ffffff",
-    scale: window.devicePixelRatio ?? 2,
+    scale: _getScale(),
   });
 }
 
@@ -26,7 +33,8 @@ export async function exportPdf (element: HTMLElement, filename = '未命名', c
   container.appendChild(element.cloneNode(true));
 
   // 为了保证显示质量
-  const scale = window.devicePixelRatio ?? 2;
+
+  const scale = _getScale();
   const width = originWidth;
 
   const PDF_WIDTH = width * scale;
