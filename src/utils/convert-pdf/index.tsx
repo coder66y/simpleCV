@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
 export const _html2Canvas = async (element: HTMLElement) => {
   return await html2canvas(element, {
     backgroundColor: "#ffffff",
-    scale: window.devicePixelRatio * 2,
+    scale: window.devicePixelRatio ?? 2,
   });
 }
 
@@ -26,7 +26,7 @@ export async function exportPdf (element: HTMLElement, filename = '未命名', c
   container.appendChild(element.cloneNode(true));
 
   // 为了保证显示质量
-  const scale = window.devicePixelRatio * 2;
+  const scale = window.devicePixelRatio ?? 2;
   const width = originWidth;
 
   const PDF_WIDTH = width * scale;
