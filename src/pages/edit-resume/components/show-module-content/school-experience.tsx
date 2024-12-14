@@ -4,6 +4,7 @@ import { IEditResumeModel, ISchoolExperienceValues } from "@/models/edit-resume"
 import { Col, Row } from "antd"
 import { connect } from "dva"
 import { injectIntl, IntlShape } from "react-intl"
+import { dateFormatConfig } from "../../config"
 export interface SchoolExperienceProps {
   schoolExperience: ISchoolExperienceValues[];
   intl: IntlShape;
@@ -15,11 +16,7 @@ function SchoolExperience(props: SchoolExperienceProps) {
     return intl.formatMessage({id})
   }
   const getIntlTime = (date: string) => {
-    return intl.formatDate(date, {
-      month: 'short',
-      year: "numeric",
-      day: 'numeric'
-    })
+    return intl.formatDate(date, dateFormatConfig)
   }
   return (
     <div className="school-experience info-module-content-wrapper">

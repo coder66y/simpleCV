@@ -4,6 +4,7 @@ import { IEditResumeModel, IProjectExperienceValues } from "@/models/edit-resume
 import { Col, Row } from "antd"
 import { connect } from "dva"
 import { injectIntl, IntlShape } from "react-intl"
+import { dateFormatConfig } from "../../config"
 export interface ProjectExperienceProps {
   projectExperience: IProjectExperienceValues[];
   intl: IntlShape;
@@ -13,11 +14,7 @@ function ProjectExperience(props: ProjectExperienceProps) {
   const span= 8;
   const getIntlText = (id: string) => intl.formatMessage({id})
   const getIntlTime = (date: string) => {
-    return intl.formatDate(date, {
-      month: 'short',
-      year: "numeric",
-      day: 'numeric'
-    })
+    return intl.formatDate(date, dateFormatConfig)
   }
   return (
     <div className="project-experience info-module-content-wrapper">

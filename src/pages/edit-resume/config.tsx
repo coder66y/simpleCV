@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 import { ILeftInfoIconConfig, IRightTabConfig, IModuleInfoConfig } from './types';
+import { FormatDateOptions } from 'react-intl';
+
+export const dateFormatConfig: FormatDateOptions = {
+  month: 'short',
+  year: "numeric",
+}
 export enum ThemeConfigKeyEnum {
   SPACEING = "spacing",
   SKIN = "skin",

@@ -2,6 +2,7 @@ import { Form } from "antd";
 import { useTheme, useThemeDispatch } from "../../store/theme-context";
 import temp1 from '@/assets/template/template-1.png'
 import temp2 from '@/assets/template/template-2.png'
+import temp3 from '@/assets/template/template-3.png'
 export default function TemplateSetForm({onClose}: {
   onClose?: () => void;
 }) {
@@ -21,6 +22,7 @@ export default function TemplateSetForm({onClose}: {
     },
     {
       tempName: '模板3-简洁',
+      url: temp3,
       tempId: '3'
     },
   ]
@@ -47,8 +49,7 @@ export default function TemplateSetForm({onClose}: {
               onClick={() => {
                 onClickItem(item.tempId)
               }}>
-              
-              {/* {item.tempName} */}
+              <div className="template-item-mask">{item.tempName}</div>
               <img src={item.url} width={"100%"}/>
             </div>
           )

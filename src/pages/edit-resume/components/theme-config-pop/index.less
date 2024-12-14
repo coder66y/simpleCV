@@ -22,25 +22,49 @@
 
 .theme-config-modal {
   .ant-modal, .ant-modal-content {
-    min-width: 1200px;
+    min-width: 1000px;
   }
 }
 
 .template-set-form {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   .template-item {
+    position: relative;
     width: 300px;
     text-align: center;
     border: 2px #ccc solid;
     margin: 5px;
   }
 
-  .template-item:active {
+  .template-item-mask {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    vertical-align: middle;
+    background-color: #eaeaea;
+    filter: opacity(0.5);
+    
+    z-index: 9;
+    color: #000;
+    width: 100%;
+    height: 100%;
+  }
+
+  .template-item:hover {
     border: 2px @primary-color solid;
+    .template-item-mask {
+      z-index: -9;
+    }
   }
 
   .active-template-item {
     border: 2px @primary-color solid;
+    .template-item-mask {
+      z-index: -9;
+    }
   }
 }

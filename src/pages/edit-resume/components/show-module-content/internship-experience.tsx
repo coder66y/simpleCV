@@ -4,6 +4,7 @@ import { IEditResumeModel, IInternshipExperienceValues } from "@/models/edit-res
 import { Col, Row } from "antd"
 import { connect } from "dva"
 import { injectIntl, IntlShape } from "react-intl"
+import { dateFormatConfig } from "../../config"
 export interface InternshipExperienceProps {
   internshipExperience: IInternshipExperienceValues[];
   intl: IntlShape;
@@ -15,11 +16,7 @@ function InternshipExperience(props: InternshipExperienceProps) {
     return intl.formatMessage({id})
   }
   const getIntlTime = (date: string) => {
-    return intl.formatDate(date, {
-      month: 'short',
-      year: "numeric",
-      day: 'numeric'
-    })
+    return intl.formatDate(date, dateFormatConfig)
   }
   return (
     <div className="internship-experience info-module-content-wrapper">
@@ -30,7 +27,7 @@ function InternshipExperience(props: InternshipExperienceProps) {
             <ReadItem needPlace className="left" value={
               <>
                 <ReadItem needCol={false} value={getIntlTime(item.start)} suffix="&ensp;-&ensp;"/>
-                {item.today ? getIntlText('present') : <ReadItem needCol={false}  value={getIntlTime(item.end)}/>}
+                {item.today ? getIntlText('present') : <ReadItem needCol={false} value={getIntlTime(item.end)}/>}
               </>
             } needCol span={span}/>
             <ReadItem needPlace className="center" value={item.name} span={span}/>
