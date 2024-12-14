@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi
- * @LastEditTime: 2024-12-14 00:50:21
+ * @LastEditTime: 2024-12-14 11:36:00
  */
 import { useTheme } from '../../store/theme-context';
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
@@ -105,11 +105,11 @@ function EditContent(props: IEditContentProps) {
               return item.hidden ? null : <div
                 className={`${rootCls}-info-module`}
                 key={item.key}
-                onClick={(e) => {
-                  onContentClick(item)
-                }}
               >
                 <div
+                  onClick={(e) => {
+                    onContentClick(item)
+                  }}
                   className='module-title'
                 >
                   <span className={`title-text`}>
