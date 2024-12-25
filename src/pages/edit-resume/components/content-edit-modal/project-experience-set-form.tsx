@@ -195,7 +195,10 @@ function ProjectExperienceSetForm(props: IProjectExperienceSetFormProps) {
   }
 
   const onAdd = () => {
-    handleChange(emptyData)
+    handleChange({
+      ...emptyData,
+      id: - Math.ceil(Math.random() * 10000),
+    })
   }
   const onSort = (type: SortTypeEnum, index: number) => {
     dispatch({
@@ -212,7 +215,7 @@ function ProjectExperienceSetForm(props: IProjectExperienceSetFormProps) {
     {
       projectExperience?.map?.((item, index) => {
         return <ProjectExperienceBaseSetForm
-          key={`${item.name}-${item.start}-${item.end}-${item.job}-${item.content}-${index}`}
+          key={item.id}
           onChange={(values: IProjectExperienceSetFormValues) => {
             handleChange(values, index)
           }}

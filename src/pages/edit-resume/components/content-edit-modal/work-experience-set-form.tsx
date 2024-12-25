@@ -195,7 +195,10 @@ function WorkExperienceSetForm(props: IWorkExperienceSetFormProps) {
   }
 
   const onAdd = () => {
-    handleChange(emptyData)
+    handleChange({
+      ...emptyData,
+      id: - Math.ceil(Math.random() * 10000),
+    })
   }
   const onSort = (type: SortTypeEnum, index: number) => {
     dispatch({
@@ -212,7 +215,7 @@ function WorkExperienceSetForm(props: IWorkExperienceSetFormProps) {
     {
       workExperience?.map?.((item, index) => {
         return <WorkExperienceBaseSetForm
-          key={`${item.name}-${item.start}-${item.end}-${item.job}-${item.content}-${index}`}
+          key={item.id}
           onChange={(values: IWorkExperienceSetFormValues) => {
             handleChange(values, index)
           }}

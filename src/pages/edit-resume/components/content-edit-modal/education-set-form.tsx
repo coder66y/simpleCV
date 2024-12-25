@@ -193,10 +193,13 @@ function EducationSetForm(props: IEducationSetFormProps) {
       }
     })
   }
-
   const onAdd = () => {
-    handleChange(emptyData)
+    handleChange({
+      ...emptyData,
+      id: - Math.ceil(Math.random() * 10000),
+    })
   }
+
   const onSort = (type: SortTypeEnum, index: number) => {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/sortModuleFormValues`,
@@ -212,7 +215,7 @@ function EducationSetForm(props: IEducationSetFormProps) {
     {
       educationInfo?.map?.((item, index) => {
         return <EducationSetBaseForm
-          key={`${item.name}-${item.start}-${item.end}-${item.major}-${item.content}-${index}`}
+          key={item.id}
           onChange={(values: IEducationSetFormValues) => {
             handleChange(values, index)
           }}

@@ -194,8 +194,12 @@ function InternshipExperienceSetForm(props: IInternshipExperienceSetFormProps) {
   }
 
   const onAdd = () => {
-    handleChange(emptyData)
+    handleChange({
+      ...emptyData,
+      id: - Math.ceil(Math.random() * 10000),
+    })
   }
+
   const onSort = (type: SortTypeEnum, index: number) => {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/sortModuleFormValues`,
@@ -211,7 +215,7 @@ function InternshipExperienceSetForm(props: IInternshipExperienceSetFormProps) {
     {
       internshipExperience?.map?.((item, index) => {
         return <InternshipExperienceBaseSetForm
-          key={`${item.name}-${item.start}-${item.end}-${item.job}-${item.content}-${index}`}
+          key={item.id}
           onChange={(values: IInternshipExperienceSetFormValues) => {
             handleChange(values, index)
           }}

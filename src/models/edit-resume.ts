@@ -10,6 +10,7 @@ export interface SelectOptionsType {
 
 /** 教育经历类型 */
 export interface IEducationInfoValues {
+  id: number;
   content: string;
   degree: SelectOptionsType;
   end: string;
@@ -19,6 +20,7 @@ export interface IEducationInfoValues {
   today: boolean;
 }
 export interface IWorkExperienceValues {
+  id: number;
   content: string;
   end: string;
   job: string;
@@ -27,6 +29,7 @@ export interface IWorkExperienceValues {
   today: boolean;
 }
 export interface IProjectExperienceValues {
+  id: number;
   content: string;
   end: string;
   job: string;
@@ -35,6 +38,7 @@ export interface IProjectExperienceValues {
   today: boolean;
 }
 export interface ISchoolExperienceValues {
+  id: number;
   content: string;
   end: string;
   job: string;
@@ -43,6 +47,7 @@ export interface ISchoolExperienceValues {
   today: boolean;
 }
 export interface IInternshipExperienceValues {
+  id: number;
   content: string;
   end: string;
   job: string;
@@ -149,6 +154,7 @@ const initState = () => {
       salary: '13k-18k'
     },
     education: [{
+      id:1,
       content: "<p> 主修课程： 管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销 </p>",
       degree: {label: "本科", value: "university"},
       end: "2017-11-01",
@@ -159,6 +165,7 @@ const initState = () => {
     }],
     workExperience: [
       {
+        id: 1,
         "name": "xxx公司",
         "job": "xxx职位",
         "start": "2024-06-01",
@@ -169,6 +176,7 @@ const initState = () => {
     ],
     projectExperience: [
       {
+        id: 1,
         "name": "xx项目",
         "job": "xx角色",
         "start": "2024-01-01",
@@ -179,6 +187,7 @@ const initState = () => {
     ],
     schoolExperience: [
       {
+        id: 1,
         "name": "什么学校",
         "job": "什么社团职位",
         "start": "2024-11-01",
@@ -189,6 +198,7 @@ const initState = () => {
     ],
     internshipExperience: [
       {
+        id: 1,
         "name": "xx公司",
         "job": "xxx实习生",
         "start": "2024-02-01",
