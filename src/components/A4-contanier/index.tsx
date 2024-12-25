@@ -31,7 +31,7 @@ export default function A4Container(props: A4ContainerProps) {
     return () => {
       $content && obsever.unobserve($content)
     }
-  }, [])
+  }, [pageSize])
 
   return (
     <div className="tpl-box" style={{height: A4Height * pageSize}}>
@@ -47,7 +47,7 @@ export default function A4Container(props: A4ContainerProps) {
               key={index} style={{
                 position: "absolute",
                 left: 0,
-                top: (index + 1) * A4Height - 15
+                top: (index + 1) * A4Height - 13
               }}>
                 <span className="page-line-text">分页区，请在内容里用换行避开此区域</span>
                 <span className="page-line-text">第{index + 1}页/共{pageSize}页</span>
