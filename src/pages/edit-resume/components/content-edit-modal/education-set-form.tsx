@@ -39,7 +39,7 @@ const emptyData = {
 }
 
 /** 教育基础表单 */
-function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
+const EducationSetBaseForm = memo((props: IEducationSetBaseFormProps) => {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IEducationSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
@@ -150,14 +150,14 @@ function EducationSetBaseForm(props: IEducationSetBaseFormProps) {
       <Row>
         <Col span={24}>
           <Form.Item name="content" layout="vertical" label="学业/专业描述：">
-            <QuillEditor />
+            <QuillEditor/>
           </Form.Item>
         </Col>
       </Row>
     </Form>
     </div>
   )
-}
+})
 
 function EducationSetForm(props: IEducationSetFormProps) {
   const { dispatch, educationInfo = [], infoModuleList } = props;
@@ -216,9 +216,7 @@ function EducationSetForm(props: IEducationSetFormProps) {
       educationInfo?.map?.((item, index) => {
         return <EducationSetBaseForm
           key={item.id}
-          onChange={(values: IEducationSetFormValues) => {
-            handleChange(values, index)
-          }}
+          onChange={handleChange}
           length={educationInfo.length}
           onSort={onSort}
           initValues={{

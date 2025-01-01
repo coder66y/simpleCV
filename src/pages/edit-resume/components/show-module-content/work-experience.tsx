@@ -24,7 +24,7 @@ function WorkExperience(props: WorkExperienceProps) {
     <div className="work-experience info-module-content-wrapper">
       {
         workExperience?.map?.(item => (
-          <>
+          <div key={item.id}>
           <Row className="work-experience info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
@@ -44,7 +44,7 @@ function WorkExperience(props: WorkExperienceProps) {
             <QuillEditor readOnly value={item.content}/>
             </Col>
           </Row>}
-          </>
+          </div>
         ))
       }
     </div>

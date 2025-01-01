@@ -1,7 +1,7 @@
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume'
 import { useDebounceFn } from 'ahooks';
 import { Checkbox, Col, DatePicker, Form, Input, Row, Select, Space } from 'antd';
-import React, { useEffect } from 'react'
+import React from 'react'
 import ImgReader from '@/components/img-reader';
 import { connect } from 'dva'
 import type { Dayjs } from 'dayjs';

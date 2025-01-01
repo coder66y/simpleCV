@@ -1,35 +1,36 @@
 import React from 'react';
-import ReactQuill, { ReactQuillProps } from 'react-quill';
-import 'react-quill/dist/quill.snow.css'
-import './index.less'
-export interface IEditorProps extends ReactQuillProps {
+import 'quill/dist/quill.snow.css';
+import './index.less';
+
+import Editor, { Value } from './editor';
+export interface IEditorProps {
+  value?: string;
+  readOnly?: boolean;
+  onChange?: (value: string) => void;
 }
 
 /** 编辑器 */
-const Editor = (props: IEditorProps) => {
-  const { value, readOnly, onChange, ...rest } = props;
+const QuillEditor = (props: IEditorProps) => {
+  const { value, readOnly = false, onChange } = props;
   const  toolbarOptions = [
     [{ 'indent': '-1' }, { 'indent': '+1' }],
     [{ 'align': [] }],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
     ['bold', 'italic', 'underline', 'link'],
     [{ 'color': [] }, { 'background': [] }],
-  ]
-  return <ReactQuill
+  ]  
+  return <Editor
     theme="snow"
     value={value}
-    onChange={(...arg) => {
-      // 非用户操作，不触发更改
-      if(arg[2] !== 'user') return;
-      onChange?.(...arg)
+    onChange={(value: Value) => {
+      onChange?.(value as string)
     }}
     readOnly={readOnly}
     modules={{
       toolbar: readOnly ? false : toolbarOptions
     }}
     className='quill-editor'
-    {...rest}
   />
 }
 
-export default Editor;
+export default QuillEditor;

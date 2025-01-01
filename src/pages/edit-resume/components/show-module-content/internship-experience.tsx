@@ -22,7 +22,7 @@ function InternshipExperience(props: InternshipExperienceProps) {
     <div className="internship-experience info-module-content-wrapper">
       {
         internshipExperience?.map?.(item => (
-          <>
+          <div key={item.id}>
           <Row className="internship-experience info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
@@ -42,7 +42,7 @@ function InternshipExperience(props: InternshipExperienceProps) {
             <QuillEditor readOnly value={item.content}/>
             </Col>
           </Row>}
-          </>
+          </div>
         ))
       }
     </div>

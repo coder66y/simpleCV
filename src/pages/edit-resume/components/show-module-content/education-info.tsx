@@ -22,7 +22,7 @@ function EducationInfo(props: EducationInfoProps) {
     <div className="education info-module-content-wrapper">
       {
         education?.map?.(item => (
-          <>
+          <div key={item.id}>
           <Row className="education info-module-content" >
             <ReadItem needPlace className="left" value={
               <>
@@ -44,7 +44,7 @@ function EducationInfo(props: EducationInfoProps) {
             </Col>
           </Row>
           }
-          </>
+          </div>
         ))
       }
     </div>

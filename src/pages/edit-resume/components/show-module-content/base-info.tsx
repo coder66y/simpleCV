@@ -28,7 +28,7 @@ function BaseInfo(props: IBaseInfoProps) {
         </div> 
         }
         if(key === 'birthday') {
-          return <ReadItem span={colSpan1} className="read-item-birthday" value={baseInfo?.birthday ? getIntlDate(baseInfo?.birthday) : ''} label={getIntlText('birthday')} />
+          return <ReadItem key={key} span={colSpan1} className="read-item-birthday" value={baseInfo?.birthday ? getIntlDate(baseInfo?.birthday) : ''} label={getIntlText('birthday')} />
         }
         if(key === 'height') {
           return <ReadItem span={colSpan1} className="read-item-heightWeight" value={
@@ -40,11 +40,11 @@ function BaseInfo(props: IBaseInfoProps) {
         }
         if(['gender', 'workAge', 'maritalStatus', 'political', 'joinTime'].includes(key)) {
           const _value = (value as SelectOptionsType)?.value
-          return <ReadItem span={colSpan1} value={_value ? getIntlText(_value) : ''} label={getIntlText(key)} />
+          return <ReadItem key={key}  span={colSpan1} value={_value ? getIntlText(_value) : ''} label={getIntlText(key)} />
         }
         const _value = (value as string)
         return (
-          <ReadItem span={colSpan1} className={`read-item-${key}`} suffix={key === 'age' ? '岁' : undefined} value={_value ?? ''} label={getIntlText(key)} />
+          <ReadItem  key={key}  span={colSpan1} className={`read-item-${key}`} suffix={key === 'age' ? '岁' : undefined} value={_value ?? ''} label={getIntlText(key)} />
         )
       })}
     </Row>
