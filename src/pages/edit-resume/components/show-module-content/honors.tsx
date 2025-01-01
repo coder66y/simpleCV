@@ -14,7 +14,7 @@ function Honors(props: HonorsProps) {
       <Row>
       {
         data?.map(item => (
-          <Tag>{item}</Tag>
+          <Tag key={item}>{item}</Tag>
         ))
       }
       </Row>

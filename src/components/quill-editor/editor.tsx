@@ -3,7 +3,6 @@ import Quill, { Delta, Range, QuillOptions, EmitterSource } from "quill";
 import ReactDOM from "react-dom";
 import isEqual from "lodash.isequal";
 export type Value = string;
-
 export interface IQuillEditorProps extends QuillOptions {
   theme?: string;
   value?: Value;
@@ -15,6 +14,7 @@ export interface IQuillEditorProps extends QuillOptions {
     editor: Quill
   ) => void;
   readOnly?: boolean;
+  children?: React.ReactElement;
   preserveWhitespace?: boolean;
   modules?: any;
   className?: string;
@@ -22,16 +22,18 @@ export interface IQuillEditorProps extends QuillOptions {
 const Editor = (props: IQuillEditorProps) => {
   const {
     value,
+    children,
     readOnly,
     defaultValue,
     className,
+    preserveWhitespace,
     onChange,
   } = props;
   let editingArea: React.ReactInstance | null = null;
 
   const editor = useRef<Quill>();
-  const _selection = useRef<Range>(new Range(0, 0));
-  const _value = useRef<Value>('');
+  const selectionRef = useRef<Range>(new Range(0, 0));
+  const valueRef = useRef<Value>('');
 
   useEffect(() => {
     instantiateEditor()
@@ -60,12 +62,17 @@ const Editor = (props: IQuillEditorProps) => {
     }
   }
 
+  const unListenChange = () => {
+    if (editor.current) {
+      editor.current.off('editor-change', onEditorChange);
+    }
+  }
   const getEditorContents = (): Value  => {
-    return _value.current;
+    return valueRef.current;
   }
 
   const getEditorSelection = (): Range => {
-    return _selection.current;
+    return selectionRef.current;
   }
 
   const isEqualValue = (value: any, nextValue: any): boolean => {
@@ -78,9 +85,9 @@ const Editor = (props: IQuillEditorProps) => {
     source: EmitterSource,
     editor: Quill,
   ) => {
-    if(isEqualValue(value, getEditorContents())) return;
     const htmlStr = editor.getSemanticHTML()
-    _value.current = htmlStr;
+    if(isEqualValue(htmlStr, getEditorContents())) return;
+    valueRef.current = htmlStr;
     onChange?.(htmlStr, delta, source, editor)
   }
 
@@ -92,7 +99,7 @@ const Editor = (props: IQuillEditorProps) => {
     if (!editor) return;
     const currentSelection = getEditorSelection();
     if (isEqual(nextSelection, currentSelection)) return;
-    _selection.current = nextSelection;
+    selectionRef.current = nextSelection;
   }
 
   const onEditorChange = (
@@ -117,15 +124,7 @@ const Editor = (props: IQuillEditorProps) => {
     }
   };
 
-  const unListenChange = () => {
-    if (editor.current) {
-      editor.current.off('editor-change');
-    }
-  }
-
   const renderEditingArea = (): JSX.Element => {
-    const {children, preserveWhitespace} = props;
-
     const properties = {
       ref: (instance: React.ReactInstance | null) => {
         editingArea = instance
@@ -188,11 +187,13 @@ const Editor = (props: IQuillEditorProps) => {
     }
   }
 
-  const setEditorContents = (editor: Quill, value: string) => {
-    if(value === getEditorContents()) return;
+  const setEditorContents = (editor: Quill, value: string): void => {
+    if(isEqualValue(value, getEditorContents())) return;
     const text = editor.clipboard.convert({
       html: value,
     });
+    console.info(`%c info text: %o`, 'color: green; font-size: 20px; font-weight: 700', text, value)
+    valueRef.current = value;
     editor.setContents(text);
     const sel = getEditorSelection();
     requestAnimationFrame(() => {
@@ -201,7 +202,7 @@ const Editor = (props: IQuillEditorProps) => {
   }
 
   const setEditorSelection = (editor: Quill, range: Range) => {
-    _selection.current = range;
+    selectionRef.current = range;
     if (range) {
       editor.setSelection(range);
     }

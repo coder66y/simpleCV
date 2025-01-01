@@ -24,7 +24,7 @@ function BaseInfo(props: IBaseInfoProps) {
         if(['photoShow', 'weight'].includes(key)) return null;
         if(key === 'photo') {
           return <div className="avatar-wrapper">
-          {baseInfo?.photoShow ? <img className="avatar" src={baseInfo?.photo} /> : null}
+          {baseInfo?.photoShow ? <img className="avatar" key={key} src={baseInfo?.photo} /> : null}
         </div> 
         }
         if(key === 'birthday') {

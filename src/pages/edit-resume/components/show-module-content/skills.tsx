@@ -18,7 +18,7 @@ function Skills(props: SkillsProps) {
       {content && <QuillEditor readOnly value={content}/>}
       <Row justify="space-between">
       {
-        data?.map(item => (
+        data?.map((item, index) => (
           <ReadItem
             needCol
             needPlace={false}
@@ -33,7 +33,7 @@ function Skills(props: SkillsProps) {
                 value={item?.mastery?.value}
                 valueSuffix={item.showBar ? `${item.mastery.value * 100}%` : getIntlText(`${item.mastery.value}`)}/>
             }
-            key={`${item.name}-${item.mastery.value}-${item.showBar}`}
+            key={`${item.name}${index}`}
           />
         ))
       }

@@ -39,7 +39,7 @@ const emptyData = {
 }
 
 /** 教育基础表单 */
-const EducationSetBaseForm = memo((props: IEducationSetBaseFormProps) => {
+const EducationSetBaseForm = (props: IEducationSetBaseFormProps) => {
   const { initValues, onChange, index, length = 0, onSort } = props;
   const [form] = Form.useForm<IEducationSetFormValues>();
   const colSpan1 = 14, colSpan2 = 10;
@@ -157,7 +157,7 @@ const EducationSetBaseForm = memo((props: IEducationSetBaseFormProps) => {
     </Form>
     </div>
   )
-})
+}
 
 function EducationSetForm(props: IEducationSetFormProps) {
   const { dispatch, educationInfo = [], infoModuleList } = props;

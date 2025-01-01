@@ -32,7 +32,6 @@
     "lodash.isequal": "^4.5.0",
     "normalize.css": "^8.0.1",
     "quill": "^2.0.3",
-    "react-cropper": "^2.3.3",
     "react-intl": "^6.7.1",
     "umi": "^4.3.15"
   },

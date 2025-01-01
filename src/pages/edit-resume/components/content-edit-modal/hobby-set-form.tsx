@@ -4,6 +4,7 @@ import { connect } from "dva";
 import { ContentConfigKeyEnum } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
+import { useDebounceFn } from "ahooks";
 export interface IHobbySetFormProps {
   dispatch: React.Dispatch<any>;
   hobby: IEditResumeModel['hobby'];
@@ -16,15 +17,19 @@ function HobbySetForm(props: IHobbySetFormProps) {
   const { data = [], content } = hobby ?? {}
   const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HOBBY)?.title ?? '';
 
-  const onChangeContent = (value: string) => {
+  const _dispatch = (action: string, payload: Record<string, any>) => {
     dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.HOBBY,
-        value: {
-          ...hobby,
-          content: value
-        }
+      type: `${EDIT_RESUME_NAME_SPACE}/${action}`,
+      payload,
+    })
+  }
+
+  const onChangeContent = (value: string) => {
+    _dispatch('changeFormValues', {
+      key: ContentConfigKeyEnum.HOBBY,
+      value: {
+        ...hobby,
+        content: value
       }
     })
   }
@@ -33,30 +38,28 @@ function HobbySetForm(props: IHobbySetFormProps) {
       message.warning(`请输入${title}`)
       return;
     }
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.HOBBY,
-        value: {
-          ...hobby,
-          data: [...data, name]
-        }
+    _dispatch('changeFormValues', {
+      key: ContentConfigKeyEnum.HOBBY,
+      value: {
+        ...hobby,
+        data: [...data, name]
       }
     })
     setName('')
   }
   const onDelete = (index: number) => {
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
+    _dispatch('changeFormValues', {
         key: ContentConfigKeyEnum.HOBBY,
         value: {
           ...hobby,
           data: data.filter((it, idx) => idx !== index)
         }
-      }
     })
   }
+  
+  const { run: _onChangeContent } = useDebounceFn((value) => {
+    onChangeContent?.(value)
+  }, { wait: 500 })
 
   return (
     <div className="hobby-set-form-wrapper">
@@ -69,14 +72,14 @@ function HobbySetForm(props: IHobbySetFormProps) {
       <Row>
         {
           data?.map((item, index) => {
-            return <Tag color="green" closeIcon onClose={() => onDelete(index)}>{item}</Tag>
+            return <Tag key={`${item}-${index}`} color="green" closeIcon onClose={() => onDelete(index)}>{item}</Tag>
           })
         }
       </Row>
       <Row>
         <Col span={24}>
           <div className="desc-title">{title}描述：</div>
-          <QuillEditor value={content} onChange={onChangeContent}/>
+          <QuillEditor value={content} onChange={_onChangeContent}/>
         </Col>
       </Row>
     </div>

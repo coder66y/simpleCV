@@ -5,6 +5,7 @@ import { connect } from "dva";
 import { ContentConfigKeyEnum } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
+import { useDebounceFn } from "ahooks";
 
 export interface IHonorsSetFormProps {
   dispatch: React.Dispatch<any>;
@@ -16,16 +17,20 @@ function HonorsSetForm(props: IHonorsSetFormProps) {
   const { infoModuleList, dispatch, honors } = props;
   const [name, setName] = useState<string>('')
   const { data = [], content } = honors ?? {}
-  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HONOR)?.title ?? ''
-  const onChangeContent = (value: string) => {
+  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.HONOR)?.title ?? '';
+
+  const _dispatch = (action: string, payload: Record<string, any>) => {
     dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.HONOR,
-        value: {
-          ...honors,
-          content: value
-        }
+      type: `${EDIT_RESUME_NAME_SPACE}/${action}`,
+      payload,
+    })
+  }
+  const onChangeContent = (value: string) => {
+    _dispatch('changeFormValues',{
+      key: ContentConfigKeyEnum.HONOR,
+      value: {
+        ...honors,
+        content: value
       }
     })
   }
@@ -34,30 +39,28 @@ function HonorsSetForm(props: IHonorsSetFormProps) {
       message.warning(`请输入${title}`)
       return;
     }
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
+    _dispatch('changeFormValues', {
         key: ContentConfigKeyEnum.HONOR,
         value: {
           ...honors,
           data: [...data, name]
         }
-      }
     })
     setName('')
   }
   const onDelete = (index: number) => {
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
+    _dispatch('changeFormValues', {
         key: ContentConfigKeyEnum.HONOR,
         value: {
           ...honors,
           data: data?.filter((it, idx) => idx !== index)
         }
-      }
     })
   }
+
+  const { run: _onChangeContent } = useDebounceFn((value) => {
+    onChangeContent?.(value)
+  }, { wait: 500 })
 
   return (
     <div className="honors-set-form-wrapper">
@@ -70,14 +73,14 @@ function HonorsSetForm(props: IHonorsSetFormProps) {
       <Row>
         {
           data?.map((item, index) => {
-            return <Tag color="green" closeIcon onClose={() => onDelete(index)}>{item}</Tag>
+            return <Tag key={item + index} color="green" closeIcon onClose={() => onDelete(index)}>{item}</Tag>
           })
         }
       </Row>
       <Row>
         <Col span={24}>
           <div className="desc-title">{title}描述：</div>
-          <QuillEditor value={content} onChange={onChangeContent}/>
+          <QuillEditor value={content} onChange={_onChangeContent}/>
         </Col>
       </Row>
     </div>

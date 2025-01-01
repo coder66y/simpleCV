@@ -5,6 +5,7 @@ import { connect } from "dva";
 import { ContentConfigKeyEnum, masteryOptions } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
+import { useDebounceFn } from "ahooks";
 
 export interface ISkillsBarSetFormProps {
   index: number;
@@ -42,51 +43,50 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
   const [name, setName] = useState<string>('')
   const colSpan1 = 8, colSpan2 = 12;
   const { data = [], content } = skills ?? {}
-  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.SKILLS)?.title ?? ''
-  const onChangeContent = (value: string) => {
+  const title = infoModuleList?.find(item => item.key === ContentConfigKeyEnum.SKILLS)?.title ?? '';
+  const _dispatch = (action: string, payload: Record<string, any>) => {
     dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.SKILLS,
-        value: {
-          ...skills,
-          content: value
-        }
+      type: `${EDIT_RESUME_NAME_SPACE}/${action}`,
+      payload,
+    })
+  }
+
+  const onChangeContent = (value: string) => {
+    _dispatch('changeFormValues', {
+      key: ContentConfigKeyEnum.SKILLS,
+      value: {
+        ...skills,
+        content: value
       }
     })
   }
+
   const onAdd = () => {
     if(!name) {
       message.warning(`请输入${title}`)
       return;
     }
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.SKILLS,
-        value: {
-          ...skills,
-          data: [...data, {
-            name,
-            mastery: {
-              value: 0.95
-            },
-            showBar: true
-          }]
-        }
+    _dispatch('changeFormValues', {
+      key: ContentConfigKeyEnum.SKILLS,
+      value: {
+        ...skills,
+        data: [...data, {
+          name,
+          mastery: {
+            value: 0.95
+          },
+          showBar: true
+        }]
       }
     })
     setName('')
   }
   const onDelete = (index: number) => {
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.SKILLS,
-        value: {
-          ...skills,
-          data: data.filter((item, idx) => index !== idx)
-        }
+    _dispatch('changeFormValues', {
+      key: ContentConfigKeyEnum.SKILLS,
+      value: {
+        ...skills,
+        data: data.filter((item, idx) => index !== idx)
       }
     })
   }
@@ -101,17 +101,19 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
         }
       return item
     })
-    dispatch({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: ContentConfigKeyEnum.SKILLS,
-        value: {
-          ...skills,
-          data: newList
-        }
+    _dispatch('changeFormValues', {
+      key: ContentConfigKeyEnum.SKILLS,
+      value: {
+        ...skills,
+        data: newList
       }
     })
   }
+
+  const { run: _onChangeContent } = useDebounceFn((value) => {
+    onChangeContent?.(value)
+  }, { wait: 500 })
+
   return (
     <div className="skills-set-form-wrapper">
       <Row>
@@ -123,8 +125,8 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
       <Row>
         {
           data.map((item, index) => (
-            <Col span={colSpan2}>
-              <SkillsBarSetForm key={item.name} index={index} values={item} onValuesChange={(v) => onListValueChange(v, index)} onDelete={() => onDelete(index)} />
+            <Col span={colSpan2} key={item.name + index}>
+              <SkillsBarSetForm index={index} values={item} onValuesChange={(v) => onListValueChange(v, index)} onDelete={() => onDelete(index)} />
             </Col>
           ))
         }
@@ -132,7 +134,7 @@ function SkillsSetForm(props: ISkillsSetFormProps) {
       <Row>
         <Col span={24}>
           <div className="skills-desc-title">{title}描述：</div>
-          <QuillEditor value={content} onChange={onChangeContent}/>
+          <QuillEditor value={content} onChange={_onChangeContent}/>
         </Col>
       </Row>
     </div>
