@@ -192,7 +192,6 @@ const Editor = (props: IQuillEditorProps) => {
     const text = editor.clipboard.convert({
       html: value,
     });
-    console.info(`%c info text: %o`, 'color: green; font-size: 20px; font-weight: 700', text, value)
     valueRef.current = value;
     editor.setContents(text);
     const sel = getEditorSelection();
