@@ -1,0 +1,116 @@
+.template-4 {
+  &-header {
+    font-weight: 700;
+    margin-bottom: 10px;
+
+    .left-box {
+      overflow: hidden;
+      padding-top: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .resume-title {
+        font-size: 24px;
+        padding: 4px 0;
+      }
+
+      dd {
+        font-size: 16px;
+        margin-left: 0;
+
+        p {
+          margin: 0;
+        }
+        p:last-child {
+          display: none;
+        }
+      }
+
+      
+    }
+
+    .right-box {
+      display: none;
+      width: 0;
+
+      & > span {
+        background-color: var(--primaryColor);
+        border-radius: 50%;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 10px;
+        text-align: center;
+        width: 40px;
+      }
+      
+    }
+  }
+
+  &-content {
+    margin: 0 var(--pageMargin);
+
+    .module-title {
+      z-index: 9;
+      background-color: var(--primaryColor);
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 18px;
+      text-align: center;
+     
+      font-weight: 400;
+      height: 30px;
+      line-height: 30px;
+      min-width: 110px;
+      position: relative;
+
+      .title-text {
+        font-weight: 700;
+        display: block;
+        height: 100%;
+        position: relative;
+        white-space: nowrap;
+        width: 100%;
+      }
+    }
+  }
+
+  &-info-module {
+    border-color: var(--primaryColor);
+    display: block;
+    position: relative;
+    .module-content-main {
+      padding: 0 10px;
+      line-height: var(--lineHeight);
+      margin: var(--moduleMargin) 0;
+      font-size: var(--fontSize);
+      font-family: var(--fontFamily);
+
+      .ql-container {
+        font-size: var(--fontSize);
+
+        .ql-editor ul {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  .module-line {
+    background-color: var(--secondaryColor);
+    position: absolute;
+    transform: translateY(-30px);
+    width: 100%;
+    height: 30px; 
+  }
+
+  .show-module-content-wrapper {
+    padding: 0;
+  }
+}

@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:51:41
  * @LastEditors: luyi
- * @LastEditTime: 2024-12-14 11:36:00
+ * @LastEditTime: 2025-01-03 16:11:17
  */
 import { useTheme } from '../../store/theme-context';
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
@@ -20,6 +20,7 @@ import './index.less';
 import './template-1.less'
 import './template-2.less'
 import './template-3.less'
+import './template-4.less'
 export interface IEditContentProps {
   moduleList: IEditResumeModel['moduleList'];
   resumeInfo: IEditResumeModel['resumeInfo'];

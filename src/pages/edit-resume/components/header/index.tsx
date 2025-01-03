@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-09-13 00:07:08
  * @LastEditors: luyi
- * @LastEditTime: 2025-01-03 00:02:49
+ * @LastEditTime: 2025-01-03 16:06:24
  */
 import { Button, Space, Tooltip } from "antd";
 import './index.less';
@@ -64,7 +64,7 @@ function Header(props: {
   return (
     <ThreeColumnLayout gap={20} className={`edit-cv-title ${className}`}>
       <div data-width="auto" className="logo">
-        <div className="gradient-color">编辑你自己的简历</div>
+        <strong className="gradient-color">编辑你自己的简历</strong>
       </div>
       <div data-width={700}></div>
       <Space>

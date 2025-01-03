@@ -3,7 +3,7 @@
  * @Author: luyi.lss
  * @Date: 2024-08-23 14:50:44
  * @LastEditors: luyi
- * @LastEditTime: 2024-12-14 00:45:27
+ * @LastEditTime: 2025-01-03 15:49:50
  */
 import React, { useState } from 'react'
 import { useContext, useMemo } from 'react'
@@ -145,7 +145,7 @@ function EditRight(props: IEditRightProps) {
                             onClick(item)
                           }}
                           key={item.key}
-                          size={18}
+                          size={14}
                           className='info-module-item'
                           data-row-key={item.key}
                         >
