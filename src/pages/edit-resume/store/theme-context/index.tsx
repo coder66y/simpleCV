@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, Reducer, useContext, useReducer } from 'react';
 import { colorPrimary } from '@/layouts';
-import { getLocalStorage, setLocalStorage } from '@/utils/local-storage';
+import { getLocalStorage, getSimpleCVData, setLocalStorage, setSimpleCVData } from '@/utils/local-storage';
 
 /** 主题类型 */
 export type  IThemeStoreTypes = {
@@ -40,7 +40,7 @@ const initState: IThemeStoreTypes = {
 
 /** 主题初始值 */
 export const initialTheme = (): IThemeStoreTypes => {
-  const cache = getLocalStorage<IThemeStoreTypes>(themeCacheKey)
+  const cache = getSimpleCVData<IThemeStoreTypes>(themeCacheKey)
   if(Object.keys(cache)?.length > 0) {
     return cache
   }
@@ -91,7 +91,7 @@ const themeReducer: Reducer<IThemeStoreTypes, IThemeDispatchArgType> = (theme, a
           ...theme,
           [action.payload.key]: action?.payload?.value
         }
-        setLocalStorage(themeCacheKey, newState)
+        setSimpleCVData(themeCacheKey, newState)
         return newState;
       }
       return theme;

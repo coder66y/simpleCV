@@ -1,7 +1,7 @@
 import { photo } from "@/assets";
 import { ContentConfigKeyEnum, infoModuleList, SortTypeEnum } from "@/pages/edit-resume/config";
 import { IModuleInfoConfig } from "@/pages/edit-resume/types";
-import { getLocalStorage, setLocalStorage } from "@/utils/local-storage";
+import { getLocalStorage, getSimpleCVData, setSimpleCVData } from "@/utils/local-storage";
 import { arrayMove } from "@dnd-kit/sortable";
 export interface SelectOptionsType {
   value: string;
@@ -238,7 +238,7 @@ const initState = () => {
       content: ""
     },
   }
-  const cacheData = getLocalStorage<IEditResumeModel>(cacheKey)
+  const cacheData = getSimpleCVData<IEditResumeModel>(cacheKey) ?? {}
   if(Object.keys(cacheData)?.length > 0) {
     return cacheData
   }
@@ -246,7 +246,7 @@ const initState = () => {
 }
 
 const commonChangeState = (newPayload: IEditResumeModel) => {
-  setLocalStorage(cacheKey, newPayload)
+  setSimpleCVData(cacheKey, newPayload)
   return newPayload;
 }
 
