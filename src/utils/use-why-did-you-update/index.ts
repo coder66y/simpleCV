@@ -10,7 +10,7 @@ export function useWhyDidYouUpdate(componentName: string, props: IProps) {
       const allKeys = Object.keys({ ...prevProps.current, ...props });
       const changedProps: IProps = {};
 
-      allKeys.forEach((key) => {
+      allKeys.forEach(key => {
         if (!Object.is(prevProps.current[key], props[key])) {
           changedProps[key] = {
             from: prevProps.current[key],

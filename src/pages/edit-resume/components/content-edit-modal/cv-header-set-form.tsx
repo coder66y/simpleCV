@@ -1,7 +1,9 @@
-import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from "@/models/edit-resume";
-import { useDebounceFn } from "ahooks";
-import { Form, Input } from "antd"
-import { connect } from "dva";
+import { useDebounceFn, useDeepCompareEffect } from 'ahooks';
+import { Form, Input } from 'antd';
+import { connect } from 'dva';
+import { useEffect } from 'react';
+
+import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume';
 
 export interface ICVHeaderSetFormProps {
   resumeInfo?: IEditResumeModel['resumeInfo'];
@@ -13,16 +15,23 @@ function CVHeaderSetForm(props: ICVHeaderSetFormProps) {
   const [form] = Form.useForm<ICVHeaderSetFormValues>();
   const initValues = resumeInfo;
 
-  const { run } = useDebounceFn(() => {
-    const values = form.getFieldsValue()
-    dispatch?.({
-      type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
-      payload: {
-        key: 'resumeInfo',
-        value: values
-      }
-    })
-  }, { wait: 500 })
+  useDeepCompareEffect(() => {
+    form.setFieldsValue(initValues);
+  }, [initValues]);
+
+  const { run } = useDebounceFn(
+    () => {
+      const values = form.getFieldsValue();
+      dispatch?.({
+        type: `${EDIT_RESUME_NAME_SPACE}/changeFormValues`,
+        payload: {
+          key: 'resumeInfo',
+          value: values,
+        },
+      });
+    },
+    { wait: 500 }
+  );
 
   return (
     <Form
@@ -31,7 +40,7 @@ function CVHeaderSetForm(props: ICVHeaderSetFormProps) {
       layout="horizontal"
       initialValues={initValues}
       onValuesChange={() => {
-        run()
+        run();
       }}
     >
       <Form.Item name="title" label="简历标题">
@@ -41,10 +50,10 @@ function CVHeaderSetForm(props: ICVHeaderSetFormProps) {
         <Input />
       </Form.Item>
     </Form>
-  )
+  );
 }
-export default connect(({editResume}: {editResume: IEditResumeModel}) => {
+export default connect(({ editResume }: { editResume: IEditResumeModel }) => {
   return {
-    resumeInfo: editResume.resumeInfo
-  }
-})(CVHeaderSetForm)
+    resumeInfo: editResume.resumeInfo,
+  };
+})(CVHeaderSetForm);

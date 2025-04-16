@@ -1,4 +1,4 @@
-import { Color } from "antd/es/color-picker";
+import { Color } from 'antd/es/color-picker';
 
 /** 间距设置props */
 export interface ISpaceSetFormValues {

@@ -2,20 +2,25 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const _getScale = () => {
-  if(window.devicePixelRatio > 1) {
+  if (window.devicePixelRatio > 1) {
     return window.devicePixelRatio;
   }
   return 2;
-}
+};
 
 export const _html2Canvas = async (element: HTMLElement) => {
   return await html2canvas(element, {
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     scale: _getScale(),
   });
-}
+};
 
-export async function exportPdf (element: HTMLElement, filename = '未命名', callback = (output?: Blob) => {}, needSave = true) {
+export async function exportPdf(
+  element: HTMLElement,
+  filename = '未命名',
+  callback = (output?: Blob) => {},
+  needSave = true
+) {
   if (!element) {
     callback();
     return;
@@ -47,11 +52,11 @@ export async function exportPdf (element: HTMLElement, filename = '未命名', c
     const contentHeight = canvas.height;
 
     // 一页pdf显示html页面生成的canvas高度
-    const pageHeight = contentWidth / PDF_WIDTH * PDF_HEIGHT;
+    const pageHeight = (contentWidth / PDF_WIDTH) * PDF_HEIGHT;
 
     // canvas图像在画布上的尺寸
     const imgWidth = PDF_WIDTH;
-    const imgHeight = PDF_WIDTH / contentWidth * contentHeight;
+    const imgHeight = (PDF_WIDTH / contentWidth) * contentHeight;
 
     let leftHeight = contentHeight;
     let position = 0;
@@ -64,7 +69,7 @@ export async function exportPdf (element: HTMLElement, filename = '未命名', c
     } else {
       // 多页
       while (leftHeight > 0) {
-        doc.addImage(canvas, 'PNG', 0, position, imgWidth, imgHeight)
+        doc.addImage(canvas, 'PNG', 0, position, imgWidth, imgHeight);
         leftHeight -= pageHeight;
         position -= PDF_HEIGHT;
         //避免添加空白页
@@ -73,13 +78,14 @@ export async function exportPdf (element: HTMLElement, filename = '未命名', c
         }
       }
     }
-    needSave && doc.save(filename + '.pdf');
-
+    if (needSave) {
+      doc.save(filename + '.pdf');
+    }
     // 移除创建的元素
     container.remove();
 
     callback(doc.output('blob'));
-  }
+  };
 
-  await render()
+  await render();
 }
