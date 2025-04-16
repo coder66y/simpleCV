@@ -14,7 +14,7 @@ import { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 import { CSS } from '@dnd-kit/utilities';
 import { Tabs, Switch, Button, Space } from 'antd'
 
-import { ContentConfigKeyEnum, infoModuleIconMap, rightTabConfig } from '@/pages/edit-resume/config'
+import { ContentConfigKeyEnum, MODULE_CONFIG, THEME_CONFIG } from '@/pages/edit-resume/config'
 import './index.less'
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { connect } from 'dva';
@@ -129,7 +129,7 @@ function EditRight(props: IEditRightProps) {
     <div className={`${rootCls}`}>
       <Tabs>
         {
-          rightTabConfig.map(it => {
+          THEME_CONFIG.rightTabs.map(it => {
             return <Tabs.TabPane key={it.key} tab={it.title}>
               {
                 <DndContext sensors={sensors} modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
@@ -150,7 +150,7 @@ function EditRight(props: IEditRightProps) {
                           data-row-key={item.key}
                         >
                           {
-                            infoModuleIconMap.get(item.key)
+                            MODULE_CONFIG.icons.get(item.key)
                           }
                           <div className='module-title'>{item.title}</div>
                           {

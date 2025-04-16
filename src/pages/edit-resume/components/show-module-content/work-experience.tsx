@@ -4,7 +4,7 @@ import { IEditResumeModel, IWorkExperienceValues } from "@/models/edit-resume"
 import { Col, Row } from "antd"
 import { connect } from "dva"
 import { injectIntl, IntlShape } from "react-intl"
-import { dateFormatConfig } from "../../config"
+import { DATE_FORMAT_CONFIG } from "../../config"
 export interface WorkExperienceProps {
   intl: IntlShape;
   workExperience: IWorkExperienceValues[]
@@ -16,7 +16,7 @@ function WorkExperience(props: WorkExperienceProps) {
   }
 
   const getIntlTime = (date: string) => {
-    return intl.formatDate(date, dateFormatConfig)
+    return intl.formatDate(date, DATE_FORMAT_CONFIG)
   }
 
   const span= 8;

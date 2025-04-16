@@ -5,7 +5,7 @@
  * @LastEditors: luyi
  * @LastEditTime: 2024-12-13 14:41:48
  */
-import { leftIconConfig, ThemeConfigKeyEnum } from '@/pages/edit-resume/config'
+import { THEME_CONFIG, ThemeConfigKeyEnum } from '@/pages/edit-resume/config'
 import './index.less';
 import ThemeConfigPop from '../theme-config-pop';
 
@@ -14,7 +14,7 @@ export interface IEditLeftProps {}
 export default function EditLeft(props: IEditLeftProps) {
   return (
     <div className={`${rootCls}`}>
-      {leftIconConfig.map(item => {
+      {THEME_CONFIG.leftIcons.map(item => {
         return <ThemeConfigPop
           key={item.key}
           type={item.type}

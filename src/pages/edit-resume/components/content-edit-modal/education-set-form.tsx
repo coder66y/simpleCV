@@ -5,7 +5,7 @@ import { connect } from "dva";
 import QuillEditor from "@/components/quill-editor";
 import dayjs from "@/components/extend-dayjs";
 import type { Dayjs } from 'dayjs';
-import { ContentConfigKeyEnum, SortTypeEnum, degreeOptions } from "../../config";
+import { ContentConfigKeyEnum, SortTypeEnum, FORM_OPTIONS } from "../../config";
 import { useScrollIntoView } from "@/utils/use-scroll-into-view";
 
 export interface IEducationSetFormProps {
@@ -143,7 +143,7 @@ const EducationSetBaseForm = (props: IEducationSetBaseFormProps) => {
         </Col>
         <Col span={colSpan2}>
           <Form.Item name="degree" label="学历">
-            <Select options={degreeOptions} labelInValue/>
+            <Select options={FORM_OPTIONS.degree} labelInValue/>
           </Form.Item>
         </Col>
       </Row>

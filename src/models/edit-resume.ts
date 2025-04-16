@@ -1,5 +1,5 @@
 import { photo } from "@/assets";
-import { ContentConfigKeyEnum, infoModuleList, SortTypeEnum } from "@/pages/edit-resume/config";
+import { ContentConfigKeyEnum, MODULE_CONFIG, SortTypeEnum } from "@/pages/edit-resume/config";
 import { IModuleInfoConfig } from "@/pages/edit-resume/types";
 import { getLocalStorage, getSimpleCVData, setSimpleCVData } from "@/utils/local-storage";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -127,7 +127,7 @@ const cacheKey = 'resumeData'
 export const EDIT_RESUME_NAME_SPACE = "editResume"
 const initState = () => {
   const initData = {
-    moduleList: infoModuleList,
+    moduleList: MODULE_CONFIG.list,
     resumeInfo: {
       title: '个人简历',
       slogan: '求职意向：前端工程师',

@@ -4,7 +4,7 @@ import { IEditResumeModel, IInternshipExperienceValues } from "@/models/edit-res
 import { Col, Row } from "antd"
 import { connect } from "dva"
 import { injectIntl, IntlShape } from "react-intl"
-import { dateFormatConfig } from "../../config"
+import { DATE_FORMAT_CONFIG } from "../../config"
 export interface InternshipExperienceProps {
   internshipExperience: IInternshipExperienceValues[];
   intl: IntlShape;
@@ -16,7 +16,7 @@ function InternshipExperience(props: InternshipExperienceProps) {
     return intl.formatMessage({id})
   }
   const getIntlTime = (date: string) => {
-    return intl.formatDate(date, dateFormatConfig)
+    return intl.formatDate(date, DATE_FORMAT_CONFIG)
   }
   return (
     <div className="internship-experience info-module-content-wrapper">

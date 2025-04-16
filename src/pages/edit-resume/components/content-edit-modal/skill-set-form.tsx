@@ -2,7 +2,7 @@ import ReadItem from "@/components/read-item";
 import { EDIT_RESUME_NAME_SPACE, IBarChartItem, IEditResumeModel } from "@/models/edit-resume"
 import { Button, Checkbox, Col, Form, Input, message, Row, Select, Space } from "antd"
 import { connect } from "dva";
-import { ContentConfigKeyEnum, masteryOptions } from "../../config";
+import { ContentConfigKeyEnum, FORM_OPTIONS } from "../../config";
 import QuillEditor from "@/components/quill-editor";
 import { useState } from "react";
 import { useDebounceFn } from "ahooks";
@@ -27,7 +27,7 @@ const SkillsBarSetForm = (props: ISkillsBarSetFormProps) => {
       <ReadItem className="skill-name"/>
     </Form.Item>
     <Form.Item name="mastery" >
-      <Select style={{width: "100px"}} options={masteryOptions} labelInValue/>
+      <Select style={{width: "100px"}} options={FORM_OPTIONS.mastery} labelInValue/>
     </Form.Item>
     <Form.Item name="showBar" valuePropName="checked" >
       <Checkbox >展示百分比</Checkbox>
