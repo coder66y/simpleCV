@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import Quill, { Delta, Range, QuillOptions, EmitterSource } from "quill";
-import ReactDOM from "react-dom";
-import isEqual from "lodash.isequal";
+import React, { useEffect, useRef } from 'react';
+import Quill, { Delta, Range, QuillOptions, EmitterSource } from 'quill';
+import ReactDOM from 'react-dom';
+import isEqual from 'lodash.isequal';
 export type Value = string;
 export interface IQuillEditorProps extends QuillOptions {
   theme?: string;
@@ -11,7 +11,7 @@ export interface IQuillEditorProps extends QuillOptions {
     value: Value,
     delta: Delta,
     source: EmitterSource,
-    editor: Quill
+    editor: Quill,
   ) => void;
   readOnly?: boolean;
   children?: React.ReactElement;
@@ -36,48 +36,48 @@ const Editor = (props: IQuillEditorProps) => {
   const valueRef = useRef<Value>('');
 
   useEffect(() => {
-    instantiateEditor()
-    listenChange()
+    instantiateEditor();
+    listenChange();
     return () => {
-      unListenChange()
-    }
-  }, [])
+      unListenChange();
+    };
+  }, []);
 
   useEffect(() => {
     if (editor.current) {
       setEditorReadOnly(editor.current, readOnly || false);
     }
-  }, [readOnly])
+  }, [readOnly]);
 
   useEffect(() => {
     const _value = value ?? defaultValue;
-    if (editor.current && typeof _value === "string") {
+    if (editor.current && typeof _value === 'string') {
       setEditorContents(editor.current, _value);
     }
-  }, [value, defaultValue])
+  }, [value, defaultValue]);
 
   const listenChange = () => {
     if (editor.current) {
       editor.current.on('editor-change', onEditorChange);
     }
-  }
+  };
 
   const unListenChange = () => {
     if (editor.current) {
       editor.current.off('editor-change', onEditorChange);
     }
-  }
-  const getEditorContents = (): Value  => {
+  };
+  const getEditorContents = (): Value => {
     return valueRef.current;
-  }
+  };
 
   const getEditorSelection = (): Range => {
     return selectionRef.current;
-  }
+  };
 
   const isEqualValue = (value: any, nextValue: any): boolean => {
     return isEqual(value, nextValue);
-  }
+  };
 
   const onEditorChangeText = (
     value: string,
@@ -85,11 +85,11 @@ const Editor = (props: IQuillEditorProps) => {
     source: EmitterSource,
     editor: Quill,
   ) => {
-    const htmlStr = editor.getSemanticHTML()
-    if(isEqualValue(htmlStr, getEditorContents())) return;
+    const htmlStr = editor.getSemanticHTML();
+    if (isEqualValue(htmlStr, getEditorContents())) return;
     valueRef.current = htmlStr;
-    onChange?.(htmlStr, delta, source, editor)
-  }
+    onChange?.(htmlStr, delta, source, editor);
+  };
 
   const onEditorChangeSelection = (
     nextSelection: Range,
@@ -100,7 +100,7 @@ const Editor = (props: IQuillEditorProps) => {
     const currentSelection = getEditorSelection();
     if (isEqual(nextSelection, currentSelection)) return;
     selectionRef.current = nextSelection;
-  }
+  };
 
   const onEditorChange = (
     eventName: 'text-change' | 'selection-change',
@@ -113,46 +113,41 @@ const Editor = (props: IQuillEditorProps) => {
         editor.current!.root.innerHTML,
         rangeOrDelta as Delta,
         source,
-        editor.current!
+        editor.current!,
       );
     } else if (eventName === 'selection-change') {
-      onEditorChangeSelection?.(
-        rangeOrDelta as Range,
-        source,
-        editor.current!
-      );
+      onEditorChangeSelection?.(rangeOrDelta as Range, source, editor.current!);
     }
   };
 
   const renderEditingArea = (): JSX.Element => {
     const properties = {
       ref: (instance: React.ReactInstance | null) => {
-        editingArea = instance
+        editingArea = instance;
       },
     };
 
     if (React.Children.count(children)) {
-      return React.cloneElement(
-        React.Children.only(children)!,
-        properties
-      );
+      return React.cloneElement(React.Children.only(children)!, properties);
     }
 
-    return preserveWhitespace ?
-      <pre {...properties}/> :
-      <div {...properties}/>;
-  }
+    return preserveWhitespace ? (
+      <pre {...properties} />
+    ) : (
+      <div {...properties} />
+    );
+  };
 
   const instantiateEditor = () => {
-    if(!editor.current) {
+    if (!editor.current) {
       createEditor(getEditingArea(), getEditorConfig());
     }
-  }
+  };
 
   const createEditor = (element: HTMLElement, config: QuillOptions) => {
     editor.current = new Quill(element, config);
     return editor.current;
-  }
+  };
 
   const getEditingArea = (): HTMLElement => {
     if (!editingArea) {
@@ -166,7 +161,7 @@ const Editor = (props: IQuillEditorProps) => {
       throw new Error('Editing area cannot be a text node');
     }
     return element as HTMLElement;
-  }
+  };
 
   const getEditorConfig = (): QuillOptions => {
     return {
@@ -177,7 +172,7 @@ const Editor = (props: IQuillEditorProps) => {
       readOnly: props.readOnly,
       theme: props.theme,
     };
-  }
+  };
 
   const setEditorReadOnly = (editor: Quill, value: boolean) => {
     if (value) {
@@ -185,10 +180,10 @@ const Editor = (props: IQuillEditorProps) => {
     } else {
       editor.enable();
     }
-  }
+  };
 
   const setEditorContents = (editor: Quill, value: string): void => {
-    if(isEqualValue(value, getEditorContents())) return;
+    if (isEqualValue(value, getEditorContents())) return;
     const text = editor.clipboard.convert({
       html: value,
     });
@@ -196,22 +191,18 @@ const Editor = (props: IQuillEditorProps) => {
     editor.setContents(text);
     const sel = getEditorSelection();
     requestAnimationFrame(() => {
-      setEditorSelection(editor, sel)
+      setEditorSelection(editor, sel);
     });
-  }
+  };
 
   const setEditorSelection = (editor: Quill, range: Range) => {
     selectionRef.current = range;
     if (range) {
       editor.setSelection(range);
     }
-  }
+  };
 
-  return (
-    <div className={className}>
-      {renderEditingArea()}
-    </div>
-  )
-}
+  return <div className={className}>{renderEditingArea()}</div>;
+};
 
-export default Editor
+export default Editor;

@@ -5,29 +5,31 @@
  * @LastEditors: luyi
  * @LastEditTime: 2024-12-13 14:41:48
  */
-import { THEME_CONFIG, ThemeConfigKeyEnum } from '@/pages/edit-resume/config'
+import { THEME_CONFIG, ThemeConfigKeyEnum } from '@/pages/edit-resume/config';
 import './index.less';
 import ThemeConfigPop from '../theme-config-pop';
 
-const rootCls = 'edit-left'
+const rootCls = 'edit-left';
 export interface IEditLeftProps {}
 export default function EditLeft(props: IEditLeftProps) {
   return (
     <div className={`${rootCls}`}>
-      {THEME_CONFIG.leftIcons.map(item => {
-        return <ThemeConfigPop
-          key={item.key}
-          type={item.type}
-          title={item.title}
-          configKey={item.key as ThemeConfigKeyEnum}
-          className='left-item'
-          placement='right'
-          trigger='click'
-        >
-          <div className='left-item-icon'>{item.icon}</div>
-          <div className='left-item-title'>{item.title}</div>
-        </ThemeConfigPop>
+      {THEME_CONFIG.leftIcons.map((item) => {
+        return (
+          <ThemeConfigPop
+            key={item.key}
+            type={item.type}
+            title={item.title}
+            configKey={item.key as ThemeConfigKeyEnum}
+            className="left-item"
+            placement="right"
+            trigger="click"
+          >
+            <div className="left-item-icon">{item.icon}</div>
+            <div className="left-item-title">{item.title}</div>
+          </ThemeConfigPop>
+        );
       })}
     </div>
-  )
+  );
 }

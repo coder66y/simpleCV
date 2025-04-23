@@ -5,22 +5,36 @@
  * @LastEditors: luyi
  * @LastEditTime: 2025-01-03 15:49:50
  */
-import React, { useState } from 'react'
-import { useContext, useMemo } from 'react'
-import { DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
-import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import React, { useState } from 'react';
+import { useContext, useMemo } from 'react';
+import {
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
+import { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities';
 import { CSS } from '@dnd-kit/utilities';
-import { Tabs, Switch, Button, Space } from 'antd'
+import { Tabs, Switch, Button, Space } from 'antd';
 
-import { ContentConfigKeyEnum, MODULE_CONFIG, THEME_CONFIG } from '@/pages/edit-resume/config'
-import './index.less'
+import {
+  ContentConfigKeyEnum,
+  MODULE_CONFIG,
+  THEME_CONFIG,
+} from '@/pages/edit-resume/config';
+import './index.less';
 import { IModuleDataDispatchArgType, IModuleInfoConfig } from '../../types';
 import { connect } from 'dva';
 import { EDIT_RESUME_NAME_SPACE, IEditResumeModel } from '@/models/edit-resume';
 
-const rootCls = 'edit-right'
+const rootCls = 'edit-right';
 export interface IEditRightProps {
   moduleList: IModuleInfoConfig[];
   dispatch: React.Dispatch<IModuleDataDispatchArgType>;
@@ -39,8 +53,8 @@ const DragHandle: React.FC = () => {
     <Button
       type="text"
       size="small"
-      className='drag-icon'
-      icon={<i className='iconfont'>&#xe68d;</i>}
+      className="drag-icon"
+      icon={<i className="iconfont">&#xe68d;</i>}
       style={{ cursor: 'move' }}
       ref={setActivatorNodeRef}
       {...listeners}
@@ -99,14 +113,14 @@ function EditRight(props: IEditRightProps) {
     if (active.id !== over?.id) {
       const oldIndex = moduleList.findIndex((i) => i.key === active.id);
       const newIndex = moduleList.findIndex((i) => i.key === over?.id);
-      if(newIndex === 0) return;
+      if (newIndex === 0) return;
       dispatch({
         type: 'editResume/sortModule',
         payload: {
           oldIndex,
           newIndex,
-        }
-      })
+        },
+      });
     }
   };
 
@@ -114,79 +128,85 @@ function EditRight(props: IEditRightProps) {
     dispatch({
       type: `${EDIT_RESUME_NAME_SPACE}/changeCurrentEditContent`,
       payload: {
-        config: item
-      }
-    })
+        config: item,
+      },
+    });
     dispatch?.({
       type: `${EDIT_RESUME_NAME_SPACE}/changeContentEditModalVisible`,
       payload: {
-        visible: true
-      }
-    })
-  }
-  
+        visible: true,
+      },
+    });
+  };
+
   return (
     <div className={`${rootCls}`}>
       <Tabs>
-        {
-          THEME_CONFIG.rightTabs.map(it => {
-            return <Tabs.TabPane key={it.key} tab={it.title}>
+        {THEME_CONFIG.rightTabs.map((it) => {
+          return (
+            <Tabs.TabPane key={it.key} tab={it.title}>
               {
-                <DndContext sensors={sensors} modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
-                <SortableContext
-                  items={moduleList.map((i) => i.key)}
-                  strategy={verticalListSortingStrategy}
+                <DndContext
+                  sensors={sensors}
+                  modifiers={[restrictToVerticalAxis]}
+                  onDragEnd={onDragEnd}
                 >
-                  {
-                    moduleList.map(item => {
-                      return <SortRow data-row-key={item.key} key={item.key} >
-                        <Space
-                          onClick={() => {
-                            onClick(item)
-                          }}
-                          key={item.key}
-                          size={14}
-                          className='info-module-item'
-                          data-row-key={item.key}
-                        >
-                          {
-                            MODULE_CONFIG.icons.get(item.key)
-                          }
-                          <div className='module-title'>{item.title}</div>
-                          {
-                            item.key !== ContentConfigKeyEnum.BASIC_INFO && <Switch
-                              value={!item.hidden}
-                              onChange={(checked: boolean, event: React.MouseEvent<HTMLButtonElement>) => {
-                                event.stopPropagation()
-                                dispatch({
-                                  type: 'editResume/changeModuleHidden',
-                                  payload: {
-                                    key: item.key,
-                                    hidden: !item.hidden
-                                  }
-                                })
-                              }}/>
-                          }
-                          {
-                            item.key !== ContentConfigKeyEnum.BASIC_INFO && <DragHandle />
-                          }
-                        </Space>
-                      </SortRow>
-                    })
-                  }
-                </SortableContext>
-              </DndContext>
+                  <SortableContext
+                    items={moduleList.map((i) => i.key)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {moduleList.map((item) => {
+                      return (
+                        <SortRow data-row-key={item.key} key={item.key}>
+                          <Space
+                            onClick={() => {
+                              onClick(item);
+                            }}
+                            key={item.key}
+                            size={14}
+                            className="info-module-item"
+                            data-row-key={item.key}
+                          >
+                            {MODULE_CONFIG.icons.get(item.key)}
+                            <div className="module-title">{item.title}</div>
+                            {item.key !== ContentConfigKeyEnum.BASIC_INFO && (
+                              <Switch
+                                value={!item.hidden}
+                                onChange={(
+                                  checked: boolean,
+                                  event: React.MouseEvent<HTMLButtonElement>,
+                                ) => {
+                                  event.stopPropagation();
+                                  dispatch({
+                                    type: 'editResume/changeModuleHidden',
+                                    payload: {
+                                      key: item.key,
+                                      hidden: !item.hidden,
+                                    },
+                                  });
+                                }}
+                              />
+                            )}
+                            {item.key !== ContentConfigKeyEnum.BASIC_INFO && (
+                              <DragHandle />
+                            )}
+                          </Space>
+                        </SortRow>
+                      );
+                    })}
+                  </SortableContext>
+                </DndContext>
               }
             </Tabs.TabPane>
-          })
-        }
+          );
+        })}
       </Tabs>
     </div>
-  )
+  );
 }
 
-export default connect(({ editResume }:{editResume: IEditResumeModel}) => {
-  return ({
+export default connect(({ editResume }: { editResume: IEditResumeModel }) => {
+  return {
     moduleList: editResume.moduleList ?? [],
-  })
-})(EditRight)
+  };
+})(EditRight);

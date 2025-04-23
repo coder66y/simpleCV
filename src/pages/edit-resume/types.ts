@@ -1,8 +1,8 @@
-import { ContentConfigKeyEnum, ThemeConfigKeyEnum } from "./config";
+import { ContentConfigKeyEnum, ThemeConfigKeyEnum } from './config';
 
 /** 右侧主题信息类型 */
 export interface ILeftInfoIconConfig {
-  type: 'pop' | 'modal'
+  type: 'pop' | 'modal';
   title: string;
   key: ThemeConfigKeyEnum;
   icon: React.ReactNode;
@@ -21,11 +21,10 @@ export interface IModuleInfoConfig {
   sort?: number;
 }
 
-
 export type IModuleDataDispatchArgType = {
-  type: string; 
-  payload?: Record<string,any>
-}
+  type: string;
+  payload?: Record<string, any>;
+};
 
 export interface IRightTabConfig {
   title: string;

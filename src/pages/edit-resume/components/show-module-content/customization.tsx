@@ -1,6 +1,6 @@
-import QuillEditor from "@/components/quill-editor"
-import { IEditResumeModel } from "@/models/edit-resume"
-import { connect } from "dva"
+import QuillEditor from '@/components/quill-editor';
+import { IEditResumeModel } from '@/models/edit-resume';
+import { connect } from 'dva';
 export interface CustomizationProps {
   customization: string;
 }
@@ -9,13 +9,13 @@ function Customization(props: CustomizationProps) {
 
   return (
     <div className="customization info-module-content-wrapper">
-      { customization && <QuillEditor readOnly value={customization}/>}
+      {customization && <QuillEditor readOnly value={customization} />}
     </div>
-  )
+  );
 }
 
-const mapStateToProps = ({editResume}: { editResume: IEditResumeModel}) => ({
-  customization: editResume.customization
-})
+const mapStateToProps = ({ editResume }: { editResume: IEditResumeModel }) => ({
+  customization: editResume.customization,
+});
 
-export default connect(mapStateToProps)(Customization)
+export default connect(mapStateToProps)(Customization);

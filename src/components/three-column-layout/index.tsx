@@ -1,12 +1,11 @@
-
 import React from 'react';
 const rootCls = 'three-column-layout';
-import './index.less'
+import './index.less';
 
 export interface IThreeColumnLayoutProps {
   /**
    * @description 组件的子节点
-   * @default 
+   * @default
    */
   children?: React.ReactElement[];
   className?: string;
@@ -21,12 +20,12 @@ export default function ThreeColumnLayout(props: IThreeColumnLayoutProps) {
       <div className={`${rootCls}-item`} style={{ flexBasis: width }}>
         {child}
       </div>
-    )
-  })
+    );
+  });
 
   return (
-    <div className={`${rootCls} ${className}`} style={{gap: gap}}>
+    <div className={`${rootCls} ${className}`} style={{ gap: gap }}>
       {List}
     </div>
-  )
+  );
 }
