@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>SimpleCV - 在线简历生成器</title>
+    <link rel="icon" href="<%= context.publicPath %>favicon.ico" />
+    <!-- 预加载关键资源 -->
+    <link
+      rel="preload"
+      href="<%= context.publicPath %>assets/fonts/iconfont.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="<%= context.publicPath %>assets/fonts/iconfont.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="<%= context.publicPath %>assets/fonts/iconfont.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="<%= context.publicPath %>umi.css" as="style" />
+    <link rel="preload" href="<%= context.publicPath %>umi.js" as="script" />
+
+    <!-- 关键CSS内联 -->
+    <style>
+      /* 添加关键渲染路径的CSS */
+      .page-container {
+        min-height: 100vh;
+        background: #f5f5f5;
+      }
+      .edit-cv-container {
+        padding: 20px;
+      }
+
+      /* 骨架屏样式 */
+      .skeleton {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      /* 字体回退方案 */
+      body {
+        font-family:
+          'Noto Sans SC',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans',
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
+          'Noto Color Emoji';
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 骨架屏 -->
+      <div class="page-container">
+        <div class="edit-cv-container">
+          <div class="skeleton" style="height: 60px; margin-bottom: 20px"></div>
+          <div class="skeleton" style="height: 400px"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.routerBase = '<%= context.routerBase %>';
+      window.publicPath = '<%= context.publicPath %>';
+
+      // 性能监控
+      if (window.performance) {
+        window.addEventListener('load', () => {
+          const timing = performance.timing;
+          console.log('首屏时间:', timing.domContentLoadedEventEnd - timing.navigationStart + 'ms');
+          console.log('完全加载时间:', timing.loadEventEnd - timing.navigationStart + 'ms');
+        });
+      }
+    </script>
+    <script src="<%= context.publicPath %>umi.js"></script>
+  </body>
+</html>

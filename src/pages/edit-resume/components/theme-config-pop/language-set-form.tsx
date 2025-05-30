@@ -6,10 +6,10 @@ import { ILanguageSetFormValues } from './type';
 
 const fontOptions = [
   { label: '系统默认', value: '系统默认' },
-  { label: '楷体', value: 'ChillKai' },
-  { label: '思源黑体', value: 'Source Han Sans SC VF' },
+  { label: '楷体', value: 'KaiTi' },
+  { label: '思源黑体', value: 'SourceHanSerifCN' },
   { label: '微软雅黑', value: 'Microsoft YaHei' },
-  { label: '思源宋体', value: 'Source Han Serif CN VF' },
+  { label: '思源宋体', value: 'SourceSongSerifCN' },
   { label: 'Times New Roman', value: 'Times New Roman, Microsoft YaHei' },
 ];
 
