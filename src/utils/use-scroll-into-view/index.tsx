@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export const useScrollIntoView = (id: string, depends: any[]) => {
   useEffect(() => {
@@ -7,8 +7,8 @@ export const useScrollIntoView = (id: string, depends: any[]) => {
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
-        inline: "start",
+        inline: 'start',
       });
     }
-  }, depends)
+  }, depends);
 };

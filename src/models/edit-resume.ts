@@ -1,8 +1,9 @@
-import { photo } from "@/assets";
-import { ContentConfigKeyEnum, MODULE_CONFIG, SortTypeEnum } from "@/pages/edit-resume/config";
-import { IModuleInfoConfig } from "@/pages/edit-resume/types";
-import { getLocalStorage, getSimpleCVData, setSimpleCVData } from "@/utils/local-storage";
-import { arrayMove } from "@dnd-kit/sortable";
+import { arrayMove } from '@dnd-kit/sortable';
+
+import { photo } from '@/assets';
+import { ContentConfigKeyEnum, MODULE_CONFIG, SortTypeEnum } from '@/pages/edit-resume/config';
+import { IModuleInfoConfig } from '@/pages/edit-resume/types';
+import { getLocalStorage, getSimpleCVData, setSimpleCVData } from '@/utils/local-storage';
 export interface SelectOptionsType {
   value: string;
   label: string;
@@ -64,7 +65,7 @@ export interface IBarChartItem {
   showBar: boolean;
 }
 export interface ISkillsValues {
-  data: IBarChartItem[],
+  data: IBarChartItem[];
   content: string;
 }
 
@@ -83,7 +84,7 @@ export interface IEditResumeModel {
   resumeInfo?: {
     title?: string;
     slogan?: string;
-  },
+  };
   /** 个人信息 */
   baseInfo?: {
     age?: string;
@@ -92,8 +93,8 @@ export interface IEditResumeModel {
     height?: string;
     name: string;
     phone: string;
-    email: string; 
-    /** 婚姻状态 */ 
+    email: string;
+    /** 婚姻状态 */
     maritalStatus?: SelectOptionsType;
     /** 民族 */
     nationality?: string;
@@ -111,20 +112,20 @@ export interface IEditResumeModel {
     joinTime: SelectOptionsType;
     post: string;
     salary: string;
-  },
-  education?: IEducationInfoValues[],
-  workExperience?: IWorkExperienceValues[],
-  projectExperience?: IProjectExperienceValues[],
-  schoolExperience?: ISchoolExperienceValues[],
-  internshipExperience?: IInternshipExperienceValues[],
-  skills?: ISkillsValues,
-  honors?: IHonorsValues,
-  hobby?: IHobbyValues,
+  };
+  education?: IEducationInfoValues[];
+  workExperience?: IWorkExperienceValues[];
+  projectExperience?: IProjectExperienceValues[];
+  schoolExperience?: ISchoolExperienceValues[];
+  internshipExperience?: IInternshipExperienceValues[];
+  skills?: ISkillsValues;
+  honors?: IHonorsValues;
+  hobby?: IHobbyValues;
   selfEvaluation?: string;
   customization?: string;
 }
-const cacheKey = 'resumeData'
-export const EDIT_RESUME_NAME_SPACE = "editResume"
+export const cacheKey = 'resumeData';
+export const EDIT_RESUME_NAME_SPACE = 'editResume';
 const initState = () => {
   const initData = {
     moduleList: MODULE_CONFIG.list,
@@ -133,223 +134,265 @@ const initState = () => {
       slogan: '求职意向：前端工程师',
     },
     baseInfo: {
-      "name": "陆一",
-      "birthday": "1999-02-15",
-      "age": 18,
-      "gender": "女",
-      "phone": "13800000000",
-      "email": "2190389887@qq.com",
-      "photo": photo,
-      "photoShow": true,
-      "workAge": {label: "3年经验", value: "3YearExperience"},
-      "height": "155",
-      "weight": "45",
-      "nationality": "布依族",
-      "nativePlace": "成都",
-      "maritalStatus": {label: "未婚", value: "single" },
-      "political": {label: "普通公民", value: "citizen"},
+      name: '陆一',
+      birthday: '1999-02-15',
+      age: 18,
+      gender: '女',
+      phone: '13800000000',
+      email: '2190389887@qq.com',
+      photo: photo,
+      photoShow: true,
+      workAge: { label: '3年经验', value: '3YearExperience' },
+      height: '155',
+      weight: '45',
+      nationality: '布依族',
+      nativePlace: '成都',
+      maritalStatus: { label: '未婚', value: 'single' },
+      political: { label: '普通公民', value: 'citizen' },
       city: '成都',
-      joinTime: {label: '一周内到岗', value: "within1Week"},
+      joinTime: { label: '一周内到岗', value: 'within1Week' },
       post: '前端开发工程师',
-      salary: '13k-18k'
+      salary: '13k-18k',
     },
-    education: [{
-      id:1,
-      content: "<p> 主修课程： 管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销 </p>",
-      degree: {label: "本科", value: "university"},
-      end: "2017-11-01",
-      major: "xx专业",
-      name: "xx大学 ",
-      start: "2017-09-01",
-      today: true
-    }],
+    education: [
+      {
+        id: 1,
+        content:
+          '<p> 主修课程： 管理学、微观经济学、宏观经济学、管理信息系统、统计学、会计学、财务管理、市场营销、经济法、消费者行为学、国际市场营销 </p>',
+        degree: { label: '本科', value: 'university' },
+        end: '2017-11-01',
+        major: 'xx专业',
+        name: 'xx大学 ',
+        start: '2017-09-01',
+        today: true,
+      },
+    ],
     workExperience: [
       {
         id: 1,
-        "name": "xxx公司",
-        "job": "xxx职位",
-        "start": "2024-06-01",
-        "end": "2024-06-01",
-        "today": true,
-        "content": "<p>担任什么角色，做了什么，得到了什么样的结果</p>",
-      }
+        name: 'xxx公司',
+        job: 'xxx职位',
+        start: '2024-06-01',
+        end: '2024-06-01',
+        today: true,
+        content: '<p>担任什么角色，做了什么，得到了什么样的结果</p>',
+      },
     ],
     projectExperience: [
       {
         id: 1,
-        "name": "xx项目",
-        "job": "xx角色",
-        "start": "2024-01-01",
-        "end": "",
-        "today": true,
-        "content": "<p>在什么项目里，担任什么角色，做了什么，获得什么结果</p>",
-      }
+        name: 'xx项目',
+        job: 'xx角色',
+        start: '2024-01-01',
+        end: '',
+        today: true,
+        content: '<p>在什么项目里，担任什么角色，做了什么，获得什么结果</p>',
+      },
     ],
     schoolExperience: [
       {
         id: 1,
-        "name": "什么学校",
-        "job": "什么社团职位",
-        "start": "2024-11-01",
-        "end": "",
-        "today": true,
-        "content": "<p>什么时候组织了什么活动，规模多少，获得了什么结果</p>",
-      }
+        name: '什么学校',
+        job: '什么社团职位',
+        start: '2024-11-01',
+        end: '',
+        today: true,
+        content: '<p>什么时候组织了什么活动，规模多少，获得了什么结果</p>',
+      },
     ],
     internshipExperience: [
       {
         id: 1,
-        "name": "xx公司",
-        "job": "xxx实习生",
-        "start": "2024-02-01",
-        "end": "",
-        "today": true,
-        "content": "<p>工作内容是什么，收获是什么</p>",
-      }
+        name: 'xx公司',
+        job: 'xxx实习生',
+        start: '2024-02-01',
+        end: '',
+        today: true,
+        content: '<p>工作内容是什么，收获是什么</p>',
+      },
     ],
     skills: {
       data: [
         {
-          name: "xxx技能",
+          name: 'xxx技能',
           showBar: true,
-          mastery: {value: 0.5, label: '一般'},
+          mastery: { value: 0.5, label: '一般' },
         },
         {
-          name: "xxx技能1",
+          name: 'xxx技能1',
           showBar: false,
-          mastery: {value: 0.5, label: '一般'},
+          mastery: { value: 0.5, label: '一般' },
         },
         {
-          name: "xxx超长超长超长超长技能2",
+          name: 'xxx超长超长超长超长技能2',
           showBar: false,
-          mastery: {value: 0.5, label: '一般'},
-        }
+          mastery: { value: 0.5, label: '一般' },
+        },
       ],
-      content: "<p>技能特长描述</p>"
+      content: '<p>技能特长描述</p>',
     },
     honors: {
       data: ['证书1', '证书2'],
-      content: "<p><span>普通话一级甲等；</span></p><p><span>大学英语四/六级（CET-4/6），良好的听说读写能力，快速浏览英语专业文件及书籍；</span></p><p><span>通过全国计算机二级考试，熟练运用office相关软件。</span></p>"
+      content:
+        '<p><span>普通话一级甲等；</span></p><p><span>大学英语四/六级（CET-4/6），良好的听说读写能力，快速浏览英语专业文件及书籍；</span></p><p><span>通过全国计算机二级考试，熟练运用office相关软件。</span></p>',
     },
-    selfEvaluation: '深度互联网从业人员，对互联网保持高度的敏感性和关注度，熟悉产品开发流程，有很强的产品规划、需求分析、交互设计能力，能独立承担APP和WEB项目的管控工作，善于沟通，贴近用户。',
-    customization:'自定义内容',
+    selfEvaluation:
+      '深度互联网从业人员，对互联网保持高度的敏感性和关注度，熟悉产品开发流程，有很强的产品规划、需求分析、交互设计能力，能独立承担APP和WEB项目的管控工作，善于沟通，贴近用户。',
+    customization: '自定义内容',
     hobby: {
       data: ['跑步', '瑜伽'],
-      content: ""
+      content: '',
     },
-  }
-  const cacheData = getSimpleCVData<IEditResumeModel>(cacheKey) ?? {}
-  if(Object.keys(cacheData)?.length > 0) {
-    return cacheData
+  };
+  const cacheData = getSimpleCVData<IEditResumeModel>(cacheKey) ?? {};
+  if (Object.keys(cacheData)?.length > 0) {
+    return cacheData;
   }
   return initData;
-}
+};
 
 const commonChangeState = (newPayload: IEditResumeModel) => {
-  setSimpleCVData(cacheKey, newPayload)
+  setSimpleCVData(cacheKey, newPayload);
   return newPayload;
-}
-
+};
 
 export default {
   namespace: EDIT_RESUME_NAME_SPACE,
   state: initState(),
 
-  effects: {
-  },
+  effects: {},
 
   reducers: {
-    reset() {
-      return initState()
+    changeAllModule(state: IEditResumeModel, { payload }: { payload: IEditResumeModel }) {
+      return commonChangeState(payload);
     },
-    changeModuleHidden(state: IEditResumeModel, { payload }: {payload: {key: string}}) {
+    reset() {
+      return initState();
+    },
+    changeModuleHidden(state: IEditResumeModel, { payload }: { payload: { key: string } }) {
       const { moduleList, ...other } = state;
       const newList = moduleList.map(item => {
-        if(item.key === payload?.key) {
+        if (item.key === payload?.key) {
           return {
             ...item,
-            hidden: !item.hidden
-          }
+            hidden: !item.hidden,
+          };
         }
         return item;
-      })
+      });
       return commonChangeState({
         ...other,
-        moduleList: newList
-      })
+        moduleList: newList,
+      });
     },
-    sortModule(state: IEditResumeModel, { payload }: {payload: {oldIndex: number, newIndex: number}}) {
-      const {moduleList, ...other } = state;
-      const newList =  arrayMove(moduleList, payload?.oldIndex, payload?.newIndex) 
+    sortModule(
+      state: IEditResumeModel,
+      { payload }: { payload: { oldIndex: number; newIndex: number } }
+    ) {
+      const { moduleList, ...other } = state;
+      const newList = arrayMove(moduleList, payload?.oldIndex, payload?.newIndex);
       return commonChangeState({
         ...other,
-        moduleList: newList
-      })
+        moduleList: newList,
+      });
     },
-    changeModuleTitle(state: IEditResumeModel, { payload }: {payload: {key: ContentConfigKeyEnum, title: string}}) {
+    changeModuleTitle(
+      state: IEditResumeModel,
+      { payload }: { payload: { key: ContentConfigKeyEnum; title: string } }
+    ) {
       const newState = {
         ...state,
         moduleList: state.moduleList.map(item => {
-          if(item.key === payload?.key) {
+          if (item.key === payload?.key) {
             return {
               ...item,
-              title: payload?.title
-            }
+              title: payload?.title,
+            };
           }
           return item;
-        })
-      }
+        }),
+      };
       return commonChangeState(newState);
     },
-    changeFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, value: Record<string, any> | Record<string, any>[]}}) {
+    changeFormValues(
+      state: IEditResumeModel,
+      {
+        payload,
+      }: {
+        payload: {
+          key: keyof IEditResumeModel;
+          value: Record<string, any> | Record<string, any>[];
+        };
+      }
+    ) {
       const { key, value } = payload;
       let newData;
-      if(Array.isArray(value)) {
-        newData = value
-      } else if(Object.prototype.toString.call(value) === '[object Object]' && typeof state[key] === 'object') {
+      if (Array.isArray(value)) {
+        newData = value;
+      } else if (
+        Object.prototype.toString.call(value) === '[object Object]' &&
+        typeof state[key] === 'object'
+      ) {
         newData = {
           ...state[key],
           ...value,
-        }
+        };
       } else {
-        newData = value
+        newData = value;
       }
       return commonChangeState({
         ...state,
-        [key]: newData
-      })
+        [key]: newData,
+      });
     },
-    sortModuleFormValues(state: IEditResumeModel, { payload }: {payload: {key: keyof IEditResumeModel, type: SortTypeEnum, index: number}}) {
+    sortModuleFormValues(
+      state: IEditResumeModel,
+      {
+        payload,
+      }: {
+        payload: {
+          key: keyof IEditResumeModel;
+          type: SortTypeEnum;
+          index: number;
+        };
+      }
+    ) {
       const { key, type, index } = payload;
-      if(!Array.isArray(state[key])) {
-        console.error('只有数组类型可交换顺序')
-        return
+      if (!Array.isArray(state[key])) {
+        console.error('只有数组类型可交换顺序');
+        return;
       }
-      let newValueList = [...state[key]]
-      if(type === SortTypeEnum.DOWN) {
-        newValueList = arrayMove(state[key], index, index + 1)
-      } else if(type === SortTypeEnum.UP) {
-        newValueList = arrayMove(state[key], index, index - 1)
+      let newValueList = [...state[key]];
+      if (type === SortTypeEnum.DOWN) {
+        newValueList = arrayMove(state[key], index, index + 1);
+      } else if (type === SortTypeEnum.UP) {
+        newValueList = arrayMove(state[key], index, index - 1);
       } else {
-        newValueList = newValueList.filter((_, i) => i !== index)
+        newValueList = newValueList.filter((_, i) => i !== index);
       }
       return commonChangeState({
         ...state,
-        [key]: newValueList
-      })
+        [key]: newValueList,
+      });
     },
-    changeCurrentEditContent(state: IEditResumeModel, { payload }: {payload: {config: IModuleInfoConfig}}) {
+    changeCurrentEditContent(
+      state: IEditResumeModel,
+      { payload }: { payload: { config: IModuleInfoConfig } }
+    ) {
       const { config } = payload;
       return commonChangeState({
         ...state,
-        currentEditContent: config
-      })
+        currentEditContent: config,
+      });
     },
-    changeContentEditModalVisible(state: IEditResumeModel, { payload }: {payload: { visible: boolean}}) {
+    changeContentEditModalVisible(
+      state: IEditResumeModel,
+      { payload }: { payload: { visible: boolean } }
+    ) {
       return commonChangeState({
         ...state,
-        contentEditModalVisible: payload.visible
-      })
-    }
+        contentEditModalVisible: payload.visible,
+      });
+    },
   },
 };

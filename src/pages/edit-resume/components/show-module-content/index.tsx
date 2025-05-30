@@ -1,23 +1,25 @@
-import { injectIntl, IntlShape } from "react-intl";
-import { ContentConfigKeyEnum } from "../../config";
-import BaseInfo from "./base-info";
-import Customization from "./customization";
-import EducationInfo from "./education-info";
-import Hobby from "./hobby";
-import Honors from "./honors";
-import './index.less'
-import InternshipExperience from "./internship-experience";
-import ProjectExperience from "./project-experience";
-import SchoolExperience from "./school-experience";
-import SelfEvaluation from "./self-evaluation";
-import Skills from "./skills";
-import WorkExperience from "./work-experience";
+import { injectIntl, IntlShape } from 'react-intl';
+
+import { ContentConfigKeyEnum } from '../../config';
+
+import BaseInfo from './base-info';
+import Customization from './customization';
+import EducationInfo from './education-info';
+import Hobby from './hobby';
+import Honors from './honors';
+import './index.less';
+import InternshipExperience from './internship-experience';
+import ProjectExperience from './project-experience';
+import SchoolExperience from './school-experience';
+import SelfEvaluation from './self-evaluation';
+import Skills from './skills';
+import WorkExperience from './work-experience';
 
 export interface IShowModuleContentProps {
   configKey?: ContentConfigKeyEnum;
 }
 
-const rootClassName = 'show-module-content-wrapper'
+const rootClassName = 'show-module-content-wrapper';
 const ShowModuleContent = (props: IShowModuleContentProps) => {
   const { configKey } = props;
 
@@ -33,15 +35,9 @@ const ShowModuleContent = (props: IShowModuleContentProps) => {
     [ContentConfigKeyEnum.SELF_EVALUATION, <SelfEvaluation />],
     [ContentConfigKeyEnum.CUSTOMIZATION, <Customization />],
     [ContentConfigKeyEnum.HOBBY, <Hobby />],
-  ])
+  ]);
 
-  return (
-    <div className={rootClassName}>
-      {
-       configKey ? moduleMap.get(configKey) : null
-      }
-    </div>
-  )
-}
+  return <div className={rootClassName}>{configKey ? moduleMap.get(configKey) : null}</div>;
+};
 
-export default ShowModuleContent
+export default ShowModuleContent;

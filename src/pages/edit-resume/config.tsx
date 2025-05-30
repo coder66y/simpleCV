@@ -23,25 +23,25 @@ export interface IModuleInfoConfig {
 
 // Enums
 export enum ThemeConfigKeyEnum {
-  SPACING = "spacing",
-  SKIN = "skin",
-  LANGUAGE = "language",
-  TEMPLATE = 'template'
+  SPACING = 'spacing',
+  SKIN = 'skin',
+  LANGUAGE = 'language',
+  TEMPLATE = 'template',
 }
 
 export enum ContentConfigKeyEnum {
-  CV_INFO = "cvInfo",
-  BASIC_INFO = "basicInfo",
-  WORK_EXPERIENCE = "workExperience",
-  EDUCATION = "education",
+  CV_INFO = 'cvInfo',
+  BASIC_INFO = 'basicInfo',
+  WORK_EXPERIENCE = 'workExperience',
+  EDUCATION = 'education',
   INTERNSHIP_EXPERIENCE = 'internshipExperience',
   SCHOOL_EXPERIENCE = 'schoolExperience',
-  PROJECT_EXPERIENCE = "projectExperience",
-  SKILLS = "skills",
-  HONOR = "honors",
-  CUSTOMIZATION = "customization",
+  PROJECT_EXPERIENCE = 'projectExperience',
+  SKILLS = 'skills',
+  HONOR = 'honors',
+  CUSTOMIZATION = 'customization',
   HOBBY = 'hobby',
-  SELF_EVALUATION = "selfEvaluation"
+  SELF_EVALUATION = 'selfEvaluation',
 }
 
 export enum SortTypeEnum {
@@ -53,8 +53,8 @@ export enum SortTypeEnum {
 // Constants
 export const DATE_FORMAT_CONFIG: FormatDateOptions = {
   month: 'short',
-  year: "numeric",
-}
+  year: 'numeric',
+};
 
 // Theme Configuration
 export const THEME_CONFIG = {
@@ -63,35 +63,35 @@ export const THEME_CONFIG = {
       title: '间距设置',
       type: 'pop',
       key: ThemeConfigKeyEnum.SPACING,
-      icon: <i className='iconfont'>&#xe614;</i>
+      icon: <i className="iconfont">&#xe614;</i>,
     },
     {
       title: '皮肤设置',
       type: 'pop',
       key: ThemeConfigKeyEnum.SKIN,
-      icon: <i className='iconfont'>&#xe91e;</i>
+      icon: <i className="iconfont">&#xe91e;</i>,
     },
     {
       title: '语言/字体',
       type: 'pop',
       key: ThemeConfigKeyEnum.LANGUAGE,
-      icon: <i className='iconfont'>&#xe605;</i>
+      icon: <i className="iconfont">&#xe605;</i>,
     },
     {
       title: '更换模板',
       type: 'modal',
       key: ThemeConfigKeyEnum.TEMPLATE,
-      icon: <i className='iconfont'>&#xe652;</i>
+      icon: <i className="iconfont">&#xe652;</i>,
     },
   ] as ILeftInfoIconConfig[],
-  
+
   rightTabs: [
     {
       title: '信息模块',
-      key: 'infoModule'
-    }
+      key: 'infoModule',
+    },
   ] as IRightTabConfig[],
-}
+};
 
 // Module Configuration
 export const MODULE_CONFIG = {
@@ -151,28 +151,28 @@ export const MODULE_CONFIG = {
       title: '自定义',
       originalTitle: '自定义',
       key: ContentConfigKeyEnum.CUSTOMIZATION,
-    }
+    },
   ] as IModuleInfoConfig[],
 
   icons: new Map<string, ReactNode>([
-    [ContentConfigKeyEnum.BASIC_INFO, <i className='iconfont'>&#xe60a;</i>],
-    [ContentConfigKeyEnum.EDUCATION, <i className='iconfont'>&#xe656;</i>],
-    [ContentConfigKeyEnum.WORK_EXPERIENCE, <i className='iconfont'>&#xe63c;</i>],
-    [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <i className='iconfont'>&#xe689;</i>],
-    [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <i className='iconfont'>&#xe615;</i>],
-    [ContentConfigKeyEnum.SKILLS, <i className='iconfont'>&#xe60f;</i>],
-    [ContentConfigKeyEnum.SELF_EVALUATION, <i className='iconfont'>&#xe61b;</i>],
-    [ContentConfigKeyEnum.HONOR, <i className='iconfont'>&#xe619;</i>],
-    [ContentConfigKeyEnum.HOBBY, <i className='iconfont'>&#xe62a;</i>],
-    [ContentConfigKeyEnum.CUSTOMIZATION, <i className='iconfont'>&#xeb6a;</i>],
-    [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <i className='iconfont'>&#xe648;</i>],
+    [ContentConfigKeyEnum.BASIC_INFO, <i className="iconfont">&#xe60a;</i>],
+    [ContentConfigKeyEnum.EDUCATION, <i className="iconfont">&#xe656;</i>],
+    [ContentConfigKeyEnum.WORK_EXPERIENCE, <i className="iconfont">&#xe63c;</i>],
+    [ContentConfigKeyEnum.SCHOOL_EXPERIENCE, <i className="iconfont">&#xe689;</i>],
+    [ContentConfigKeyEnum.PROJECT_EXPERIENCE, <i className="iconfont">&#xe615;</i>],
+    [ContentConfigKeyEnum.SKILLS, <i className="iconfont">&#xe60f;</i>],
+    [ContentConfigKeyEnum.SELF_EVALUATION, <i className="iconfont">&#xe61b;</i>],
+    [ContentConfigKeyEnum.HONOR, <i className="iconfont">&#xe619;</i>],
+    [ContentConfigKeyEnum.HOBBY, <i className="iconfont">&#xe62a;</i>],
+    [ContentConfigKeyEnum.CUSTOMIZATION, <i className="iconfont">&#xeb6a;</i>],
+    [ContentConfigKeyEnum.INTERNSHIP_EXPERIENCE, <i className="iconfont">&#xe648;</i>],
   ]),
-}
+};
 
 // Form Options
 export const FORM_OPTIONS = {
   workAge: [
-    { value: "", label: '不填' },
+    { value: '', label: '不填' },
     { value: 'graduate', label: '应届生' },
     { value: 'within1YearExperience', label: '一年经验以内' },
     { value: '2YearExperience', label: '两年经验' },
@@ -187,7 +187,7 @@ export const FORM_OPTIONS = {
   ],
 
   maritalStatus: [
-    { value: "", label: '不填' },
+    { value: '', label: '不填' },
     { value: 'single', label: '未婚' },
     { value: 'married', label: '已婚' },
     { value: 'divorced', label: '离异' },
@@ -200,40 +200,40 @@ export const FORM_OPTIONS = {
   ],
 
   political: [
-    { value: "", label: '不填' },
-    { value: "citizen", label: '普通公民' },
-    { value: "masses", label: '群众' },
-    { value: "partyMember", label: '中共党员' },
-    { value: "probationaryParty", label: '中共预备党员' },
-    { value: "leagueMember", label: '共青团员' },
+    { value: '', label: '不填' },
+    { value: 'citizen', label: '普通公民' },
+    { value: 'masses', label: '群众' },
+    { value: 'partyMember', label: '中共党员' },
+    { value: 'probationaryParty', label: '中共预备党员' },
+    { value: 'leagueMember', label: '共青团员' },
   ],
 
   gender: [
-    { value: "", label: '不填' },
-    { value: "male", label: '男' },
-    { value: "female", label: '女' },
+    { value: '', label: '不填' },
+    { value: 'male', label: '男' },
+    { value: 'female', label: '女' },
   ],
 
   signIn: [
-    { value: "", label: '不填' },
-    { value: "immediately", label: '随时到岗' },
-    { value: "within1Week", label: '一周内到岗' },
-    { value: "within2Weeks", label: '两周内到岗' },
-    { value: "within1month", label: '一月内到岗' },
-    { value: "toBeDetermined", label: '另议' },
+    { value: '', label: '不填' },
+    { value: 'immediately', label: '随时到岗' },
+    { value: 'within1Week', label: '一周内到岗' },
+    { value: 'within2Weeks', label: '两周内到岗' },
+    { value: 'within1month', label: '一月内到岗' },
+    { value: 'toBeDetermined', label: '另议' },
   ],
 
   degree: [
-    { value: "", label: '不填' },
-    { value: "primary", label: '小学' },
-    { value: "middle", label: '初中' },
-    { value: "junior", label: '高中' },
-    { value: "senior", label: '中专' },
-    { value: "college", label: '大专' },
-    { value: "university", label: '本科' },
-    { value: "master", label: '硕士' },
-    { value: "doctor", label: '博士' },
-    { value: "others", label: '其他' },
+    { value: '', label: '不填' },
+    { value: 'primary', label: '小学' },
+    { value: 'middle', label: '初中' },
+    { value: 'junior', label: '高中' },
+    { value: 'senior', label: '中专' },
+    { value: 'college', label: '大专' },
+    { value: 'university', label: '本科' },
+    { value: 'master', label: '硕士' },
+    { value: 'doctor', label: '博士' },
+    { value: 'others', label: '其他' },
   ],
 
   mastery: [
@@ -243,5 +243,4 @@ export const FORM_OPTIONS = {
     { value: 0.85, label: '擅长' },
     { value: 0.95, label: '精通' },
   ],
-}
-
+};
